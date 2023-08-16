@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DoAnCuoiKi_KTDH_WinForm
+namespace DoAnCuoiKi_KTDH_WinForm.Dialog
 {
-    public partial class Form1 : Form
+    public partial class InfoDialogForm : Form
     {
-        public Form1()
+        public InfoDialogForm()
         {
             InitializeComponent();
         }
