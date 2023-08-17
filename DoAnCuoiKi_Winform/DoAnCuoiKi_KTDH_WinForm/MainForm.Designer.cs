@@ -32,10 +32,11 @@ namespace DoAnCuoiKi_KTDH_WinForm
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.container_menu = new System.Windows.Forms.Panel();
             this.toolboxgroup = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.group_btn = new System.Windows.Forms.Panel();
             this.container_body = new System.Windows.Forms.Panel();
             this.ViewTab = new System.Windows.Forms.TabControl();
             this.tab2D = new System.Windows.Forms.TabPage();
+            this.ViewPic2D = new System.Windows.Forms.PictureBox();
             this.tab3D = new System.Windows.Forms.TabPage();
             this.view3D = new System.Windows.Forms.PictureBox();
             this.tabanimation = new System.Windows.Forms.TabPage();
@@ -55,15 +56,15 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.thôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.containerdetail_right = new System.Windows.Forms.Panel();
             this.detailgroup = new System.Windows.Forms.GroupBox();
-            this.panel_detail = new System.Windows.Forms.Panel();
             this.container_itemlist_bottom = new System.Windows.Forms.Panel();
             this.itemgroup = new System.Windows.Forms.GroupBox();
-            this.ViewPic2D = new System.Windows.Forms.PictureBox();
+            this.panel_detail = new System.Windows.Forms.Panel();
             this.container_menu.SuspendLayout();
             this.toolboxgroup.SuspendLayout();
             this.container_body.SuspendLayout();
             this.ViewTab.SuspendLayout();
             this.tab2D.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewPic2D)).BeginInit();
             this.tab3D.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.view3D)).BeginInit();
             this.tabanimation.SuspendLayout();
@@ -72,7 +73,6 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.containerdetail_right.SuspendLayout();
             this.detailgroup.SuspendLayout();
             this.container_itemlist_bottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ViewPic2D)).BeginInit();
             this.SuspendLayout();
             // 
             // container_menu
@@ -87,7 +87,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             // toolboxgroup
             // 
-            this.toolboxgroup.Controls.Add(this.flowLayoutPanel1);
+            this.toolboxgroup.Controls.Add(this.group_btn);
             this.toolboxgroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolboxgroup.Location = new System.Drawing.Point(0, 0);
             this.toolboxgroup.Name = "toolboxgroup";
@@ -96,16 +96,14 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.toolboxgroup.TabStop = false;
             this.toolboxgroup.Text = "Công cụ";
             // 
-            // flowLayoutPanel1
+            // group_btn
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(138, 451);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.group_btn.AutoScroll = true;
+            this.group_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.group_btn.Location = new System.Drawing.Point(3, 16);
+            this.group_btn.Name = "group_btn";
+            this.group_btn.Size = new System.Drawing.Size(138, 451);
+            this.group_btn.TabIndex = 0;
             // 
             // container_body
             // 
@@ -139,6 +137,16 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.tab2D.TabIndex = 0;
             this.tab2D.Text = "2D";
             this.tab2D.UseVisualStyleBackColor = true;
+            // 
+            // ViewPic2D
+            // 
+            this.ViewPic2D.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ViewPic2D.Location = new System.Drawing.Point(3, 3);
+            this.ViewPic2D.Name = "ViewPic2D";
+            this.ViewPic2D.Size = new System.Drawing.Size(737, 438);
+            this.ViewPic2D.TabIndex = 0;
+            this.ViewPic2D.TabStop = false;
+            this.ViewPic2D.MouseDown += new System.Windows.Forms.MouseEventHandler(this.view2D_MouseDown);
             // 
             // tab3D
             // 
@@ -298,14 +306,6 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.detailgroup.TabStop = false;
             this.detailgroup.Text = "Chi tiết";
             // 
-            // panel_detail
-            // 
-            this.panel_detail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_detail.Location = new System.Drawing.Point(3, 16);
-            this.panel_detail.Name = "panel_detail";
-            this.panel_detail.Size = new System.Drawing.Size(190, 451);
-            this.panel_detail.TabIndex = 0;
-            // 
             // container_itemlist_bottom
             // 
             this.container_itemlist_bottom.Controls.Add(this.itemgroup);
@@ -326,14 +326,17 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.itemgroup.TabStop = false;
             this.itemgroup.Text = "Vật xuất hiện";
             // 
-            // ViewPic2D
+            // panel_detail
             // 
-            this.ViewPic2D.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ViewPic2D.Location = new System.Drawing.Point(3, 3);
-            this.ViewPic2D.Name = "ViewPic2D";
-            this.ViewPic2D.Size = new System.Drawing.Size(737, 438);
-            this.ViewPic2D.TabIndex = 0;
-            this.ViewPic2D.TabStop = false;
+            this.panel_detail.AllowDrop = true;
+            this.panel_detail.AutoScroll = true;
+            this.panel_detail.AutoSize = true;
+            this.panel_detail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_detail.Location = new System.Drawing.Point(3, 16);
+            this.panel_detail.Name = "panel_detail";
+            this.panel_detail.Padding = new System.Windows.Forms.Padding(5);
+            this.panel_detail.Size = new System.Drawing.Size(190, 451);
+            this.panel_detail.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -353,10 +356,10 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.container_menu.ResumeLayout(false);
             this.toolboxgroup.ResumeLayout(false);
-            this.toolboxgroup.PerformLayout();
             this.container_body.ResumeLayout(false);
             this.ViewTab.ResumeLayout(false);
             this.tab2D.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ViewPic2D)).EndInit();
             this.tab3D.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.view3D)).EndInit();
             this.tabanimation.ResumeLayout(false);
@@ -365,8 +368,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.MenuHead.PerformLayout();
             this.containerdetail_right.ResumeLayout(false);
             this.detailgroup.ResumeLayout(false);
+            this.detailgroup.PerformLayout();
             this.container_itemlist_bottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ViewPic2D)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,11 +401,11 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private System.Windows.Forms.Panel containerdetail_right;
         private System.Windows.Forms.GroupBox detailgroup;
         private System.Windows.Forms.Panel container_itemlist_bottom;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox itemgroup;
-        private System.Windows.Forms.Panel panel_detail;
         private System.Windows.Forms.PictureBox ViewPic2D;
+        private System.Windows.Forms.Panel group_btn;
+        private System.Windows.Forms.Panel panel_detail;
     }
 }
 

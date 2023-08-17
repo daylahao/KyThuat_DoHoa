@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoAnCuoiKi_KTDH_WinForm.Draw;
 using DoAnCuoiKi_KTDH_WinForm.view;
 namespace DoAnCuoiKi_KTDH_WinForm
 {
@@ -15,13 +16,17 @@ namespace DoAnCuoiKi_KTDH_WinForm
         public static bool togglegrid = true;
         public static int UnitSize = 5;
         private view.View_2D View2D;
+        public static Detail_Base _BoxDetail;
+        public static Panel paneldetail;
         public MainForm()
         {
             InitializeComponent();
             ViewTab.SelectedIndex = 0;
             View2D = new View_2D();
             View2D.view = ViewPic2D;
-            View2D.LoadUIView();
+            _BoxDetail = new Detail_Base();
+            _BoxDetail.DataObject = new List<DataDetail>();
+            paneldetail = panel_detail;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -30,6 +35,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
             {
                 case 0: // 2D
                     {
+                        View2D.LoadUIView();
+                        View2D.LoadMenuToolBox(group_btn);
                         break;
                     }
                 case 1: //3D
@@ -58,7 +65,13 @@ namespace DoAnCuoiKi_KTDH_WinForm
             View2D.LoadUIView();
         }
         #endregion
-
+        #region Thanh chi tiết
+        public static void LoadDetailMenu()
+        {
+            _BoxDetail.LoadDataDetail(paneldetail);
+        }
+        #endregion
+        #region MenuHead
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (DoAnCuoiKi_KTDH_WinForm.Dialog.InfoDialogForm _infoform = new DoAnCuoiKi_KTDH_WinForm.Dialog.InfoDialogForm())
@@ -66,6 +79,13 @@ namespace DoAnCuoiKi_KTDH_WinForm
                 _infoform.ShowDialog();
             }
         }
+        #endregion
+        #region Load item thanh công cụ
+         private void Load_Tool_Box_2D()
+        {
+            
+        }
+        #endregion
     }
     public class Size
     {

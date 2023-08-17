@@ -73,56 +73,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowIcon {
-            get {
-                object obj = ResourceManager.GetObject("ArrowIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap BoxIcon {
-            get {
-                object obj = ResourceManager.GetObject("BoxIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CircleIcon {
-            get {
-                object obj = ResourceManager.GetObject("CircleIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CylinderIcon {
-            get {
-                object obj = ResourceManager.GetObject("CylinderIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap EllipseIcon {
-            get {
-                object obj = ResourceManager.GetObject("EllipseIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap LineIcon {
             get {
                 object obj = ResourceManager.GetObject("LineIcon", resourceCulture);
@@ -136,26 +86,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         internal static System.Drawing.Bitmap logo_hoc_vien_cong_nghe_buu_chinh_vien_thong_1_ {
             get {
                 object obj = ResourceManager.GetObject("logo-hoc-vien-cong-nghe-buu-chinh-vien-thong-1-", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SquareIcon {
-            get {
-                object obj = ResourceManager.GetObject("SquareIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TriangleIcon {
-            get {
-                object obj = ResourceManager.GetObject("TriangleIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

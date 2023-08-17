@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using DoAnCuoiKi_KTDH_WinForm;
 using DoAnCuoiKi_KTDH_WinForm.Draw;
+using DoAnCuoiKi_KTDH_WinForm.Dialog;
 namespace DoAnCuoiKi_KTDH_WinForm.view
 {
     public class View_2D
@@ -15,8 +16,56 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public int centerX, centerY;
         public static Size viewsize = new Size();
         public List<Draw.Point> _listpoint = new List<Draw.Point>();
+        Draw2D _Draw2d;
+        public void LoadMenuToolBox(Panel ContainerToolBox)
+        {
+            ItemBody ItemTool = new ItemBody();
+            ItemTool.itemname = "Đường Thẳng";
+            ItemTool.thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.LineIcon;
+            ItemTool.ButtonClick += new EventHandler(DrawLine);
+            ItemTool.Height = 50;
+            ItemTool.Dock = DockStyle.Top;
+            ContainerToolBox.Controls.Add(ItemTool);
+        }
+        #region Kích hoạt các hàm vẽ
+        protected void DrawLine(object sender, EventArgs e)
+        {
+            _listpoint.Clear();
+            using (Dialog.LineDialogForm _dialog = new Dialog.LineDialogForm())
+            {
+                if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                { 
+                    _listpoint.AddRange(_Draw2d.Line(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style));
+                    DataDetail Data = new DataDetail();
+                    Data.name = "Đường Thẳng";
+                    Data.Sx = _dialog.data.Sx;
+                    Data.Ex = _dialog.data.Ex;
+                    Data.Sy = _dialog.data.Sy;
+                    Data.Ey = _dialog.data.Ey;
+                    MainForm._BoxDetail.DataObject.Clear();
+                    MainForm._BoxDetail.DataObject.Add(Data);
+                    MainForm.LoadDetailMenu();
+
+                    view.Refresh();
+                }
+            }
+        }
+        protected void DrawCricle(object sender, EventArgs e)
+        {
+
+        }
+        protected void DrawRectangle(object sender, EventArgs e)
+        {
+
+        }
+        protected void TreeTriangle(object sender,EventArgs e)
+        {
+
+        }
+        #endregion
         public void LoadUIView()
         {
+            _Draw2d = new Draw2D();
             viewsize.width = view.Width;
             viewsize.height = view.Height;
             centerX = viewsize.width / 2;
