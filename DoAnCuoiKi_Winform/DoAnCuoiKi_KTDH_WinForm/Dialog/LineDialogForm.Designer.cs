@@ -139,7 +139,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.groupBox1.Size = new System.Drawing.Size(253, 53);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Điểm bắt đầu";
+            this.groupBox1.Text = "Điểm kết thúc";
             // 
             // tableLayoutPanel4
             // 

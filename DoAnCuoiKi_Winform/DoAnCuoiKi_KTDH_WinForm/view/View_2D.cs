@@ -10,6 +10,12 @@ using DoAnCuoiKi_KTDH_WinForm.Draw;
 using DoAnCuoiKi_KTDH_WinForm.Dialog;
 namespace DoAnCuoiKi_KTDH_WinForm.view
 {
+    public class ToolBox
+    {
+        public string name { get; set; }
+        public Bitmap thumb { get; set; }
+        public EventHandler customFunction { get; set; }
+    }
     public class View_2D
     {
         public PictureBox view { get; set; }
@@ -17,15 +23,29 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public static Size viewsize = new Size();
         public List<Draw.Point> _listpoint = new List<Draw.Point>();
         Draw2D _Draw2d;
+        List<ToolBox> Ds_ToolBox;
         public void LoadMenuToolBox(Panel ContainerToolBox)
         {
-            ItemBody ItemTool = new ItemBody();
-            ItemTool.itemname = "Đường Thẳng";
-            ItemTool.thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.LineIcon;
-            ItemTool.ButtonClick += new EventHandler(DrawLine);
-            ItemTool.Height = 50;
-            ItemTool.Dock = DockStyle.Top;
-            ContainerToolBox.Controls.Add(ItemTool);
+            //Drawline Button
+            Ds_ToolBox.Reverse();
+            foreach (ToolBox tool in Ds_ToolBox)
+            {
+                ItemBody ItemTool = new ItemBody();
+                ItemTool.itemname = tool.name;
+                ItemTool.thumb = tool.thumb;
+                ItemTool.ButtonClick += tool.customFunction;
+                ItemTool.Height = 50;
+                ItemTool.Dock = DockStyle.Top;
+                ContainerToolBox.Controls.Add(ItemTool);
+            }
+        }
+        public void CreatListToolBox()
+        {
+            Ds_ToolBox = new List<ToolBox>();
+            ToolBox toolBox = new ToolBox();
+            Ds_ToolBox.Add(new ToolBox() { name = "Đường Thẳng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.LineIcon, customFunction = new EventHandler(DrawLine) });
+            Ds_ToolBox.Add(new ToolBox() { name = "Hình chữ nhật", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RectangleIcon, customFunction = new EventHandler(DrawRectangle) });
+            Ds_ToolBox.Add(new ToolBox() { name = "Cây tam giác", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeTriangleIcon, customFunction = new EventHandler(DrawTreeTriangle) });
         }
         #region Kích hoạt các hàm vẽ
         protected void DrawLine(object sender, EventArgs e)
@@ -45,7 +65,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     MainForm._BoxDetail.DataObject.Clear();
                     MainForm._BoxDetail.DataObject.Add(Data);
                     MainForm.LoadDetailMenu();
-
                     view.Refresh();
                 }
             }
@@ -56,11 +75,32 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         }
         protected void DrawRectangle(object sender, EventArgs e)
         {
-
+              _listpoint.Clear();
+            using (Dialog.LineDialogForm _dialog = new Dialog.LineDialogForm())
+            {
+                if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MainForm._BoxDetail.DataObject.Clear();
+                    _listpoint.AddRange(_Draw2d.Rectangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style));
+                    MainForm.LoadDetailMenu();
+                    view.Refresh();
+                }
+            }
         }
-        protected void TreeTriangle(object sender,EventArgs e)
+        protected void DrawTreeTriangle(object sender,EventArgs e)
         {
-
+            _listpoint.Clear();
+            using (Dialog.TreeTriangleDialogForm _dialog = new Dialog.TreeTriangleDialogForm())
+            {
+                if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MainForm._BoxDetail.DataObject.Clear();
+                    _listpoint.AddRange(_Draw2d.TreeTriangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.count));
+                    MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Cây tam giác", centerx = _dialog.data.centerx, centery = _dialog.data.centery, width = _dialog.data.width, height = _dialog.data.height });
+                    view.Refresh();
+                    MainForm.LoadDetailMenu();
+                }
+            }
         }
         #endregion
         public void LoadUIView()
@@ -157,7 +197,13 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
 /*                textBoxX.Text = pixelx.ToString();
                 textBoxY.Text = pixely.ToString();*/
                 _listpoint.Add(new Draw.Point(pixelx, pixely));
+                DataDetail data = new DataDetail();
+                data.x = pixelx;
+                data.y = pixely;
                 view.Refresh();
+                MainForm._BoxDetail.DataObject.Clear();
+                MainForm._BoxDetail.DataObject.Add(data);
+                MainForm.LoadDetailMenu();
             }
 
         }

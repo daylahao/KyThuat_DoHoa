@@ -18,6 +18,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private view.View_2D View2D;
         public static Detail_Base _BoxDetail;
         public static Panel paneldetail;
+        private bool AppStart = true;
         public MainForm()
         {
             InitializeComponent();
@@ -31,6 +32,11 @@ namespace DoAnCuoiKi_KTDH_WinForm
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (AppStart)
+            {
+                View2D.CreatListToolBox();
+                AppStart = false;
+            }
             switch (ViewTab.SelectedIndex)
             {
                 case 0: // 2D
@@ -91,5 +97,25 @@ namespace DoAnCuoiKi_KTDH_WinForm
     {
         public int width { get; set; }
         public int height { get; set; }
+    }
+    public class ConvertPoint
+    {
+        int picturewidth = View_2D.viewsize.width, pictureheight = View_2D.viewsize.height;
+        public int[] Doi_Sang_He_Toa_Do_May_Tinh(int X, int Y)
+        {
+            int[] pointChange;
+            X = picturewidth / 2 + X;
+            Y = pictureheight / 2 - Y;
+            pointChange = new int[] { X, Y };
+            return pointChange;
+        }
+        public int[] Doi_Sang_He_Toa_Do_Nguoi_Dung(int X, int Y)
+        {
+            int[] pointChange;
+            X = X > picturewidth / 2 ? (X - picturewidth / 2) : -(picturewidth / 2 - X);
+            Y = Y > pictureheight / 2 ? -(Y - pictureheight / 2) : pictureheight / 2 - Y;
+            pointChange = new int[] { X, Y };
+            return pointChange;
+        }
     }
 }

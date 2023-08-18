@@ -64,6 +64,12 @@
     <Compile Include="Dialog\LineDialogForm.Designer.cs">
       <DependentUpon>LineDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\TreeTriangleDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\TreeTriangleDialogForm.Designer.cs">
+      <DependentUpon>TreeTriangleDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Draw\Detail_Base.cs" />
     <Compile Include="Draw\Draw2D.cs" />
     <Compile Include="Draw\DrawBase.cs" />
@@ -90,6 +96,9 @@
     <EmbeddedResource Include="Dialog\LineDialogForm.resx">
       <DependentUpon>LineDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\TreeTriangleDialogForm.resx">
+      <DependentUpon>TreeTriangleDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,10 +121,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\TreeTriangleIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="img\LineIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

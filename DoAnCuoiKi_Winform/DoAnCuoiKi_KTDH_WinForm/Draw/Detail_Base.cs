@@ -26,14 +26,14 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 pointstartlabel.AutoSize = true;
                 pointstartlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                 _panel.Controls.Add(pointstartlabel);
-                if (Data.Sx.HasValue)
+                if (Data.Sx.HasValue||Data.Sy.HasValue)
                 {
                     pointstartlabel = new Label();
                     pointstartlabel.Text = "Điểm đầu = { x=" + Data.Sx.ToString() + " y= " + Data.Sy.ToString() + "}";
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
-                if (Data.Ex.HasValue)
+                if (Data.Ex.HasValue||Data.Ey.HasValue)
                 {
                     pointstartlabel = new Label();
                     pointstartlabel.Text = "Điểm Cuối = { x=" + Data.Ex.ToString() + " y= " + Data.Ey.ToString() + "}";
@@ -47,17 +47,24 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
-                if (Data.centerx.HasValue)
+                if (Data.centerx.HasValue||Data.centery.HasValue)
                 {
                     pointstartlabel = new Label();
                     pointstartlabel.Text = "Tâm = { X="+Data.centerx.ToString() +"Y= "+Data.centery.ToString() + " }";
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
-                if (Data.height.HasValue)
+                if (Data.height.HasValue||Data.width.HasValue)
                 {
                     pointstartlabel = new Label();
-                    pointstartlabel.Text = "Chiều cao" + Data.height.ToString() + "dài " + Data.width.ToString() + " }";
+                    pointstartlabel.Text = "Chiều cao= " + Data.height.ToString() + ", dài= " + Data.width.ToString() + " }";
+                    pointstartlabel.AutoSize = true;
+                    _panel.Controls.Add(pointstartlabel);
+                }
+                if (Data.x.HasValue || Data.y.HasValue)
+                {
+                    pointstartlabel = new Label();
+                    pointstartlabel.Text = "Điểm { x = " + Data.x.ToString() + "Y= " + Data.y.ToString() + " }";
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
@@ -77,5 +84,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public int? R { get; set; }
         public int? height { get; set; }
         public int? width { get; set; }
+        public int? x { get; set; }
+        public int? y { get; set; }
     }
 }
