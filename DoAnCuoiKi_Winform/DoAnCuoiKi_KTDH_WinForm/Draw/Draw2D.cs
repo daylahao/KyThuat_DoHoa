@@ -166,6 +166,42 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình Tam giác", Sx = Sx, Sy = Sy, Ex = Ex, Ey = Ey,centerx = (Sx+Ex)/2,centery=(Sy+Ey)/2});
             return PointsDraw;
         }
+        private List<Draw.Point> Cricle(int centerX, int centerY, int radius, Color? fillColor=null)
+        {
+            int P0 = 5 / 4 - radius;
+            List<int> P = new List<int>();
+            List<Draw.Point> _linepoint = new List<Draw.Point>();
+            int i = 0, currentX = 0, currentY = radius;
+            P.Add(P0);
+            while (currentX <= radius * System.Math.Sqrt(2) / 2)
+            {
+                _linepoint.Add(new Point(centerX + currentX, centerY + currentY));
+                _linepoint.Add(new Point(centerX - currentX, centerY + currentY));
+                _linepoint.Add(new Point(centerX + currentX, centerY - currentY));
+                _linepoint.Add(new Point(centerX - currentX, centerY - currentY));
+                _linepoint.Add(new Point(centerX + currentY, centerY + currentX));
+                _linepoint.Add(new Point(centerX - currentY, centerY + currentX));
+                _linepoint.Add(new Point(centerX + currentY, centerY - currentX));
+                _linepoint.Add(new Point(centerX - currentY, centerY - currentX));
+                currentX++;
+                int CurrentP;
+                if (P[i] < 0)
+                {
+                    CurrentP = P[i] + 2 * currentX + 3;
+                }
+                else
+                {
+                    CurrentP = P[i] + 2 * currentX - 2 * currentY + 5;
+                    currentY = currentY - 1;
+                }
+                P.Add(CurrentP);
+                i++;
+            }
+            _linepoint.Add(new Point(centerX - radius + 1, centerY));
+            _linepoint=(FillColor(_linepoint, centerX, centerY, fillColor));
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình tròn", centerx = centerX, centery = centerY, R = radius });
+            return _linepoint;
+        }
         public List<Draw.Point> TreeTriangle(int Sx, int Sy, int Ex, int Ey, int trianglecount = 3)
         {
             if (Math.Abs(Ey + Sy) < 30 && trianglecount>4)
@@ -189,7 +225,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                     if (i == trianglecount - 1)
                     {
                         endy = rectangle_Sy + ((Ey + rectangle_Ey) / trianglecount)+ ((Ey + rectangle_Ey) / trianglecount)/2;
-                        starty = rectangle_Sy+ ((Ey + rectangle_Ey) / trianglecount) / 2;
+                        starty = rectangle_Ey;
                     }else
                     starty = (Ey - (i + 1) * ((Ey + rectangle_Ey) / trianglecount))+((Ey + rectangle_Ey) / trianglecount)/2;
                 }
@@ -208,6 +244,41 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 ListPoint.AddRange(Triangle(startx, starty, endx, endy, System.Drawing.Color.Green));
             }
             return ListPoint;
+        }
+        public List<Draw.Point>TreeCricle(int Sx,int Sy,int Ex,int Ey,int criclecount= 3)
+        {
+            List<Draw.Point> _listpoint = new List<Point>();
+            bool flip=false;
+            // Tính thân cây
+            int rectangle_sx, rectangle_sy, rectangle_ex, rectangle_ey, bodywidth= (Ex - Sx) / 3;
+            rectangle_sx = Sx + bodywidth;
+            rectangle_sy = Sy;
+            rectangle_ex = Ex - bodywidth;
+            rectangle_ey = Ey - bodywidth / 2;
+            _listpoint.AddRange(Rectangle(rectangle_sx, rectangle_sy, rectangle_ex, rectangle_ey, Color.Brown));
+            int centerx, centery, radius;
+            for (int i = 0; i < criclecount; i++)
+            {
+                centerx = (Ex + Sx) / 2;
+                centery = rectangle_ey-i;
+                radius = bodywidth;
+                if (i == criclecount / 2)
+                {
+                    _listpoint.AddRange(Cricle((Ex + Sx) / 2, rectangle_ey, bodywidth, Color.Green));
+                }else if (flip)
+                {
+                    centerx += bodywidth;
+                    _listpoint.AddRange(Cricle(centerx, centery-bodywidth, radius, Color.Green));
+                    flip = false;
+                }
+                else
+                {
+                    centerx -= bodywidth;
+                    _listpoint.AddRange(Cricle(centerx, centery-bodywidth, radius, Color.Green));
+                    flip = true;
+                }
+            }
+            return _listpoint;
         }
     }
 }

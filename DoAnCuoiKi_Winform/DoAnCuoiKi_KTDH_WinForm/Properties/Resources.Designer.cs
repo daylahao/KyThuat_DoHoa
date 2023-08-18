@@ -103,6 +103,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TreeCricleIcon {
+            get {
+                object obj = ResourceManager.GetObject("TreeCricleIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TreeTriangleIcon {
             get {
                 object obj = ResourceManager.GetObject("TreeTriangleIcon", resourceCulture);

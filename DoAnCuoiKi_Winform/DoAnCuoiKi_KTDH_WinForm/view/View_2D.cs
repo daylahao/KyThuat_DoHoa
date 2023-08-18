@@ -46,6 +46,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             Ds_ToolBox.Add(new ToolBox() { name = "Đường Thẳng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.LineIcon, customFunction = new EventHandler(DrawLine) });
             Ds_ToolBox.Add(new ToolBox() { name = "Hình chữ nhật", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RectangleIcon, customFunction = new EventHandler(DrawRectangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tam giác", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeTriangleIcon, customFunction = new EventHandler(DrawTreeTriangle) });
+            Ds_ToolBox.Add(new ToolBox() { name = "Cây tròn", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeCricleIcon, customFunction = new EventHandler(DrawTreeCricle)});
         }
         #region Kích hoạt các hàm vẽ
         protected void DrawLine(object sender, EventArgs e)
@@ -101,6 +102,14 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     MainForm.LoadDetailMenu();
                 }
             }
+        }
+        protected void DrawTreeCricle(object sender,EventArgs e)
+        {
+            _listpoint.Clear();
+            MainForm._BoxDetail.DataObject.Clear();
+            _listpoint.AddRange(_Draw2d.TreeCricle(0, 0, 20, 40,4));
+            view.Refresh();
+            MainForm.LoadDetailMenu();
         }
         #endregion
         public void LoadUIView()
