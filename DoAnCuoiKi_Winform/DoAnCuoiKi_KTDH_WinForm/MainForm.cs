@@ -18,6 +18,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         public static int UnitSize = 5;
         private view.View_2D View2D;
         private view.View_Animation ViewAnimation;
+        private view.View_3D View3D;
         public static Detail_Base _BoxDetail;
         public static Panel paneldetail;
         public static Panel panellayer;
@@ -38,6 +39,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
             paneldetail = this.panel_detail;
             panellayer = this.container_itemlist_bottom;
             Tranform2D = new Tranform2D();
+            View3D = new View_3D();
+            View3D.view = view3D;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -45,6 +48,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             if (AppStart)
             {
                 View2D.CreatListToolBox();
+                View3D.CreatListToolBox();
                 AppStart = false;
             }
             Changetab();
@@ -69,6 +73,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
                     }
                 case 1: //3D
                     {
+                        View3D.LoadUIView();
+                        View3D.LoadMenuToolBox(group_btn);
                         break;
                     }
                 case 2://Animation

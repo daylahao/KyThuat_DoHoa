@@ -8,8 +8,10 @@ using DoAnCuoiKi_KTDH_WinForm.view;
 
 namespace DoAnCuoiKi_KTDH_WinForm.Draw
 {
+
     public class Draw2D
     {
+        int UnitSize = 5;
         public List<Draw.Point> FillColor(List<Point> ListPoint, int X, int Y, Color? ColorFill = null)
         {
             ConvertPoint _convert = new ConvertPoint();
@@ -131,7 +133,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 
             return linePoints;
         }
-        public List<Draw.Point>Rectangle(int Sx,int Sy,int Ex,int Ey,Color? colorfill = null, string type = "Nét liền")
+        public List<Draw.Point> Rectangle(int Sx, int Sy, int Ex, int Ey, Color? colorfill = null, string type = "Nét liền")
         {
             List<Draw.Point> _listpoint = new List<Point>();
             int x1, y1, x2, y2;
@@ -145,7 +147,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             _listpoint.AddRange(Line(x2, y2, Sx, Sy, Color.Black));
             if (type == "Nét liền")
                 _listpoint = FillColor(_listpoint, (Ex + Sx) / 2, (Ey + Sy) / 2, colorfill);
-            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình chữ nhật", Sx = Sx, Sy = Sy, Ex = Ex, Ey = Ey, width = Math.Abs(Sx + Ex), height = Math.Abs(Sy + Ey)});
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình chữ nhật", Sx = Sx, Sy = Sy, Ex = Ex, Ey = Ey, width = Math.Abs(Sx + Ex), height = Math.Abs(Sy + Ey) });
             return _listpoint;
         }
         public List<Draw.Point> Triangle(int Sx, int Sy, int Ex, int Ey, Color? colorfill = null, string type = "Nét liền")
@@ -166,10 +168,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 else
                     PointsDraw = FillColor(PointsDraw, (Ex + Sx) / 2, Sy - 1, colorfill);
             }
-            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình Tam giác", Sx = Sx, Sy = Sy, Ex = Ex, Ey = Ey,centerx = (Sx+Ex)/2,centery=(Sy+Ey)/2});
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình Tam giác", Sx = Sx, Sy = Sy, Ex = Ex, Ey = Ey, centerx = (Sx + Ex) / 2, centery = (Sy + Ey) / 2 });
             return PointsDraw;
         }
-        private List<Draw.Point> Cricle(int centerX, int centerY, int radius, Color? fillColor=null)
+        private List<Draw.Point> Cricle(int centerX, int centerY, int radius, Color? fillColor = null)
         {
             int P0 = 5 / 4 - radius;
             List<int> P = new List<int>();
@@ -201,36 +203,40 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 i++;
             }
             _linepoint.Add(new Point(centerX - radius + 1, centerY));
-            _linepoint=(FillColor(_linepoint, centerX, centerY, fillColor));
+            _linepoint = (FillColor(_linepoint, centerX, centerY, fillColor));
             MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình tròn", centerx = centerX, centery = centerY, R = radius });
             return _linepoint;
         }
         public List<Draw.Point> TreeTriangle(int Sx, int Sy, int Ex, int Ey, int trianglecount = 3)
         {
-            if (Math.Abs(Ey + Sy) < 30 && trianglecount>4)
-            {
-                trianglecount = trianglecount/2;
-            }
+            if (Math.Abs(Ey + Sy) % 10 > 1 && Math.Abs(Ey + Sy) % 10 < trianglecount)
+                trianglecount = Math.Abs(Ey + Sy) % 10;
             List<Draw.Point> ListPoint = new List<Draw.Point>();
+            List<Draw.Point> Listtriangle = new List<Point>();
             //vẽ hình chữ nhật
             int rectangle_Sx = Sx + (Ex - Sx) / 3,
                 rectangle_Sy = Sy,
                 rectangle_Ex = Ex - (Ex - Sx) / 3,
-                rectangle_Ey = Sy + (Ey - Sy) /5;
+                rectangle_Ey = Sy + (Ey - Sy) / 5;
             ListPoint.AddRange(Rectangle(rectangle_Sx, rectangle_Sy, rectangle_Ex, rectangle_Ey, System.Drawing.Color.Brown));
             int rangetriangle_Sx = Sx, rangetriangle_Sy = rectangle_Ey, rangetriangle_Ex = Ex, rangetriangle_Ey = Ey;
             for (int i = 0; i < trianglecount; i++)
             {
                 int startx = Sx, starty = (Ey - rectangle_Ey) / trianglecount, endx = Ex, endy = 0;
+                int offset = ((Ey + rectangle_Ey) / trianglecount) / 2;
                 if (i > 0)
                 {
-                    endy = (Ey - i * ((Ey + rectangle_Ey) / trianglecount))+ ((Ey + rectangle_Ey) / trianglecount)/2;
-                    if (i == trianglecount - 1)
+                    endy = (Ey - i * (Ey + rectangle_Ey) / trianglecount);
+                    if (i >= trianglecount - 2)
                     {
-                        endy = rectangle_Sy + ((Ey + rectangle_Ey) / trianglecount)+ ((Ey + rectangle_Ey) / trianglecount)/2;
-                        starty = rectangle_Ey;
-                    }else
-                    starty = (Ey - (i + 1) * ((Ey + rectangle_Ey) / trianglecount))+((Ey + rectangle_Ey) / trianglecount)/2;
+                        if (endy < starty)
+                        {
+                            continue;
+                        }
+                        starty = rectangle_Ey - rectangle_Ey / 2;
+                    }
+                    else
+                        starty = (Ey - (i + 1) * ((Ey + rectangle_Ey) / trianglecount) - offset);
                 }
                 else if (i < 1)
                 {
@@ -241,19 +247,21 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                     }
                     else
                     {
-                        starty = Ey - (Ey + rectangle_Ey) / trianglecount;
+                        starty = Ey - (Ey + rectangle_Ey) / trianglecount - offset;
                     }
                 }
-                ListPoint.AddRange(Triangle(startx, starty, endx, endy, System.Drawing.Color.Green));
+                Listtriangle.AddRange(Triangle(startx, starty, endx, endy, System.Drawing.Color.Green));
             }
+            Listtriangle.Reverse();
+            ListPoint.AddRange(Listtriangle);
             return ListPoint;
         }
-        public List<Draw.Point>TreeCricle(int Sx,int Sy,int Ex,int Ey,int criclecount= 3)
+        public List<Draw.Point> TreeCricle(int Sx, int Sy, int Ex, int Ey, int criclecount = 3)
         {
             List<Draw.Point> _listpoint = new List<Point>();
-            bool flip=false;
+            bool flip = false;
             // Tính thân cây
-            int rectangle_sx, rectangle_sy, rectangle_ex, rectangle_ey, bodywidth= (Ex - Sx) / 3;
+            int rectangle_sx, rectangle_sy, rectangle_ex, rectangle_ey, bodywidth = (Ex - Sx) / 3;
             rectangle_sx = Sx + bodywidth;
             rectangle_sy = Sy;
             rectangle_ex = Ex - bodywidth;
@@ -263,25 +271,138 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             for (int i = 0; i < criclecount; i++)
             {
                 centerx = (Ex + Sx) / 2;
-                centery = rectangle_ey-i;
+                centery = rectangle_ey - i;
                 radius = bodywidth;
                 if (i == criclecount / 2)
                 {
                     _listpoint.AddRange(Cricle((Ex + Sx) / 2, rectangle_ey, bodywidth, Color.Green));
-                }else if (flip)
+                }
+                else if (flip)
                 {
                     centerx += bodywidth;
-                    _listpoint.AddRange(Cricle(centerx, centery-bodywidth, radius, Color.Green));
+                    _listpoint.AddRange(Cricle(centerx, centery - bodywidth, radius, Color.Green));
                     flip = false;
                 }
                 else
                 {
                     centerx -= bodywidth;
-                    _listpoint.AddRange(Cricle(centerx, centery-bodywidth, radius, Color.Green));
+                    _listpoint.AddRange(Cricle(centerx, centery - bodywidth, radius, Color.Green));
                     flip = true;
                 }
             }
             return _listpoint;
+        }
+        public List<Draw.Point> DrawEllipseMidpoint(int centerX, int centerY, int radiusX, int radiusY)
+        {
+            List<Draw.Point> _listpoint = new List<Point>();
+            int a = radiusX;
+            int b = radiusY;
+
+            int aSquared = a * a;
+            int bSquared = b * b;
+
+            int twoASquared = 2 * aSquared;
+            int twoBSquared = 2 * bSquared;
+
+            int x = 0;
+            int y = b;
+            int p = 0;
+
+            // Vẽ bán kính ban đầu trong góc đầu tiên của hình ellipse (0, b)
+            _listpoint.AddRange(DrawEllipsePoints(centerX, centerY, x, y));
+
+            // Vùng 1: (0, b) đến (a^2 / sqrt(a^2 + b^2), b / sqrt(a^2 + b^2))
+            p = Convert.ToInt32(bSquared - (aSquared * b) + (0.25 * aSquared));
+            while (twoBSquared * x < twoASquared * y)
+            {
+                x++;
+                if (p < 0)
+                    p += twoBSquared * x + bSquared;
+                else
+                {
+                    y--;
+                    p += twoBSquared * x - twoASquared * y + bSquared;
+                }
+                _listpoint.AddRange(DrawEllipsePoints(centerX, centerY, x, y));
+            }
+            return _listpoint;
+
+        }
+        public List<Draw.Point> DrawEllipseMidpoint2(int centerX, int centerY, int radiusX, int radiusY)
+        {
+            List<Draw.Point> _listpoint = new List<Point>();
+            int a = radiusX;
+            int b = radiusY;
+
+            int aSquared = a * a;
+            int bSquared = b * b;
+
+            int twoASquared = 2 * aSquared;
+            int twoBSquared = 2 * bSquared;
+
+            int x = 0;
+            int y = b;
+            int p = 0;
+            int i = 0;
+
+            // Vẽ bán kính ban đầu trong góc đầu tiên của hình ellipse (0, b)
+            //DrawEllipsePoints2(g, centerX, centerY, x, y, i);
+            _listpoint.Add(new Draw.Point(centerX - x * UnitSize, centerY + y * UnitSize));
+            // Vùng 1: (0, b) đến (a^2 / sqrt(a^2 + b^2), b / sqrt(a^2 + b^2))
+            p = Convert.ToInt32(bSquared - (aSquared * b) + (0.25 * aSquared));
+            while (twoBSquared * x < twoASquared * y)
+            {
+                x++;
+                if (p < 0)
+                    p += twoBSquared * x + bSquared;
+                else
+                {
+                    y--;
+                    p += twoBSquared * x - twoASquared * y + bSquared;
+                }
+                _listpoint.AddRange(DrawEllipsePoints2(centerX, centerY, x, y, i));
+                i++;
+            }
+
+            // Vùng 2: (a^2 / sqrt(a^2 + b^2), b / sqrt(a^2 + b^2)) đến (a, 0)
+            p = Convert.ToInt32(bSquared * (x + 0.5) * (x + 0.5) + aSquared * (y - 1) * (y - 1) - aSquared * bSquared);
+            while (y > 0)
+            {
+                y--;
+                if (p > 0)
+                    p += -twoASquared * y + aSquared;
+                else
+                {
+                    x++;
+                    p += twoBSquared * x - twoASquared * y + aSquared;
+                }
+                _listpoint.AddRange(DrawEllipsePoints2(centerX, centerY, x, y, i));
+                i++;
+            }
+            return _listpoint;
+        }
+        public List<Draw.Point> DrawEllipsePoints(int centerX, int centerY, int x, int y)
+        {
+            List<Draw.Point> _listpoint = new List<Point>();
+            // Vẽ 4 điểm đối xứng của hình ellipse dựa vào giá trị x, y và tâm (centerX, centerY)
+            _listpoint.Add(new Draw.Point(centerX + x * UnitSize, centerY + y * UnitSize)); // Quận 1: (x, y)
+            _listpoint.Add(new Draw.Point(centerX - x * UnitSize, centerY + y * UnitSize)); // Quận 2: (-x, y)
+            _listpoint.Add(new Draw.Point(centerX + x * UnitSize, centerY - y * UnitSize)); // Quận 3: (x, -y)
+            _listpoint.Add(new Draw.Point(centerX - x * UnitSize, centerY - y * UnitSize)); // Quận 4: (-x, -y)
+            return _listpoint;
+        }
+        public List<Draw.Point> DrawEllipsePoints2(int centerX, int centerY, int x, int y, int i)
+        {
+            List<Draw.Point> _lispoint = new List<Point>();
+            // Vẽ 4 điểm đối xứng của hình ellipse dựa vào giá trị x, y và tâm (centerX, centerY)
+            if (i % 4 != 3)
+            {
+                _lispoint.Add(new Draw.Point(centerX + x * UnitSize, centerY - y * UnitSize));// Quận 3: (x, -y)
+                _lispoint.Add(new Draw.Point(centerX - x * UnitSize, centerY - y * UnitSize));// Quận 4: (-x, -y)
+            }
+            _lispoint.Add(new Draw.Point(centerX + x * UnitSize, centerY + y * UnitSize));// Quận 1: (x, y)
+            _lispoint.Add(new Draw.Point(centerX - x * UnitSize, centerY + y * UnitSize));// Quận 2: (-x, y)
+            return _lispoint;
         }
     }
 }

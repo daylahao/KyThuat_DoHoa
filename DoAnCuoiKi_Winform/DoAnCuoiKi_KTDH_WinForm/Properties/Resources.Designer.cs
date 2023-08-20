@@ -73,6 +73,26 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BoxIcon {
+            get {
+                object obj = ResourceManager.GetObject("BoxIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CylineIcon {
+            get {
+                object obj = ResourceManager.GetObject("CylineIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LineIcon {
             get {
                 object obj = ResourceManager.GetObject("LineIcon", resourceCulture);

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog\DialogForm3Dcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\DialogForm3Dcs.Designer.cs">
+      <DependentUpon>DialogForm3Dcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\InfoDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,7 @@
     </Compile>
     <Compile Include="Draw\Detail_Base.cs" />
     <Compile Include="Draw\Draw2D.cs" />
+    <Compile Include="Draw\Draw3D.cs" />
     <Compile Include="Draw\DrawBase.cs" />
     <Compile Include="Draw\Tranform2D.cs" />
     <Compile Include="MainForm.cs">
@@ -88,7 +95,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="view\View_2D.cs" />
+    <Compile Include="view\View_3D.cs" />
     <Compile Include="view\View_Animation.cs" />
+    <EmbeddedResource Include="Dialog\DialogForm3Dcs.resx">
+      <DependentUpon>DialogForm3Dcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\InfoDialogForm.resx">
       <DependentUpon>InfoDialogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,6 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RainbowIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BoxIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CylineIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
