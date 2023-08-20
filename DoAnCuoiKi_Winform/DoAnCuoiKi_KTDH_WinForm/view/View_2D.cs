@@ -53,7 +53,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             Ds_ToolBox.Add(new ToolBox() { name = "Hình chữ nhật", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RectangleIcon, customFunction = new EventHandler(DrawRectangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tam giác", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeTriangleIcon, customFunction = new EventHandler(DrawTreeTriangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tròn", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeCricleIcon, customFunction = new EventHandler(DrawTreeCricle)});
-            Ds_ToolBox.Add(new ToolBox() { name = "Cầu vòng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RainbowIcon, customFunction = new EventHandler(DrawRainBow});
+            Ds_ToolBox.Add(new ToolBox() { name = "Cầu vòng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RainbowIcon, customFunction = new EventHandler(DrawRainBow)});
             Ds_ToolBox.Reverse();
         }
         #region Kích hoạt các hàm vẽ
