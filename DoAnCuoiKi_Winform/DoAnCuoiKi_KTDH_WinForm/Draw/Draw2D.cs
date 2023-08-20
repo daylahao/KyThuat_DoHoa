@@ -283,10 +283,5 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             }
             return _listpoint;
         }
-        public List<Draw.Point> RainBow()
-        {
-            List<Draw.Point> _listpoint = new List<Draw.Point>();
-            return _listpoint;
-        }
     }
 }

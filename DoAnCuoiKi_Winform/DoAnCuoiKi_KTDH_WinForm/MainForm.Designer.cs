@@ -60,6 +60,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.containerdetail_right = new System.Windows.Forms.Panel();
             this.detailgroup = new System.Windows.Forms.GroupBox();
             this.panel_detail = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button3 = new System.Windows.Forms.Button();
             this.container_itemlist_bottom = new System.Windows.Forms.Panel();
             this.itemgroup = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -77,6 +79,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.MenuHead.SuspendLayout();
             this.containerdetail_right.SuspendLayout();
             this.detailgroup.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.container_itemlist_bottom.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -335,6 +338,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // detailgroup
             // 
             this.detailgroup.Controls.Add(this.panel_detail);
+            this.detailgroup.Controls.Add(this.flowLayoutPanel1);
             this.detailgroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detailgroup.Location = new System.Drawing.Point(0, 0);
             this.detailgroup.Name = "detailgroup";
@@ -352,8 +356,29 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.panel_detail.Location = new System.Drawing.Point(3, 16);
             this.panel_detail.Name = "panel_detail";
             this.panel_detail.Padding = new System.Windows.Forms.Padding(5);
-            this.panel_detail.Size = new System.Drawing.Size(190, 451);
+            this.panel_detail.Size = new System.Drawing.Size(190, 399);
             this.panel_detail.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 415);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(190, 52);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(37, 33);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "Test";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // container_itemlist_bottom
             // 
@@ -411,6 +436,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.containerdetail_right.ResumeLayout(false);
             this.detailgroup.ResumeLayout(false);
             this.detailgroup.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.container_itemlist_bottom.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -451,6 +477,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel Container_Control_Animtaion;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button3;
     }
 }
 

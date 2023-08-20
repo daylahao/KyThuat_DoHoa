@@ -60,7 +60,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20301F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79699F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.tableLayoutPanel1.Controls.Add(this.btn_Accecpt, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btn_close, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -74,9 +74,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             // btn_Accecpt
             // 
             this.btn_Accecpt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Accecpt.Location = new System.Drawing.Point(258, 3);
+            this.btn_Accecpt.Location = new System.Drawing.Point(257, 3);
             this.btn_Accecpt.Name = "btn_Accecpt";
-            this.btn_Accecpt.Size = new System.Drawing.Size(105, 33);
+            this.btn_Accecpt.Size = new System.Drawing.Size(106, 33);
             this.btn_Accecpt.TabIndex = 2;
             this.btn_Accecpt.Text = "Chấp nhận";
             this.btn_Accecpt.UseVisualStyleBackColor = true;

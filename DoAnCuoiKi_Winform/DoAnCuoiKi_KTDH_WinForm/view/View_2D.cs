@@ -122,7 +122,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         protected void DrawRainBow(object sender,EventArgs e)
         {
             _listpoint.Clear();
-            _listpoint.AddRange(_Draw2d.RainBow());
+            //_listpoint.AddRange(_Draw2d.Rainbow(0,0));
             view.Refresh();
         }
         #endregion

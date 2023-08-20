@@ -73,6 +73,7 @@
     <Compile Include="Draw\Detail_Base.cs" />
     <Compile Include="Draw\Draw2D.cs" />
     <Compile Include="Draw\DrawBase.cs" />
+    <Compile Include="Draw\Tranform2D.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -23,6 +23,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         public static Panel panellayer;
         private bool AppStart = true;
         public List<List<Draw.Point>> ListObjectAnimation = new List<List<Draw.Point>>();
+        Tranform2D Tranform2D;
         public MainForm()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             _BoxDetail.DataObject = new List<DataDetail>();
             paneldetail = this.panel_detail;
             panellayer = this.container_itemlist_bottom;
+            Tranform2D = new Tranform2D();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -49,13 +51,13 @@ namespace DoAnCuoiKi_KTDH_WinForm
         }
         private void Changetab()
         {
+            group_btn.Controls.Clear();
             if (tabindex != ViewTab.SelectedIndex)
             {
-                group_btn.Controls.Clear();
                 _BoxDetail.DataObject.Clear();
                 MainForm.panellayer.Visible = false;
-                LoadDetailMenu();
                 tabindex = ViewTab.SelectedIndex;
+                LoadDetailMenu();
             }
             switch (ViewTab.SelectedIndex)
             {
@@ -134,6 +136,13 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private void resetView2D(object sender, EventArgs e)
         {
             View2D.ResetView();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<Draw.Point> _list = Tranform2D.Rotate(View2D._listpoint, new Draw.Point(0,0),45);
+            View2D._listpoint = _list;
+            View2D.view.Refresh();
         }
     }
     public class Size
