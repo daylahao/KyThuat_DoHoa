@@ -40,7 +40,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
         private void btn_Accecpt_Click(object sender, EventArgs e)
         {
             int centerx,centery,height,width,count;
-            if (int.TryParse(centerinputx.Text, out centerx) && int.TryParse(centerinputy.Text, out centery) && int.TryParse(inputheight.Text, out height) && int.TryParse(inputwidth.Text, out width)&&inputcount.Value>0)
+            if (int.TryParse(centerinputx.Text, out centerx) && int.TryParse(centerinputy.Text, out centery) && int.TryParse(inputheight.Text, out height)&& height>5 && int.TryParse(inputwidth.Text, out width)&& width > 5 && inputcount.Value>0)
             {
                 data.Sx = centerx-width/2;
                 data.Sy = centery;

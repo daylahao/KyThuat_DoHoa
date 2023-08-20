@@ -24,10 +24,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public List<Draw.Point> _listpoint = new List<Draw.Point>();
         Draw2D _Draw2d;
         List<ToolBox> Ds_ToolBox;
+        public void ResetView()
+        {
+            _listpoint.Clear();
+            MainForm._BoxDetail.DataObject.Clear();
+            view.Refresh();
+            MainForm.LoadDetailMenu();
+        }
         public void LoadMenuToolBox(Panel ContainerToolBox)
         {
             //Drawline Button
-            Ds_ToolBox.Reverse();
             foreach (ToolBox tool in Ds_ToolBox)
             {
                 ItemBody ItemTool = new ItemBody();
@@ -47,6 +53,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             Ds_ToolBox.Add(new ToolBox() { name = "Hình chữ nhật", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RectangleIcon, customFunction = new EventHandler(DrawRectangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tam giác", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeTriangleIcon, customFunction = new EventHandler(DrawTreeTriangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tròn", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeCricleIcon, customFunction = new EventHandler(DrawTreeCricle)});
+            Ds_ToolBox.Add(new ToolBox() { name = "Cầu vòng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RainbowIcon, customFunction = new EventHandler(DrawRainBow});
+            Ds_ToolBox.Reverse();
         }
         #region Kích hoạt các hàm vẽ
         protected void DrawLine(object sender, EventArgs e)
@@ -110,6 +118,12 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             _listpoint.AddRange(_Draw2d.TreeCricle(0, 0, 20, 40,4));
             view.Refresh();
             MainForm.LoadDetailMenu();
+        }
+        protected void DrawRainBow(object sender,EventArgs e)
+        {
+            _listpoint.Clear();
+            _listpoint.AddRange(_Draw2d.RainBow());
+            view.Refresh();
         }
         #endregion
         public void LoadUIView()
@@ -198,20 +212,21 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)// khang dinh la chuot dc click la chuot trai
             {
-                //pointsToDraw.Add(new Point(e.X,e.Y));
-                //Tính Toạ độ để hiện lên textbox
-                int pixelx = (e.X - centerX) / MainForm.UnitSize;
-                int pixely = (centerY - e.Y) / MainForm.UnitSize;
-                //Hiện toạ độ lên textbox
-/*                textBoxX.Text = pixelx.ToString();
-                textBoxY.Text = pixely.ToString();*/
-                _listpoint.Add(new Draw.Point(pixelx, pixely));
-                DataDetail data = new DataDetail();
-                data.x = pixelx;
-                data.y = pixely;
-                view.Refresh();
-                MainForm._BoxDetail.DataObject.Clear();
-                MainForm._BoxDetail.DataObject.Add(data);
+                    //pointsToDraw.Add(new Point(e.X,e.Y));
+                    //Tính Toạ độ để hiện lên textbox
+                    int pixelx = (e.X - centerX) / MainForm.UnitSize;
+                    int pixely = (centerY - e.Y) / MainForm.UnitSize;
+                    //Hiện toạ độ lên textbox
+                    /*                textBoxX.Text = pixelx.ToString();
+                                    textBoxY.Text = pixely.ToString();*/
+                    _listpoint.Add(new Draw.Point(pixelx, pixely));
+                    DataDetail data = new DataDetail();
+                    data.x = pixelx;
+                    data.y = pixely;
+                    view.Refresh();
+                    MainForm._BoxDetail.DataObject.Clear();
+                    MainForm._BoxDetail.DataObject.Add(data);
+                if(!MainForm.mousedown)
                 MainForm.LoadDetailMenu();
             }
 

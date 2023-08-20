@@ -30,29 +30,29 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_Accecpt = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.Style = new System.Windows.Forms.GroupBox();
+            this.inputcount = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.centerinputy = new System.Windows.Forms.TextBox();
             this.centerinputx = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.inputheight = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.inputwidth = new System.Windows.Forms.TextBox();
-            this.Style = new System.Windows.Forms.GroupBox();
-            this.inputcount = new System.Windows.Forms.NumericUpDown();
-            this.btn_close = new System.Windows.Forms.Button();
-            this.btn_Accecpt = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.Style.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inputcount)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.Style.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inputcount)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -60,7 +60,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20301F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79699F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
             this.tableLayoutPanel1.Controls.Add(this.btn_Accecpt, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btn_close, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -70,6 +70,28 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(366, 39);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // btn_Accecpt
+            // 
+            this.btn_Accecpt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Accecpt.Location = new System.Drawing.Point(259, 3);
+            this.btn_Accecpt.Name = "btn_Accecpt";
+            this.btn_Accecpt.Size = new System.Drawing.Size(104, 33);
+            this.btn_Accecpt.TabIndex = 2;
+            this.btn_Accecpt.Text = "Chấp nhận";
+            this.btn_Accecpt.UseVisualStyleBackColor = true;
+            this.btn_Accecpt.Click += new System.EventHandler(this.btn_Accecpt_Click);
+            // 
+            // btn_close
+            // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_close.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_close.Location = new System.Drawing.Point(3, 3);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(74, 33);
+            this.btn_close.TabIndex = 0;
+            this.btn_close.Text = "Đóng";
+            this.btn_close.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -88,6 +110,25 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(366, 128);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // Style
+            // 
+            this.Style.Controls.Add(this.inputcount);
+            this.Style.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Style.Location = new System.Drawing.Point(188, 67);
+            this.Style.Name = "Style";
+            this.Style.Size = new System.Drawing.Size(175, 58);
+            this.Style.TabIndex = 8;
+            this.Style.TabStop = false;
+            this.Style.Text = "Số tán cây";
+            // 
+            // inputcount
+            // 
+            this.inputcount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputcount.Location = new System.Drawing.Point(3, 16);
+            this.inputcount.Name = "inputcount";
+            this.inputcount.Size = new System.Drawing.Size(169, 20);
+            this.inputcount.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -156,6 +197,14 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chiều cao";
             // 
+            // inputheight
+            // 
+            this.inputheight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputheight.Location = new System.Drawing.Point(3, 16);
+            this.inputheight.Name = "inputheight";
+            this.inputheight.Size = new System.Drawing.Size(75, 20);
+            this.inputheight.TabIndex = 3;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.inputwidth);
@@ -166,14 +215,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Chiều ngang";
             // 
-            // inputheight
-            // 
-            this.inputheight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputheight.Location = new System.Drawing.Point(3, 16);
-            this.inputheight.Name = "inputheight";
-            this.inputheight.Size = new System.Drawing.Size(75, 20);
-            this.inputheight.TabIndex = 3;
-            // 
             // inputwidth
             // 
             this.inputwidth.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -181,46 +222,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.inputwidth.Name = "inputwidth";
             this.inputwidth.Size = new System.Drawing.Size(76, 20);
             this.inputwidth.TabIndex = 3;
-            // 
-            // Style
-            // 
-            this.Style.Controls.Add(this.inputcount);
-            this.Style.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Style.Location = new System.Drawing.Point(188, 67);
-            this.Style.Name = "Style";
-            this.Style.Size = new System.Drawing.Size(175, 58);
-            this.Style.TabIndex = 8;
-            this.Style.TabStop = false;
-            this.Style.Text = "Số tán cây";
-            // 
-            // inputcount
-            // 
-            this.inputcount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputcount.Location = new System.Drawing.Point(3, 16);
-            this.inputcount.Name = "inputcount";
-            this.inputcount.Size = new System.Drawing.Size(169, 20);
-            this.inputcount.TabIndex = 5;
-            // 
-            // btn_close
-            // 
-            this.btn_close.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_close.Location = new System.Drawing.Point(3, 3);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(75, 33);
-            this.btn_close.TabIndex = 0;
-            this.btn_close.Text = "Đóng";
-            this.btn_close.UseVisualStyleBackColor = true;
-            // 
-            // btn_Accecpt
-            // 
-            this.btn_Accecpt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Accecpt.Location = new System.Drawing.Point(262, 3);
-            this.btn_Accecpt.Name = "btn_Accecpt";
-            this.btn_Accecpt.Size = new System.Drawing.Size(101, 33);
-            this.btn_Accecpt.TabIndex = 2;
-            this.btn_Accecpt.Text = "Chấp nhận";
-            this.btn_Accecpt.UseVisualStyleBackColor = true;
-            this.btn_Accecpt.Click += new System.EventHandler(this.btn_Accecpt_Click);
             // 
             // TreeTriangleDialogForm
             // 
@@ -240,6 +241,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.Load += new System.EventHandler(this.TreeTriangleDialogForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.Style.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.inputcount)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -248,8 +251,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.Style.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.inputcount)).EndInit();
             this.ResumeLayout(false);
 
         }

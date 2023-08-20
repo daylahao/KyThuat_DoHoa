@@ -14,20 +14,28 @@ namespace DoAnCuoiKi_KTDH_WinForm
     public partial class MainForm : Form
     {
         public static bool togglegrid = true;
+        private int tabindex = 0;
         public static int UnitSize = 5;
         private view.View_2D View2D;
+        private view.View_Animation ViewAnimation;
         public static Detail_Base _BoxDetail;
         public static Panel paneldetail;
+        public static Panel panellayer;
         private bool AppStart = true;
+        public List<List<Draw.Point>> ListObjectAnimation = new List<List<Draw.Point>>();
         public MainForm()
         {
             InitializeComponent();
-            ViewTab.SelectedIndex = 0;
+            ViewTab.SelectedIndex = tabindex;
             View2D = new View_2D();
-            View2D.view = ViewPic2D;
+            ViewAnimation = new View_Animation();
+            ViewAnimation.view = this.viewanim;
+            ViewAnimation.panellayer = container_itemlist_bottom;
+            View2D.view = this.ViewPic2D;
             _BoxDetail = new Detail_Base();
             _BoxDetail.DataObject = new List<DataDetail>();
-            paneldetail = panel_detail;
+            paneldetail = this.panel_detail;
+            panellayer = this.container_itemlist_bottom;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -36,6 +44,18 @@ namespace DoAnCuoiKi_KTDH_WinForm
             {
                 View2D.CreatListToolBox();
                 AppStart = false;
+            }
+            Changetab();
+        }
+        private void Changetab()
+        {
+            if (tabindex != ViewTab.SelectedIndex)
+            {
+                group_btn.Controls.Clear();
+                _BoxDetail.DataObject.Clear();
+                MainForm.panellayer.Visible = false;
+                LoadDetailMenu();
+                tabindex = ViewTab.SelectedIndex;
             }
             switch (ViewTab.SelectedIndex)
             {
@@ -51,24 +71,38 @@ namespace DoAnCuoiKi_KTDH_WinForm
                     }
                 case 2://Animation
                     {
+                        ViewAnimation.LoadUIView();
                         break;
                     }
             }
         }
-
         private void ViewTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            Changetab();
         }
         #region Vẽ 2D
+        public static bool mousedown = false;
         private void view2D_MouseDown(object sender, MouseEventArgs e)
         {
+
             View2D.click_putpixel(sender, e);
         }
-
+        private void ViewPic2D_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                mousedown = true;
+                View2D.click_putpixel(sender, e);
+            }
+        }
+        private void ViewPic2D_MouseUp(object sender, MouseEventArgs e)
+        {
+            mousedown = false;
+            LoadDetailMenu();
+        }
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
-            View2D.LoadUIView();
+            Changetab();
         }
         #endregion
         #region Thanh chi tiết
@@ -87,11 +121,20 @@ namespace DoAnCuoiKi_KTDH_WinForm
         }
         #endregion
         #region Load item thanh công cụ
-         private void Load_Tool_Box_2D()
+        private void Load_Tool_Box_2D()
         {
-            
+
         }
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+        private void resetView2D(object sender, EventArgs e)
+        {
+            View2D.ResetView();
+        }
     }
     public class Size
     {
@@ -118,4 +161,5 @@ namespace DoAnCuoiKi_KTDH_WinForm
             return pointChange;
         }
     }
+
 }

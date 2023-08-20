@@ -22,4 +22,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             colorvalue = color;
         }
     }
+    public class ObjectSharp
+    {
+        public string name;
+        public Draw.Point centerpoint;
+        public List<ObjectSharp> childsharp {get;set;}
+        public List<Draw.Point> _listpoint { get; set; }
+    }
 }

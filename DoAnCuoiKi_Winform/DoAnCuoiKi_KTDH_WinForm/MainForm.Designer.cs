@@ -29,6 +29,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.container_menu = new System.Windows.Forms.Panel();
             this.toolboxgroup = new System.Windows.Forms.GroupBox();
@@ -36,11 +37,13 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.container_body = new System.Windows.Forms.Panel();
             this.ViewTab = new System.Windows.Forms.TabControl();
             this.tab2D = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.ViewPic2D = new System.Windows.Forms.PictureBox();
             this.tab3D = new System.Windows.Forms.TabPage();
             this.view3D = new System.Windows.Forms.PictureBox();
             this.tabanimation = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Container_Control_Animtaion = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.viewanim = new System.Windows.Forms.PictureBox();
             this.MenuHead = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +59,10 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.thôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.containerdetail_right = new System.Windows.Forms.Panel();
             this.detailgroup = new System.Windows.Forms.GroupBox();
+            this.panel_detail = new System.Windows.Forms.Panel();
             this.container_itemlist_bottom = new System.Windows.Forms.Panel();
             this.itemgroup = new System.Windows.Forms.GroupBox();
-            this.panel_detail = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.container_menu.SuspendLayout();
             this.toolboxgroup.SuspendLayout();
             this.container_body.SuspendLayout();
@@ -68,6 +72,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.tab3D.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.view3D)).BeginInit();
             this.tabanimation.SuspendLayout();
+            this.Container_Control_Animtaion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewanim)).BeginInit();
             this.MenuHead.SuspendLayout();
             this.containerdetail_right.SuspendLayout();
@@ -89,6 +94,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             this.toolboxgroup.Controls.Add(this.group_btn);
             this.toolboxgroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolboxgroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.toolboxgroup.Location = new System.Drawing.Point(0, 0);
             this.toolboxgroup.Name = "toolboxgroup";
             this.toolboxgroup.Size = new System.Drawing.Size(144, 470);
@@ -129,6 +135,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             // tab2D
             // 
+            this.tab2D.Controls.Add(this.button2);
             this.tab2D.Controls.Add(this.ViewPic2D);
             this.tab2D.Location = new System.Drawing.Point(4, 22);
             this.tab2D.Name = "tab2D";
@@ -137,6 +144,19 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.tab2D.TabIndex = 0;
             this.tab2D.Text = "2D";
             this.tab2D.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RefeshIcon;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Location = new System.Drawing.Point(710, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(27, 25);
+            this.button2.TabIndex = 2;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.resetView2D);
             // 
             // ViewPic2D
             // 
@@ -147,6 +167,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.ViewPic2D.TabIndex = 0;
             this.ViewPic2D.TabStop = false;
             this.ViewPic2D.MouseDown += new System.Windows.Forms.MouseEventHandler(this.view2D_MouseDown);
+            this.ViewPic2D.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ViewPic2D_MouseMove);
+            this.ViewPic2D.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ViewPic2D_MouseUp);
             // 
             // tab3D
             // 
@@ -170,7 +192,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             // tabanimation
             // 
-            this.tabanimation.Controls.Add(this.panel1);
+            this.tabanimation.Controls.Add(this.Container_Control_Animtaion);
             this.tabanimation.Controls.Add(this.viewanim);
             this.tabanimation.Location = new System.Drawing.Point(4, 22);
             this.tabanimation.Name = "tabanimation";
@@ -179,13 +201,27 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.tabanimation.Text = "Chuyển Động";
             this.tabanimation.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // Container_Control_Animtaion
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 403);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(743, 41);
-            this.panel1.TabIndex = 1;
+            this.Container_Control_Animtaion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Container_Control_Animtaion.Controls.Add(this.button1);
+            this.Container_Control_Animtaion.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Container_Control_Animtaion.Location = new System.Drawing.Point(0, 403);
+            this.Container_Control_Animtaion.Name = "Container_Control_Animtaion";
+            this.Container_Control_Animtaion.Size = new System.Drawing.Size(743, 41);
+            this.Container_Control_Animtaion.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.button1.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources.PlayIcon;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(332, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(65, 35);
+            this.button1.TabIndex = 1;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // viewanim
             // 
@@ -278,6 +314,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.làmMớiViewToolStripMenuItem.Name = "làmMớiViewToolStripMenuItem";
             this.làmMớiViewToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.làmMớiViewToolStripMenuItem.Text = "Làm Mới View";
+            this.làmMớiViewToolStripMenuItem.Click += new System.EventHandler(this.resetView2D);
             // 
             // thôngTinToolStripMenuItem
             // 
@@ -306,6 +343,18 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.detailgroup.TabStop = false;
             this.detailgroup.Text = "Chi tiết";
             // 
+            // panel_detail
+            // 
+            this.panel_detail.AllowDrop = true;
+            this.panel_detail.AutoScroll = true;
+            this.panel_detail.AutoSize = true;
+            this.panel_detail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_detail.Location = new System.Drawing.Point(3, 16);
+            this.panel_detail.Name = "panel_detail";
+            this.panel_detail.Padding = new System.Windows.Forms.Padding(5);
+            this.panel_detail.Size = new System.Drawing.Size(190, 451);
+            this.panel_detail.TabIndex = 0;
+            // 
             // container_itemlist_bottom
             // 
             this.container_itemlist_bottom.Controls.Add(this.itemgroup);
@@ -326,17 +375,9 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.itemgroup.TabStop = false;
             this.itemgroup.Text = "Vật xuất hiện";
             // 
-            // panel_detail
+            // timer1
             // 
-            this.panel_detail.AllowDrop = true;
-            this.panel_detail.AutoScroll = true;
-            this.panel_detail.AutoSize = true;
-            this.panel_detail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_detail.Location = new System.Drawing.Point(3, 16);
-            this.panel_detail.Name = "panel_detail";
-            this.panel_detail.Padding = new System.Windows.Forms.Padding(5);
-            this.panel_detail.Size = new System.Drawing.Size(190, 451);
-            this.panel_detail.TabIndex = 0;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
             // 
@@ -363,6 +404,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.tab3D.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.view3D)).EndInit();
             this.tabanimation.ResumeLayout(false);
+            this.Container_Control_Animtaion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewanim)).EndInit();
             this.MenuHead.ResumeLayout(false);
             this.MenuHead.PerformLayout();
@@ -401,11 +443,14 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private System.Windows.Forms.Panel containerdetail_right;
         private System.Windows.Forms.GroupBox detailgroup;
         private System.Windows.Forms.Panel container_itemlist_bottom;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox itemgroup;
         private System.Windows.Forms.PictureBox ViewPic2D;
         private System.Windows.Forms.Panel group_btn;
         private System.Windows.Forms.Panel panel_detail;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel Container_Control_Animtaion;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -87,6 +87,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="view\View_2D.cs" />
+    <Compile Include="view\View_Animation.cs" />
     <EmbeddedResource Include="Dialog\InfoDialogForm.resx">
       <DependentUpon>InfoDialogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +132,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TreeCricleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefeshIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RainbowIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

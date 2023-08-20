@@ -29,17 +29,20 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 ListCheck[X, Y] = true;
                 pointputpixel = _convert.Doi_Sang_He_Toa_Do_Nguoi_Dung(X, Y);
                 ListPoint.Add(new Draw.Point(pointputpixel[0], pointputpixel[1], ColorFill));
-                if (Y < pictureheight * 2 && !ListCheck[X, Y + 1])
-                    Y++;
-                else if ((Y > 0 && !ListCheck[X, Y - 1]) || !ListCheck[X, pointcenter[1] - 1])
-                    if (Y >= pointcenter[1])
-                        Y = pointcenter[1] - 1;
-                    else
-                        Y--;
-                else
+                if (Y < pictureheight * 2 || Y > 0)
                 {
-                    X++;
-                    Y = pointcenter[1];
+                    if (!ListCheck[X, Y + 1])
+                        Y++;
+                    else if ((!ListCheck[X, Y - 1]) || !ListCheck[X, pointcenter[1] - 1])
+                        if (Y >= pointcenter[1])
+                            Y = pointcenter[1] - 1;
+                        else
+                            Y--;
+                    else
+                    {
+                        X++;
+                        Y = pointcenter[1];
+                    }
                 }
             }
             X = pointcenter[0] - 1;
@@ -278,6 +281,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                     flip = true;
                 }
             }
+            return _listpoint;
+        }
+        public List<Draw.Point> RainBow()
+        {
+            List<Draw.Point> _listpoint = new List<Draw.Point>();
             return _listpoint;
         }
     }
