@@ -33,6 +33,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Title = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +75,30 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.Title.TabIndex = 0;
             this.Title.Text = "Báo Cáo Cuối Kì";
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(22, 406);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(751, 23);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "N20DCPT085 - Ngô Thành Trung      N20DCPT088 - Lê Huỳnh Tú Uyên";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(22, 371);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(751, 23);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "N20DCPT021 - Đỗ Hùng Hảo      N20DCPT039 - Nguyễn Ngọc Mơ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // InfoDialogForm
             // 
             this.AllowDrop = true;
@@ -83,6 +109,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources._326462033_502036318727452_4368183274748877029_n;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -99,5 +127,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Title;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

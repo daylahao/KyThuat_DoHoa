@@ -52,8 +52,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             Ds_ToolBox.Add(new ToolBox() { name = "Đường Thẳng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.LineIcon, customFunction = new EventHandler(DrawLine) });
             Ds_ToolBox.Add(new ToolBox() { name = "Hình chữ nhật", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RectangleIcon, customFunction = new EventHandler(DrawRectangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tam giác", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeTriangleIcon, customFunction = new EventHandler(DrawTreeTriangle) });
-            Ds_ToolBox.Add(new ToolBox() { name = "Cây tròn", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeCricleIcon, customFunction = new EventHandler(DrawTreeCricle)});
-            Ds_ToolBox.Add(new ToolBox() { name = "Cầu vòng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RainbowIcon, customFunction = new EventHandler(DrawRainBow)});
+            Ds_ToolBox.Add(new ToolBox() { name = "Cây tròn", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeCircleIcon, customFunction = new EventHandler(DrawTreeCircle)});
+            Ds_ToolBox.Add(new ToolBox() { name = "Cầu vồng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RainbowIcon, customFunction = new EventHandler(DrawRainBow)});
             Ds_ToolBox.Reverse();
         }
         #region Kích hoạt các hàm vẽ
@@ -78,17 +78,18 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 }
             }
         }
-        protected void DrawCricle(object sender, EventArgs e)
+        protected void DrawCircle(object sender, EventArgs e)
         {
 
         }
         protected void DrawRectangle(object sender, EventArgs e)
         {
-              _listpoint.Clear();
+
             using (Dialog.LineDialogForm _dialog = new Dialog.LineDialogForm())
             {
                 if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
+                    _listpoint.Clear();
                     MainForm._BoxDetail.DataObject.Clear();
                     _listpoint.AddRange(_Draw2d.Rectangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style));
                     MainForm.LoadDetailMenu();
@@ -98,11 +99,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         }
         protected void DrawTreeTriangle(object sender,EventArgs e)
         {
-            _listpoint.Clear();
             using (Dialog.TreeTriangleDialogForm _dialog = new Dialog.TreeTriangleDialogForm())
             {
                 if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
+                    _listpoint.Clear();
                     MainForm._BoxDetail.DataObject.Clear();
                     _listpoint.AddRange(_Draw2d.TreeTriangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.count));
                     MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Cây tam giác", centerx = _dialog.data.centerx, centery = _dialog.data.centery, width = _dialog.data.width, height = _dialog.data.height });
@@ -111,17 +112,18 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 }
             }
         }
-        protected void DrawTreeCricle(object sender,EventArgs e)
+        protected void DrawTreeCircle(object sender,EventArgs e)
         {
             _listpoint.Clear();
             MainForm._BoxDetail.DataObject.Clear();
-            _listpoint.AddRange(_Draw2d.TreeCricle(0, 0, 20, 40,4));
+            _listpoint.AddRange(_Draw2d.TreeCircle(0, 0, 20, 40,4));
             view.Refresh();
             MainForm.LoadDetailMenu();
         }
         protected void DrawRainBow(object sender,EventArgs e)
         {
             _listpoint.Clear();
+            _listpoint.AddRange(_Draw2d.Rainbow());
             //_listpoint.AddRange(_Draw2d.Rainbow(0,0));
             view.Refresh();
         }

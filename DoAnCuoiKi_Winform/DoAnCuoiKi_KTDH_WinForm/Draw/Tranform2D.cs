@@ -10,32 +10,25 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
     {
         public Draw.Point Rotate(Draw.Point _pointrotate,Draw.Point _root, int angle)
         {
-            float alpha = (float)(angle * Math.PI / 180);
+            double alpha = angle * (Math.PI / 180);
             double cos = Math.Cos(alpha),
                    sin = Math.Sin(alpha);
             Draw.Point offset = _root;
-            int x = _pointrotate.X -offset.X,
+            int x = _pointrotate.X - offset.X,
                 y = _pointrotate.Y - offset.Y;
-            _pointrotate.X = (int)Math.Round((x * cos - y * sin)+offset.X);
-            _pointrotate.Y = (int)Math.Round((x * sin + y * cos)+offset.Y);
+            _pointrotate.X = (int)Math.Round((x * cos - y * sin) + offset.X);
+            _pointrotate.Y = (int)Math.Round((x * sin + y * cos) + offset.Y);
             return _pointrotate;
+
         }
         public List<Draw.Point> Rotate(List<Draw.Point> _listpoint, Draw.Point _root, int angle)
         {
             List<Draw.Point> _list = new List<Point>();
             foreach (Draw.Point _pointrotate in _listpoint)
             {
-                float alpha = (float)(angle * Math.PI / 180);
-                double cos = Math.Cos(alpha),
-                       sin = Math.Sin(alpha);
-                Draw.Point offset = _root;
-                int x = _pointrotate.X - offset.X,
-                    y = _pointrotate.Y - offset.Y;
-            _pointrotate.X = (int)Math.Round((x * cos - y * sin)+offset.X);
-            _pointrotate.Y = (int)Math.Round((x * sin + y * cos)+offset.Y);
-                _list.Add(_pointrotate);
+                _list.Add(Rotate(_pointrotate, _root, angle));
             }
-                return _list;
+            return _list;
         }
         public Draw.Point Move(Draw.Point _point,int Xstep=0,int Ystep=0)
         {

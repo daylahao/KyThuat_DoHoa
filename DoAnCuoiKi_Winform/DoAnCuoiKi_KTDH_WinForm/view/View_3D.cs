@@ -156,8 +156,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     }
                 }
             }
-            float Sz = (float)Math.Tan(45 * Math.PI / 180) * (view.Height / 2);
-            e.Graphics.DrawLine(yPen, view.Width / 2 - Sz, view.Height, view.Width / 2, view.Height / 2); // Trục z // Trục z
+            if (MainForm.togglegrid)
+            {
+                float Sz = (float)Math.Tan(45 * Math.PI / 180) * (view.Height / 2);
+                e.Graphics.DrawLine(yPen, view.Width / 2 - Sz, view.Height, view.Width / 2, view.Height / 2); // Trục z
+            }
             // Vẽ các điểm đã lưu trong danh sách
             using (Brush brush = new SolidBrush(Color.Black))
             {

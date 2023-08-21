@@ -170,7 +170,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình Tam giác", Sx = Sx, Sy = Sy, Ex = Ex, Ey = Ey, centerx = (Sx + Ex) / 2, centery = (Sy + Ey) / 2 });
             return PointsDraw;
         }
-        private List<Draw.Point> Cricle(int centerX, int centerY, int radius, Color? fillColor = null)
+        private List<Draw.Point> Circle(int centerX, int centerY, int radius, Color? fillColor = null)
         {
             int P0 = 5 / 4 - radius;
             List<int> P = new List<int>();
@@ -255,7 +255,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             ListPoint.AddRange(Listtriangle);
             return ListPoint;
         }
-        public List<Draw.Point> TreeCricle(int Sx, int Sy, int Ex, int Ey, int criclecount = 3)
+        public List<Draw.Point> TreeCircle(int Sx, int Sy, int Ex, int Ey, int Circlecount = 3)
         {
             List<Draw.Point> _listpoint = new List<Point>();
             bool flip = false;
@@ -267,25 +267,25 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             rectangle_ey = Ey - bodywidth / 2;
             _listpoint.AddRange(Rectangle(rectangle_sx, rectangle_sy, rectangle_ex, rectangle_ey, Color.Brown));
             int centerx, centery, radius;
-            for (int i = 0; i < criclecount; i++)
+            for (int i = 0; i < Circlecount; i++)
             {
                 centerx = (Ex + Sx) / 2;
                 centery = rectangle_ey - i;
                 radius = bodywidth;
-                if (i == criclecount / 2)
+                if (i == Circlecount / 2)
                 {
-                    _listpoint.AddRange(Cricle((Ex + Sx) / 2, rectangle_ey, bodywidth, Color.Green));
+                    _listpoint.AddRange(Circle((Ex + Sx) / 2, rectangle_ey, bodywidth, Color.Green));
                 }
                 else if (flip)
                 {
                     centerx += bodywidth;
-                    _listpoint.AddRange(Cricle(centerx, centery - bodywidth, radius, Color.Green));
+                    _listpoint.AddRange(Circle(centerx, centery - bodywidth, radius, Color.Green));
                     flip = false;
                 }
                 else
                 {
                     centerx -= bodywidth;
-                    _listpoint.AddRange(Cricle(centerx, centery - bodywidth, radius, Color.Green));
+                    _listpoint.AddRange(Circle(centerx, centery - bodywidth, radius, Color.Green));
                     flip = true;
                 }
             }
@@ -417,5 +417,152 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             _lispoint.Add(new Draw.Point(centerX - x, centerY - y));// Quận 4: (-x, -y)
             return _lispoint;
         }
+
+        public List<Draw.Point> Rainbow()
+        {
+            int centerX = 0;
+            int centerY = 0;
+            List<Draw.Point> _rListPoint = new List<Point>();
+            Stack<Point> _Stack = new Stack<Point>();
+            Queue<Point> _Queue = new Queue<Point>();
+            Stack<Point> _Stack2 = new Stack<Point>();
+            Queue<Point> _Queue2 = new Queue<Point>();
+            Stack<Point> _Stack3 = new Stack<Point>();
+            Queue<Point> _Queue3 = new Queue<Point>();
+            Stack<Point> _Stack4 = new Stack<Point>();
+            Queue<Point> _Queue4 = new Queue<Point>();
+            Stack<Point> _Stack5 = new Stack<Point>();
+            Queue<Point> _Queue5 = new Queue<Point>();
+            Stack<Point> _Stack6 = new Stack<Point>();
+            Queue<Point> _Queue6 = new Queue<Point>();
+            Stack<Point> _Stack7 = new Stack<Point>();
+            Queue<Point> _Queue7 = new Queue<Point>();
+
+            DrawRainbow(centerX, centerY, 60, 45, _Stack, _Queue);
+            DrawRainbow(centerX, centerY, 59, 44, _Stack2, _Queue2);
+            DrawRainbow(centerX, centerY, 58, 43, _Stack3, _Queue3);
+            DrawRainbow(centerX, centerY, 57, 42, _Stack4, _Queue4);
+            DrawRainbow(centerX, centerY, 56, 41, _Stack5, _Queue5);
+            DrawRainbow(centerX, centerY, 55, 40, _Stack6, _Queue6);
+            DrawRainbow(centerX, centerY, 54, 39, _Stack7, _Queue7);
+
+            while (_Stack.Count > 0)
+            {
+                // Lấy điểm ra khỏi stack
+                Point point = _Stack.Pop();
+                _rListPoint.Add(new Point(point.X, point.Y, Color.Red));
+                if (_Stack2.Count > 0)
+                {
+                    Point point2 = _Stack2.Pop();
+                    _rListPoint.Add(new Point(point2.X, point2.Y, Color.Orange));
+                }
+                if (_Stack3.Count > 0)
+                {
+                    Point point3 = _Stack3.Pop();
+                    _rListPoint.Add(new Point(point3.X, point3.Y, Color.Yellow));
+                }
+                if (_Stack4.Count > 0)
+                {
+                    Point point4 = _Stack4.Pop();
+                    _rListPoint.Add(new Point(point4.X, point4.Y, Color.Green));
+                }
+                if (_Stack5.Count > 0)
+                {
+                    Point point5 = _Stack5.Pop();
+                    _rListPoint.Add(new Point(point5.X, point5.Y, Color.Teal));
+                }
+                if (_Stack6.Count > 0)
+                {
+                    Point point6 = _Stack6.Pop();
+                    _rListPoint.Add(new Point(point6.X, point6.Y, Color.Blue));
+                }
+                if (_Stack7.Count > 0)
+                {
+                    Point point7 = _Stack7.Pop();
+                    _rListPoint.Add(new Point(point7.X, point7.Y, Color.Violet));
+                }
+            }
+            while (_Queue.Count > 0)
+            {
+                // Lấy điểm ra khỏi queue
+                Point point1 = _Queue.Dequeue();
+                _rListPoint.Add(new Point(point1.X, point1.Y, Color.Red));
+                if (_Queue2.Count > 0)
+                {
+                    Point point2 = _Queue2.Dequeue();
+                    _rListPoint.Add(new Point(point2.X, point2.Y, Color.Orange));
+                }
+                if (_Queue3.Count > 0)
+                {
+                    Point point3 = _Queue3.Dequeue();
+                    _rListPoint.Add(new Point(point3.X, point3.Y, Color.Yellow));
+                }
+                if (_Queue4.Count > 0)
+                {
+                    Point point4 = _Queue4.Dequeue();
+                    _rListPoint.Add(new Point(point4.X, point4.Y, Color.Green));
+                }
+                if (_Queue5.Count > 0)
+                {
+                    Point point5 = _Queue5.Dequeue();
+                    _rListPoint.Add(new Point(point5.X, point5.Y, Color.Teal));
+                }
+                if (_Queue6.Count > 0)
+                {
+                    Point point6 = _Queue6.Dequeue();
+                    _rListPoint.Add(new Point(point6.X, point6.Y, Color.Blue));
+                }
+                if (_Queue7.Count > 0)
+                {
+                    Point point7 = _Queue7.Dequeue();
+                    _rListPoint.Add(new Point(point7.X, point7.Y, Color.Violet));
+                }
+            }
+            return _rListPoint;
+        }
+
+        private void DrawRainbow(int centerX, int centerY, int radiusX, int radiusY, Stack<Point> pointsStack, Queue<Point> pointsQueue)
+        {
+            int a = radiusX;
+            int b = radiusY;
+            int x = 0;
+            int y = b;
+            int p = 0;
+            int i = 0;
+
+            pointsQueue.Enqueue(new Point(centerX + x, centerY + y));
+
+            p = Convert.ToInt32(b * b - (a * a * b) + (0.25 * a * a));
+            while (2 * b * b * x < 2 * a * a * y)
+            {
+                x++;
+                if (p < 0)
+                    p += 2 * b * b * x + b * b;
+                else
+                {
+                    y--;
+                    p += 2 * b * b * x - 2 * a * a * y + b * b;
+                }
+                pointsQueue.Enqueue(new Point(centerX + x, centerY + y));
+                pointsStack.Push(new Point(centerX - x, centerY + y));
+                i++;
+            }
+            p = Convert.ToInt32(b * b * (x + 0.5) * (x + 0.5) + a * a * (y - 1) * (y - 1) - a * a * b * b);
+            while (y > 0)
+            {
+                y--;
+                if (p > 0)
+                    p += -(2 * a * a) * y + a * a;
+                else
+                {
+                    x++;
+                    p += (2 * b * b) * x - (2 * a * a) * y + a * a;
+                }
+                pointsQueue.Enqueue(new Point(centerX + x, centerY + y));
+                pointsStack.Push(new Point(centerX - x, centerY + y));
+                i++;
+            }
+        }
+
     }
 }

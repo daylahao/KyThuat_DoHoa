@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoAnCuoiKi_KTDH_WinForm.Dialog;
 using DoAnCuoiKi_KTDH_WinForm.Draw;
 using DoAnCuoiKi_KTDH_WinForm.view;
 namespace DoAnCuoiKi_KTDH_WinForm
@@ -41,6 +42,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             Tranform2D = new Tranform2D();
             View3D = new View_3D();
             View3D.view = view3D;
+            timer1.Tick += new EventHandler(ViewAnimation.Update);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -134,11 +136,6 @@ namespace DoAnCuoiKi_KTDH_WinForm
 
         }
         #endregion
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
         private void resetView2D(object sender, EventArgs e)
         {
             View2D.ResetView();
@@ -170,6 +167,76 @@ namespace DoAnCuoiKi_KTDH_WinForm
             View2D._listpoint = _list;
             View2D.view.Refresh();
         }
+
+        private void hiệnLướiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (togglegrid == true)
+                togglegrid = false;
+            else
+                togglegrid = true;
+            View2D.ResetView();
+            View3D.ResetView();
+            ViewAnimation.Resetview();
+        }
+
+        private void ẩnThanhCôngCụToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (container_menu.Visible)
+                container_menu.Hide();
+            else
+                container_menu.Show();
+        }
+
+        private void ẩnThanhChiTiếtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (detailgroup.Visible)
+                detailgroup.Hide();
+            else
+                detailgroup.Show();
+        }
+
+        private void chuyểnSang2DToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewTab.SelectedIndex = 0;
+            Changetab();
+        }
+
+        private void chuyểnSang3DToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewTab.SelectedIndex = 1;
+            Changetab();
+        }
+
+        private void chuyểnSangAnimationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewTab.SelectedIndex = 2;
+            Changetab();
+        }
+
+        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApproveForm _exitForm = new ApproveForm();
+            if (_exitForm.ShowDialog() == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        bool PlayTimer = false;
+        private void Click_btnPlayAnimation(object sender, EventArgs e)
+        {
+            PlayTimer = !PlayTimer;
+            if (PlayTimer)
+            {
+                btn_playtimer.BackgroundImage = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.PauseIcon;
+            }
+            else
+            {
+                btn_playtimer.BackgroundImage = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.PlayIcon;
+            }
+            ViewAnimation.init();
+            timer1.Enabled = PlayTimer;
+        }
     }
     public class Size
     {
@@ -195,6 +262,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             pointChange = new int[] { X, Y };
             return pointChange;
         }
+
     }
 
 }

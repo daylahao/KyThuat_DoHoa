@@ -163,9 +163,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TreeCricleIcon {
+        internal static System.Drawing.Bitmap TreeCircleIcon {
             get {
-                object obj = ResourceManager.GetObject("TreeCricleIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("TreeCircleIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

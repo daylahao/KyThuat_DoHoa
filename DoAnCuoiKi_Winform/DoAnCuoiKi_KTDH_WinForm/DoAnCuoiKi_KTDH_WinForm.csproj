@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog\ApproveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ApproveForm.Designer.cs">
+      <DependentUpon>ApproveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\DialogForm3Dcs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     <Compile Include="view\View_2D.cs" />
     <Compile Include="view\View_3D.cs" />
     <Compile Include="view\View_Animation.cs" />
+    <EmbeddedResource Include="Dialog\ApproveForm.resx">
+      <DependentUpon>ApproveForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\DialogForm3Dcs.resx">
       <DependentUpon>DialogForm3Dcs.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,7 +152,7 @@
     <None Include="Resources\Rectangle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TreeCricleIcon.png" />
+    <None Include="Resources\TreeCircleIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PauseIcon.png" />

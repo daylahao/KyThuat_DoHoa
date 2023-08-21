@@ -15,7 +15,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public int centerX, centerY;
         public static Size viewsize = new Size();
         public List<Draw.Point> _listpoint = new List<Draw.Point>();
+        public List<Draw.Point> _RainBow = new List<Draw.Point>();
+        public List<List<Draw.Point>> _TreeCircle = new List<List<Draw.Point>>();
         private Draw2D _Draw2d;
+        private Tranform2D Tranform_2D;
         public void LoadUIView()
         {
             _Draw2d = new Draw2D();
@@ -125,6 +128,62 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public void Resetview()
         {
             _listpoint.Clear();
+            view.Refresh();
+        }
+        int steprainbow = 0;
+        int rainbowspeed = 10;
+        int Windpower = 3;
+        public void init()
+        {
+            Tranform_2D = new Tranform2D();
+            if (steprainbow == 0)
+            {
+                _RainBow.Clear();
+                _RainBow.AddRange(_Draw2d.Rainbow());
+            }
+            _TreeCircle.Clear();
+            _TreeCircle.Add(_Draw2d.TreeCircle(0, 0,10, 50, 5));
+            _TreeCircle.Add(_Draw2d.TreeCircle(-50,-20,-10,50, 10));
+            _TreeCircle.Add(_Draw2d.TreeTriangle(5, 0, 20, 20, 3));
+        }
+        public List<Draw.Point> RainBowAnimation(List<Draw.Point> listpointrainbow)
+        {
+            List<Draw.Point> TempList = new List<Draw.Point>();
+            for (int i = 0; i < steprainbow; i++)
+            {
+                TempList.Add(_RainBow[i]);
+            }
+            if (steprainbow < _RainBow.Count - rainbowspeed)
+                steprainbow += rainbowspeed;
+            else
+            {
+                steprainbow = 0;
+            }
+            return TempList;
+        }
+        public List<Draw.Point> TreeRotate(List<Draw.Point> ListTreeRotate)
+        {
+            List<Draw.Point> TempList = new List<Draw.Point>();
+            if(Time%5==0)
+            TempList.AddRange(Tranform_2D.Rotate(ListTreeRotate, ListTreeRotate[0], Windpower));
+            else
+            {
+                TempList.AddRange(ListTreeRotate);
+            }
+            return TempList;
+        }
+        int Time = 0;
+        public void Update(object sender, EventArgs e)
+        {
+
+            _listpoint.Clear();
+            _listpoint.AddRange(RainBowAnimation(_RainBow));
+            foreach (List<Draw.Point> treeobject in _TreeCircle)
+            {
+                _listpoint.AddRange(TreeRotate(treeobject));
+            }
+            Windpower = -Windpower;
+            Time++;
             view.Refresh();
         }
     }
