@@ -60,7 +60,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20301F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79699F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.tableLayoutPanel1.Controls.Add(this.btn_Accecpt, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btn_close, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -74,9 +74,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             // btn_Accecpt
             // 
             this.btn_Accecpt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Accecpt.Location = new System.Drawing.Point(256, 3);
+            this.btn_Accecpt.Location = new System.Drawing.Point(254, 3);
             this.btn_Accecpt.Name = "btn_Accecpt";
-            this.btn_Accecpt.Size = new System.Drawing.Size(107, 33);
+            this.btn_Accecpt.Size = new System.Drawing.Size(109, 33);
             this.btn_Accecpt.TabIndex = 2;
             this.btn_Accecpt.Text = "Chấp nhận";
             this.btn_Accecpt.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.btn_close.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_close.Location = new System.Drawing.Point(3, 3);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(73, 33);
+            this.btn_close.Size = new System.Drawing.Size(72, 33);
             this.btn_close.TabIndex = 0;
             this.btn_close.Text = "Đóng";
             this.btn_close.UseVisualStyleBackColor = true;

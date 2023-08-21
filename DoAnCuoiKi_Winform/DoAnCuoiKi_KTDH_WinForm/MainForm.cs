@@ -143,7 +143,27 @@ namespace DoAnCuoiKi_KTDH_WinForm
         {
             View2D.ResetView();
         }
-
+        private void ResetView(object sender,EventArgs e)
+        {
+            switch (ViewTab.SelectedIndex)
+            {
+                case 0:
+                    {
+                        View2D.ResetView();
+                        break;
+                    }
+                case 1:
+                    {
+                        View3D.ResetView();
+                        break;
+                    }
+                case 2:
+                    {
+                        ViewAnimation.Resetview();
+                        break;
+                    }
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             List<Draw.Point> _list = Tranform2D.Rotate(View2D._listpoint, new Draw.Point(0,0),45);

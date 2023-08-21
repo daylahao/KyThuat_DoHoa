@@ -11,7 +11,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 
     public class Draw2D
     {
-        int UnitSize = 5;
         public List<Draw.Point> FillColor(List<Point> ListPoint, int X, int Y, Color? ColorFill = null)
         {
             ConvertPoint _convert = new ConvertPoint();
@@ -325,6 +324,21 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 }
                 _listpoint.AddRange(DrawEllipsePoints(centerX, centerY, x, y));
             }
+
+            // Vùng 2: (a^2 / sqrt(a^2 + b^2), b / sqrt(a^2 + b^2)) đến (a, 0)
+            p = Convert.ToInt32(bSquared * (x + 0.5) * (x + 0.5) + aSquared * (y - 1) * (y - 1) - aSquared * bSquared);
+            while (y > 0)
+            {
+                y--;
+                if (p > 0)
+                    p += -twoASquared * y + aSquared;
+                else
+                {
+                    x++;
+                    p += twoBSquared * x - twoASquared * y + aSquared;
+                }
+                _listpoint.AddRange(DrawEllipsePoints(centerX, centerY, x, y));
+            }
             return _listpoint;
 
         }
@@ -333,7 +347,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             List<Draw.Point> _listpoint = new List<Point>();
             int a = radiusX;
             int b = radiusY;
-
             int aSquared = a * a;
             int bSquared = b * b;
 
@@ -347,7 +360,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 
             // Vẽ bán kính ban đầu trong góc đầu tiên của hình ellipse (0, b)
             //DrawEllipsePoints2(g, centerX, centerY, x, y, i);
-            _listpoint.Add(new Draw.Point(centerX - x * UnitSize, centerY + y * UnitSize));
+            _listpoint.Add(new Draw.Point(centerX - x, centerY - y));
             // Vùng 1: (0, b) đến (a^2 / sqrt(a^2 + b^2), b / sqrt(a^2 + b^2))
             p = Convert.ToInt32(bSquared - (aSquared * b) + (0.25 * aSquared));
             while (twoBSquared * x < twoASquared * y)
@@ -385,23 +398,23 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         {
             List<Draw.Point> _listpoint = new List<Point>();
             // Vẽ 4 điểm đối xứng của hình ellipse dựa vào giá trị x, y và tâm (centerX, centerY)
-            _listpoint.Add(new Draw.Point(centerX + x * UnitSize, centerY + y * UnitSize)); // Quận 1: (x, y)
-            _listpoint.Add(new Draw.Point(centerX - x * UnitSize, centerY + y * UnitSize)); // Quận 2: (-x, y)
-            _listpoint.Add(new Draw.Point(centerX + x * UnitSize, centerY - y * UnitSize)); // Quận 3: (x, -y)
-            _listpoint.Add(new Draw.Point(centerX - x * UnitSize, centerY - y * UnitSize)); // Quận 4: (-x, -y)
+            _listpoint.Add(new Draw.Point(centerX + x, centerY + y)); // Quận 1: (x, y)
+            _listpoint.Add(new Draw.Point(centerX - x, centerY + y)); // Quận 2: (-x, y)
+            _listpoint.Add(new Draw.Point(centerX + x, centerY - y)); // Quận 3: (x, -y)
+            _listpoint.Add(new Draw.Point(centerX - x, centerY - y)); // Quận 4: (-x, -y)
             return _listpoint;
         }
         public List<Draw.Point> DrawEllipsePoints2(int centerX, int centerY, int x, int y, int i)
         {
             List<Draw.Point> _lispoint = new List<Point>();
             // Vẽ 4 điểm đối xứng của hình ellipse dựa vào giá trị x, y và tâm (centerX, centerY)
-            if (i % 4 != 3)
+            if (i % 4 < 2)
             {
-                _lispoint.Add(new Draw.Point(centerX + x * UnitSize, centerY - y * UnitSize));// Quận 3: (x, -y)
-                _lispoint.Add(new Draw.Point(centerX - x * UnitSize, centerY - y * UnitSize));// Quận 4: (-x, -y)
+                _lispoint.Add(new Draw.Point(centerX + x, centerY + y));// Quận 1: (x, y)
+                _lispoint.Add(new Draw.Point(centerX - x, centerY + y));// Quận 2: (-x, y)
             }
-            _lispoint.Add(new Draw.Point(centerX + x * UnitSize, centerY + y * UnitSize));// Quận 1: (x, y)
-            _lispoint.Add(new Draw.Point(centerX - x * UnitSize, centerY + y * UnitSize));// Quận 2: (-x, y)
+            _lispoint.Add(new Draw.Point(centerX + x, centerY - y));// Quận 3: (x, -y)
+            _lispoint.Add(new Draw.Point(centerX - x, centerY - y));// Quận 4: (-x, -y)
             return _lispoint;
         }
     }

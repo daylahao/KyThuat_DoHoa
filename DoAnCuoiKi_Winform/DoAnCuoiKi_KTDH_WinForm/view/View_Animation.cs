@@ -122,5 +122,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             }
 
         }
+        public void Resetview()
+        {
+            _listpoint.Clear();
+            view.Refresh();
+        }
     }
 }

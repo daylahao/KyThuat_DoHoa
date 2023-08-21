@@ -34,30 +34,30 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.btn_accept = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.centerinputy = new System.Windows.Forms.TextBox();
-            this.centerinputx = new System.Windows.Forms.TextBox();
-            this.centerinputz = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.inputheight = new System.Windows.Forms.TextBox();
+            this.Group_BanKinh = new System.Windows.Forms.GroupBox();
+            this.inputcyclineradius = new System.Windows.Forms.TextBox();
             this.panel_box = new System.Windows.Forms.TableLayoutPanel();
             this.Group_Rong = new System.Windows.Forms.GroupBox();
             this.inputrongbox = new System.Windows.Forms.TextBox();
             this.Group_Dai = new System.Windows.Forms.GroupBox();
             this.inputwidthbox = new System.Windows.Forms.TextBox();
-            this.Group_BanKinh = new System.Windows.Forms.GroupBox();
-            this.inputcyclineradius = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.inputheight = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.centerinputz = new System.Windows.Forms.TextBox();
+            this.centerinputy = new System.Windows.Forms.TextBox();
+            this.centerinputx = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.Group_BanKinh.SuspendLayout();
             this.panel_box.SuspendLayout();
             this.Group_Rong.SuspendLayout();
             this.Group_Dai.SuspendLayout();
-            this.Group_BanKinh.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -125,76 +125,24 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel2.Size = new System.Drawing.Size(491, 104);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // groupBox1
+            // Group_BanKinh
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(296, 47);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tâm Gốc";
+            this.Group_BanKinh.Controls.Add(this.inputcyclineradius);
+            this.Group_BanKinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Group_BanKinh.Location = new System.Drawing.Point(305, 57);
+            this.Group_BanKinh.Name = "Group_BanKinh";
+            this.Group_BanKinh.Size = new System.Drawing.Size(183, 44);
+            this.Group_BanKinh.TabIndex = 10;
+            this.Group_BanKinh.TabStop = false;
+            this.Group_BanKinh.Text = "Bán kính";
             // 
-            // tableLayoutPanel4
+            // inputcyclineradius
             // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel4.Controls.Add(this.centerinputz, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.centerinputy, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.centerinputx, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(290, 28);
-            this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // centerinputy
-            // 
-            this.centerinputy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerinputy.Location = new System.Drawing.Point(97, 3);
-            this.centerinputy.Name = "centerinputy";
-            this.centerinputy.Size = new System.Drawing.Size(88, 20);
-            this.centerinputy.TabIndex = 3;
-            // 
-            // centerinputx
-            // 
-            this.centerinputx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerinputx.Location = new System.Drawing.Point(3, 3);
-            this.centerinputx.Name = "centerinputx";
-            this.centerinputx.Size = new System.Drawing.Size(88, 20);
-            this.centerinputx.TabIndex = 2;
-            // 
-            // centerinputz
-            // 
-            this.centerinputz.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerinputz.Location = new System.Drawing.Point(191, 3);
-            this.centerinputz.Name = "centerinputz";
-            this.centerinputz.Size = new System.Drawing.Size(96, 20);
-            this.centerinputz.TabIndex = 4;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.inputheight);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(305, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(183, 47);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chiều cao";
-            // 
-            // inputheight
-            // 
-            this.inputheight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputheight.Location = new System.Drawing.Point(3, 16);
-            this.inputheight.Name = "inputheight";
-            this.inputheight.Size = new System.Drawing.Size(177, 20);
-            this.inputheight.TabIndex = 3;
+            this.inputcyclineradius.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputcyclineradius.Location = new System.Drawing.Point(3, 16);
+            this.inputcyclineradius.Name = "inputcyclineradius";
+            this.inputcyclineradius.Size = new System.Drawing.Size(177, 20);
+            this.inputcyclineradius.TabIndex = 3;
             // 
             // panel_box
             // 
@@ -204,11 +152,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.panel_box.Controls.Add(this.Group_Rong, 0, 0);
             this.panel_box.Controls.Add(this.Group_Dai, 1, 0);
             this.panel_box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_box.Location = new System.Drawing.Point(3, 56);
+            this.panel_box.Location = new System.Drawing.Point(3, 57);
             this.panel_box.Name = "panel_box";
             this.panel_box.RowCount = 1;
             this.panel_box.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panel_box.Size = new System.Drawing.Size(296, 45);
+            this.panel_box.Size = new System.Drawing.Size(296, 44);
             this.panel_box.TabIndex = 9;
             // 
             // Group_Rong
@@ -217,7 +165,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.Group_Rong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Group_Rong.Location = new System.Drawing.Point(3, 3);
             this.Group_Rong.Name = "Group_Rong";
-            this.Group_Rong.Size = new System.Drawing.Size(142, 39);
+            this.Group_Rong.Size = new System.Drawing.Size(142, 38);
             this.Group_Rong.TabIndex = 0;
             this.Group_Rong.TabStop = false;
             this.Group_Rong.Text = "Chiều rộng";
@@ -236,7 +184,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.Group_Dai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Group_Dai.Location = new System.Drawing.Point(151, 3);
             this.Group_Dai.Name = "Group_Dai";
-            this.Group_Dai.Size = new System.Drawing.Size(142, 39);
+            this.Group_Dai.Size = new System.Drawing.Size(142, 38);
             this.Group_Dai.TabIndex = 1;
             this.Group_Dai.TabStop = false;
             this.Group_Dai.Text = "Chiều dài";
@@ -249,24 +197,76 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.inputwidthbox.Size = new System.Drawing.Size(136, 20);
             this.inputwidthbox.TabIndex = 3;
             // 
-            // Group_BanKinh
+            // groupBox2
             // 
-            this.Group_BanKinh.Controls.Add(this.inputcyclineradius);
-            this.Group_BanKinh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Group_BanKinh.Location = new System.Drawing.Point(305, 56);
-            this.Group_BanKinh.Name = "Group_BanKinh";
-            this.Group_BanKinh.Size = new System.Drawing.Size(183, 45);
-            this.Group_BanKinh.TabIndex = 10;
-            this.Group_BanKinh.TabStop = false;
-            this.Group_BanKinh.Text = "Bán kính";
+            this.groupBox2.Controls.Add(this.inputheight);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(305, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(183, 48);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Chiều cao";
             // 
-            // inputcyclineradius
+            // inputheight
             // 
-            this.inputcyclineradius.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputcyclineradius.Location = new System.Drawing.Point(3, 16);
-            this.inputcyclineradius.Name = "inputcyclineradius";
-            this.inputcyclineradius.Size = new System.Drawing.Size(177, 20);
-            this.inputcyclineradius.TabIndex = 3;
+            this.inputheight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputheight.Location = new System.Drawing.Point(3, 16);
+            this.inputheight.Name = "inputheight";
+            this.inputheight.Size = new System.Drawing.Size(177, 20);
+            this.inputheight.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel4);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(296, 48);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tâm Gốc";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel4.Controls.Add(this.centerinputz, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.centerinputy, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.centerinputx, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(290, 29);
+            this.tableLayoutPanel4.TabIndex = 1;
+            // 
+            // centerinputz
+            // 
+            this.centerinputz.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.centerinputz.Location = new System.Drawing.Point(191, 3);
+            this.centerinputz.Name = "centerinputz";
+            this.centerinputz.Size = new System.Drawing.Size(96, 20);
+            this.centerinputz.TabIndex = 4;
+            // 
+            // centerinputy
+            // 
+            this.centerinputy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.centerinputy.Location = new System.Drawing.Point(97, 3);
+            this.centerinputy.Name = "centerinputy";
+            this.centerinputy.Size = new System.Drawing.Size(88, 20);
+            this.centerinputy.TabIndex = 3;
+            // 
+            // centerinputx
+            // 
+            this.centerinputx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.centerinputx.Location = new System.Drawing.Point(3, 3);
+            this.centerinputx.Name = "centerinputx";
+            this.centerinputx.Size = new System.Drawing.Size(88, 20);
+            this.centerinputx.TabIndex = 2;
             // 
             // DialogForm3Dcs
             // 
@@ -287,18 +287,18 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Group_BanKinh.ResumeLayout(false);
+            this.Group_BanKinh.PerformLayout();
             this.panel_box.ResumeLayout(false);
             this.Group_Rong.ResumeLayout(false);
             this.Group_Rong.PerformLayout();
             this.Group_Dai.ResumeLayout(false);
             this.Group_Dai.PerformLayout();
-            this.Group_BanKinh.ResumeLayout(false);
-            this.Group_BanKinh.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -303,21 +303,21 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // hiệnLướiToolStripMenuItem
             // 
             this.hiệnLướiToolStripMenuItem.Name = "hiệnLướiToolStripMenuItem";
-            this.hiệnLướiToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.hiệnLướiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hiệnLướiToolStripMenuItem.Text = "Ẩn Lưới Trên View";
             // 
             // ẩnThanhCôngCụToolStripMenuItem
             // 
             this.ẩnThanhCôngCụToolStripMenuItem.Name = "ẩnThanhCôngCụToolStripMenuItem";
-            this.ẩnThanhCôngCụToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ẩnThanhCôngCụToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ẩnThanhCôngCụToolStripMenuItem.Text = "Ẩn Thanh Công Cụ";
             // 
             // làmMớiViewToolStripMenuItem
             // 
             this.làmMớiViewToolStripMenuItem.Name = "làmMớiViewToolStripMenuItem";
-            this.làmMớiViewToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.làmMớiViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.làmMớiViewToolStripMenuItem.Text = "Làm Mới View";
-            this.làmMớiViewToolStripMenuItem.Click += new System.EventHandler(this.resetView2D);
+            this.làmMớiViewToolStripMenuItem.Click += new System.EventHandler(this.ResetView);
             // 
             // thôngTinToolStripMenuItem
             // 

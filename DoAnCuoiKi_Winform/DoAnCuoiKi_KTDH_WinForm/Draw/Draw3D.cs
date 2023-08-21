@@ -11,7 +11,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
     public class Draw3D
     {
         List<Draw.Point> _listpoint;
-        int UnitSize = 5;
         public List<Draw.Point> Box(int x, int y, int z, int dai, int rong, int cao)
         {
             _listpoint = new List<Point>();
@@ -49,15 +48,14 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             List<Draw.Point> _listpoint = new List<Point>();
             ConvertPoint _pointbase = new ConvertPoint();
             Draw2D _Draw2D = new Draw2D();
-            int x1 = x * UnitSize;
-            int y1 = y * UnitSize;
-            int z1 = z * UnitSize;
-            int a = x1 - (z1 / 2);
-            int b = y1 - (z1 / 2);
-            int cX = (View_3D.viewsize.width / 2) + a;
-            int cY = (View_3D.viewsize.height / 2) - b;
+            int a = x - (z / 2);
+            int b = y - (z / 2);
+            //int cX = (View_3D.viewsize.width / 2) + a;
+            //int cY = (View_3D.viewsize.height / 2) - b;
+            int cX = 0 + a;
+            int cY = 0 + b;
             _listpoint.AddRange(_Draw2D.DrawEllipseMidpoint2(cX, cY, bankinh, bankinh / 2));
-            _listpoint.AddRange(_Draw2D.DrawEllipseMidpoint(cX, cY - chieucao * UnitSize, bankinh, bankinh / 2));
+            _listpoint.AddRange(_Draw2D.DrawEllipseMidpoint(cX, cY + chieucao, bankinh, bankinh / 2));
 
             int h = x;
             int w = y;
@@ -72,5 +70,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             _listpoint.AddRange(_Draw2D.Line(pointcneter[0] - bankinh, pointcneter[1], pointcneter[0] - bankinh, pointcneter[1] + chieucao, lineColor));
             return _listpoint;
         }
+
     }
 }
