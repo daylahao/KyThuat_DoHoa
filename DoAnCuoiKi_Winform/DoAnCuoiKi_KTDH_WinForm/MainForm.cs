@@ -132,45 +132,6 @@ namespace DoAnCuoiKi_KTDH_WinForm
                 _infoform.ShowDialog();
             }
         }
-        #endregion
-        #region Load item thanh công cụ
-        private void Load_Tool_Box_2D()
-        {
-
-        }
-        #endregion
-        private void resetView2D(object sender, EventArgs e)
-        {
-            View2D.ResetView();
-        }
-        private void ResetView(object sender,EventArgs e)
-        {
-            switch (ViewTab.SelectedIndex)
-            {
-                case 0:
-                    {
-                        View2D.ResetView();
-                        break;
-                    }
-                case 1:
-                    {
-                        View3D.ResetView();
-                        break;
-                    }
-                case 2:
-                    {
-                        ViewAnimation.Resetview();
-                        break;
-                    }
-            }
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            List<Draw.Point> _list = Tranform2D.Rotate(View2D._listpoint, new Draw.Point(0,0),45);
-            View2D._listpoint = _list;
-            View2D.view.Refresh();
-        }
-
         private void hiệnLướiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (togglegrid == true)
@@ -224,7 +185,47 @@ namespace DoAnCuoiKi_KTDH_WinForm
                 Application.Exit();
             }
         }
+        private void ResetView(object sender, EventArgs e)
+        {
+            switch (ViewTab.SelectedIndex)
+            {
+                case 0:
+                    {
+                        View2D.ResetView();
+                        break;
+                    }
+                case 1:
+                    {
+                        View3D.ResetView();
+                        break;
+                    }
+                case 2:
+                    {
+                        ViewAnimation.Resetview();
+                        break;
+                    }
+            }
+        }
+        #endregion
+        #region Load item thanh công cụ
+        private void Load_Tool_Box_2D()
+        {
 
+        }
+        #endregion
+        private void resetView2D(object sender, EventArgs e)
+        {
+            View2D.ResetView();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<Draw.Point> _list = Tranform2D.Rotate(View2D._listpoint, new Draw.Point(0,0),45);
+            View2D._listpoint = _list;
+            View2D.view.Refresh();
+        }
+
+
+        #region Animtaion
         bool PlayTimer = false;
         private void Click_btnPlayAnimation(object sender, EventArgs e)
         {
@@ -249,6 +250,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
                 e.Cancel = true;
             }
         }
+        #endregion
     }
     public class Size
     {

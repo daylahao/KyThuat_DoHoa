@@ -181,5 +181,11 @@
   <ItemGroup>
     <None Include="Resources\CylineIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloundIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

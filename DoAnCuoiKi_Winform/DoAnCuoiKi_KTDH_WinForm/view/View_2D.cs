@@ -54,9 +54,18 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tam giác", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeTriangleIcon, customFunction = new EventHandler(DrawTreeTriangle) });
             Ds_ToolBox.Add(new ToolBox() { name = "Cây tròn", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.TreeCircleIcon, customFunction = new EventHandler(DrawTreeCircle)});
             Ds_ToolBox.Add(new ToolBox() { name = "Cầu vồng", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RainbowIcon, customFunction = new EventHandler(DrawRainBow)});
+            Ds_ToolBox.Add(new ToolBox() { name = "Đám mây", thumb = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.Cloud, customFunction = new EventHandler(DrawCloud) });
             Ds_ToolBox.Reverse();
         }
         #region Kích hoạt các hàm vẽ
+        protected void DrawCloud(object sender, EventArgs e)
+        {
+            //MessageBox.Show("hello world");
+            _listpoint.Clear();
+            MainForm._BoxDetail.DataObject.Clear();
+            _listpoint.AddRange(_Draw2d.DrawCloud(0, 0, Color.White));
+            view.Refresh();
+        }
         protected void DrawLine(object sender, EventArgs e)
         {
             _listpoint.Clear();

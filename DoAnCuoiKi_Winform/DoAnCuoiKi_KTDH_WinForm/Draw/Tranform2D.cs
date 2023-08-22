@@ -10,13 +10,13 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
     {
         public Draw.Point Rotate(Draw.Point _pointrotate,Draw.Point _root, int angle)
         {
-            double alpha = angle * (Math.PI / 180);
+            double alpha =angle * (Math.PI / 180);
             double cos = Math.Cos(alpha),
                    sin = Math.Sin(alpha);
             Draw.Point offset = _root;
             int x = _pointrotate.X - offset.X,
                 y = _pointrotate.Y - offset.Y;
-            _pointrotate.X = (int)Math.Round((x * cos - y * sin) + offset.X);
+            _pointrotate.X= (int)Math.Round((x * cos - y * sin) + offset.X);
             _pointrotate.Y = (int)Math.Round((x * sin + y * cos) + offset.Y);
             return _pointrotate;
 
@@ -26,7 +26,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             List<Draw.Point> _list = new List<Point>();
             foreach (Draw.Point _pointrotate in _listpoint)
             {
-                _list.Add(Rotate(_pointrotate, _root, angle));
+                Draw.Point _temp = Rotate(_pointrotate, _root, angle);
+                    _list.Add(_temp);
             }
             return _list;
         }

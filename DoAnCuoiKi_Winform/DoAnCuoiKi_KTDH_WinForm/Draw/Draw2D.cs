@@ -565,6 +565,17 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 i++;
             }
         }
+        public List<Draw.Point> DrawCloud(int centerX, int centerY, Color? colorfill = null)
+        {
+            List<Draw.Point> _listpoint = new List<Point>();
+            _listpoint.AddRange(Circle(-23, 8, 8, Color.White));
+            _listpoint.AddRange(Circle(-18, -5, 8, Color.White));
+            _listpoint.AddRange(Circle(-8, 3, 9, Color.White));
+            _listpoint.AddRange(Circle(4, 9, 8, Color.White));
+            _listpoint.AddRange(Circle(4, -3, 9, Color.White));
+            _listpoint.AddRange(Circle(17, 3, 8, Color.White));
 
+            return _listpoint;
+        }
     }
 }
