@@ -208,6 +208,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public List<Draw.Point> TreeTriangle(int Sx, int Sy, int Ex, int Ey, int trianglecount = 3)
         {
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Cây tam giác", centerx = (Ex+Sx)/2, centery = Sy, width = Math.Abs(Sx) + Math.Abs(Ex), height = Math.Abs(Ey)+ Math.Abs(Sy) });
             if (Math.Abs(Ey + Sy) % 10 > 1 && Math.Abs(Ey + Sy) % 10 < trianglecount)
                 trianglecount = Math.Abs(Ey + Sy) % 10;
             List<Draw.Point> ListPoint = new List<Draw.Point>();
@@ -257,6 +258,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public List<Draw.Point> TreeCircle(int Sx, int Sy, int Ex, int Ey, int Circlecount = 3)
         {
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Cây táng tròn", centerx = (Ex + Sx) / 2, centery = Sy, width = Math.Abs(Sx) + Math.Abs(Ex), height = Math.Abs(Ey) + Math.Abs(Sy) });
             List<Draw.Point> _listpoint = new List<Point>();
             bool flip = false;
             // Tính thân cây

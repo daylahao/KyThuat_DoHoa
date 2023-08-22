@@ -81,20 +81,17 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         protected void DrawCycline3D(object sender, EventArgs e)
         {
             _listpoint.Clear();
-            _listpoint.AddRange(_Draw3d.DrawCylinder(0, 0, 0, 10, 20));
-            view.Refresh();
-            /*            using (Dialog.DialogForm3Dcs _dialog = new Dialog.DialogForm3Dcs())
-                        {
-                            _dialog.Cylinder = true;
-                            if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            {
-                                MainForm._BoxDetail.DataObject.Clear();
-                                _listpoint.AddRange(_Draw3d.DrawCylinder(_dialog.Data.x, _dialog.Data.y, _dialog.Data.z,_dialog.Data.radius, _dialog.Data.height));
-
-                                MainForm.LoadDetailMenu();
-                                view.Refresh();
-                            }
-                        }*/
+            using (Dialog.DialogForm3Dcs _dialog = new Dialog.DialogForm3Dcs())
+            {
+               _dialog.Cylinder = true;
+                if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MainForm._BoxDetail.DataObject.Clear();
+                    _listpoint.AddRange(_Draw3d.DrawCylinder(_dialog.Data.x, _dialog.Data.y, _dialog.Data.z,_dialog.Data.radius, _dialog.Data.height));
+                    MainForm.LoadDetailMenu();
+                    view.Refresh();
+                }
+            }
         }
 
         public void SetupDrawView(object sender, PaintEventArgs e)

@@ -71,17 +71,20 @@ namespace DoAnCuoiKi_KTDH_WinForm
                     {
                         View2D.LoadUIView();
                         View2D.LoadMenuToolBox(group_btn);
+                        container_menu.Show();
                         break;
                     }
                 case 1: //3D
                     {
                         View3D.LoadUIView();
                         View3D.LoadMenuToolBox(group_btn);
+                        container_menu.Show();
                         break;
                     }
                 case 2://Animation
                     {
                         ViewAnimation.LoadUIView();
+                        container_menu.Hide();
                         break;
                     }
             }
@@ -189,10 +192,10 @@ namespace DoAnCuoiKi_KTDH_WinForm
 
         private void ẩnThanhChiTiếtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (detailgroup.Visible)
-                detailgroup.Hide();
+            if (containerdetail_right.Visible)
+                containerdetail_right.Hide();
             else
-                detailgroup.Show();
+                containerdetail_right.Show();
         }
 
         private void chuyểnSang2DToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,6 +239,15 @@ namespace DoAnCuoiKi_KTDH_WinForm
             }
             ViewAnimation.init();
             timer1.Enabled = PlayTimer;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ApproveForm _exitForm = new ApproveForm();
+            if (_exitForm.ShowDialog() == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
         }
     }
     public class Size

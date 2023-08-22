@@ -13,6 +13,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public void LoadDataDetail(Panel ContainerDetail)
         {
             ContainerDetail.Controls.Clear();
+            DataObject.Reverse();
             foreach (DataDetail Data in DataObject)
             {
                 FlowLayoutPanel _panel = new FlowLayoutPanel();
@@ -47,17 +48,29 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
-                if (Data.centerx.HasValue||Data.centery.HasValue)
+                if (Data.centerx.HasValue||Data.centery.HasValue|| Data.X3D.HasValue || Data.Y3D.HasValue || Data.Z3D.HasValue)
                 {
                     pointstartlabel = new Label();
-                    pointstartlabel.Text = "Tâm = { X="+Data.centerx.ToString() +"Y= "+Data.centery.ToString() + " }";
+                    if (Data.X3D.HasValue || Data.Y3D.HasValue || Data.Z3D.HasValue)
+                        pointstartlabel.Text = "Điểm 3D = { X=" + Data.X3D.ToString() + ", Y= " + Data.Y3D.ToString() + ", Z= " + Data.Z3D.ToString() + " }";
+                    else
+                        pointstartlabel.Text = "Tâm = { X="+Data.centerx.ToString() +"Y= "+Data.centery.ToString() + " }";
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
                 if (Data.height.HasValue||Data.width.HasValue)
                 {
                     pointstartlabel = new Label();
-                    pointstartlabel.Text = "Chiều cao= " + Data.height.ToString() + ", dài= " + Data.width.ToString() + " }";
+                    if (Data.Rong.HasValue)
+                    {
+                        pointstartlabel.Text = "Chiều cao= " + Data.height.ToString() + ", dài= " + Data.width.ToString() + ", rộng= " + Data.Rong.ToString() + " }";
+                    }
+                    else if (Data.width.HasValue)
+                    {
+                        pointstartlabel.Text = "Chiều cao= " + Data.height.ToString() + ", dài= " + Data.width.ToString() + " }";
+                    }
+                    else
+                    pointstartlabel.Text = "Chiều cao= " + Data.height.ToString() + " }";
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
@@ -86,5 +99,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public int? width { get; set; }
         public int? x { get; set; }
         public int? y { get; set; }
+        public int? X3D { get; set; }
+        public int? Y3D { get; set; }
+        public int? Z3D { get; set; }
+        public int? Rong { get; set; }
     }
 }

@@ -52,6 +52,12 @@
     <Compile Include="Dialog\ApproveForm.Designer.cs">
       <DependentUpon>ApproveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ButtonLayerItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialog\ButtonLayerItem.Designer.cs">
+      <DependentUpon>ButtonLayerItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\DialogForm3Dcs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     <Compile Include="view\View_Animation.cs" />
     <EmbeddedResource Include="Dialog\ApproveForm.resx">
       <DependentUpon>ApproveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ButtonLayerItem.resx">
+      <DependentUpon>ButtonLayerItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\DialogForm3Dcs.resx">
       <DependentUpon>DialogForm3Dcs.cs</DependentUpon>

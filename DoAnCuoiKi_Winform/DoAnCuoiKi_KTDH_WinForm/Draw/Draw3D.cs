@@ -20,11 +20,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             int cX = (View_3D.viewsize.width / 2) + a;
             int cY = (View_3D.viewsize.height / 2) - b;
 
-
             Draw2D drawLine = new Draw2D();
             Color lineColor = Color.Black;
             string lineType = "Nét liền";
             int[] pointcneter = _pointbase.Doi_Sang_He_Toa_Do_Nguoi_Dung(cX, cY);
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() {name="Hình Hộp", X3D = x, Y3D = y,Z3D = z,height = cao,width = dai,Rong = rong });
             _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1] + cao, pointcneter[0] + dai, pointcneter[1] + cao, lineColor, lineType));
             _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1] + cao, pointcneter[0] + (-rong / 2), pointcneter[1] + cao - (rong / 2), lineColor, lineType));
             _listpoint.AddRange(drawLine.Line(pointcneter[0] + dai - (rong / 2), pointcneter[1] + cao - (rong / 2), pointcneter[0] + dai, pointcneter[1] + cao, lineColor, lineType));
@@ -45,6 +45,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public List<Draw.Point> DrawCylinder(int x, int y, int z, int bankinh, int chieucao)
         {
+            MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình trụ",X3D=x,Y3D=y,Z3D=z, R = bankinh, height = chieucao });
             List<Draw.Point> _listpoint = new List<Point>();
             ConvertPoint _pointbase = new ConvertPoint();
             Draw2D _Draw2D = new Draw2D();

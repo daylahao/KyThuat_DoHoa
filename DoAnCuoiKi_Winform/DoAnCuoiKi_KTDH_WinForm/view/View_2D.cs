@@ -106,9 +106,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     _listpoint.Clear();
                     MainForm._BoxDetail.DataObject.Clear();
                     _listpoint.AddRange(_Draw2d.TreeTriangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.count));
-                    MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Cây tam giác", centerx = _dialog.data.centerx, centery = _dialog.data.centery, width = _dialog.data.width, height = _dialog.data.height });
-                    view.Refresh();
                     MainForm.LoadDetailMenu();
+                    view.Refresh();
                 }
             }
         }
