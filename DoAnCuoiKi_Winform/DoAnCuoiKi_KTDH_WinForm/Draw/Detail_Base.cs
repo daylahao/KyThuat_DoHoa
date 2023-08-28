@@ -107,6 +107,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
     }
     public partial class ObjectShape
     {
+        public List<DataDetail> Infoshape;
+        public string name = "Không xác định"; 
         public  Draw.Point center, start, end,point2, point3;
         public  int radius;
         public  Color? Colorfill,Colorstroke;
@@ -115,12 +117,69 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public string type;
         public virtual List<Point> Showpoint()
         {
+            _listpoint = new List<Point>();
+            if (ChildShape.Count > 0)
+            {
+                foreach(ObjectShape Shape in ChildShape)
+                {
+                    _listpoint.AddRange(Shape.Showpoint());
+                }
+            }
             return _listpoint;
         }
         public virtual void Rotate(Draw.Point root, int angle)
         {
-
+            if (ChildShape.Count > 0)
+            {
+                foreach(ObjectShape Shape in ChildShape)
+                {
+                    Shape.Rotate(root, angle);
+                }
+            }
+            return;
         }
-        public virtual void Scale(Draw.Point root,int scaleX=1,int scaleY=1) { }
+        public virtual void Scale(Draw.Point root,int scaleX=1,int scaleY=1) 
+        {
+            if (ChildShape!=null)
+            {
+                foreach(ObjectShape Shape in ChildShape)
+                {
+                    Shape.Scale(root, scaleX, scaleY);
+                }
+            }
+            return;
+        }
+        public virtual void Move(Draw.Point root,int X, int Y)
+        {
+            if (ChildShape.Count > 0)
+            {
+                foreach(ObjectShape Shape in ChildShape)
+                {
+                    Shape.Move(root, X, Y);
+                }
+            }
+            return;
+        }
+        public virtual void Flip(bool X ,bool Y)
+        {
+            if(ChildShape!=null &&ChildShape.Count>0)
+            {
+                foreach(ObjectShape Shape in ChildShape)
+                {
+                    Shape.Flip(X, Y);
+                }
+            }
+            return;
+        }
+        public virtual void SetInfoShape()
+        {
+            if (ChildShape!=null&&ChildShape.Count>0)
+            {
+                foreach(ObjectShape Shape in ChildShape)
+                {
+                    Infoshape.AddRange(Shape.Infoshape);
+                }
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
     {
         public void Draw(int centerx, int centery, int radius, System.Drawing.Color? ColorFill = null,System.Drawing.Color? ColorStroke=null,string type="Nét liền")
         {
+            this.name = "Hình Tròn";
             this.center = new Draw.Point(centerx, centery);
             this.radius = radius;
             this.Colorfill = ColorFill;
@@ -18,7 +19,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public override List<Point> Showpoint()
         {
+            SetInfoShape();
             _listpoint = new List<Point>();
+            _listpoint.Clear();
             int P0 = 5 / 4 - radius;
             List<int> P = new List<int>();
             int i = 0, currentX = 0, currentY = radius;
@@ -60,6 +63,15 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             scaleY = scaleX;
             center = Tranform2D.Scale(center, root, scaleX, scaleX);
             this.radius = this.radius * scaleX;
+        }
+        public override void Move(Point root, int X, int Y)
+        {
+            this.center = Tranform2D.Move(center, X, Y);
+        }
+        public override void SetInfoShape()
+        {
+            Infoshape = new List<DataDetail>();
+            Infoshape.Add(new DataDetail() { name = this.name, centerx = center.X, centery = center.Y, R = radius });
         }
     }
 }

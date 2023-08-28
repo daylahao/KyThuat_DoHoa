@@ -12,6 +12,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         private List<Draw.Point> _listpointcircle;
         public void Draw(int centerX, int centerY, Color? colorfill = null, Color? colorstroke = null)
         {
+            this.name = "Mây";
             ChildShape = new List<ObjectShape>();
             this.center = new Draw.Point(centerX, centerY, colorfill);
             Circle DrawCircle = new Circle();
@@ -40,6 +41,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             {
                 _listpoint.AddRange(Shape.Showpoint());
             }
+            SetInfoShape();
             return _listpoint;
         }
         public override void Rotate(Point root, int angle)
@@ -52,6 +54,21 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 ChildTemp.Add(Shape);
             }
             ChildShape = ChildTemp;
+        }
+        public override void Move(Point root, int X, int Y)
+        {
+            this.center = Tranform2D.Move(root, X, Y);
+            foreach(ObjectShape Shape in ChildShape)
+            {
+                Shape.Move(center, X, Y);
+            }
+
+        }
+        public override void SetInfoShape()
+        {
+            Infoshape = new List<DataDetail>();
+            Infoshape.Add(new DataDetail() { name = this.name,centerx = this.center.X,centery = this.center.Y});
+            base.SetInfoShape();
         }
     }
 }

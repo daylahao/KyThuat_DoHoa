@@ -67,6 +67,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.itemgroup = new System.Windows.Forms.GroupBox();
             this.buttonLayerItem1 = new DoAnCuoiKi_KTDH_WinForm.Dialog.ButtonLayerItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.container_menu.SuspendLayout();
             this.toolboxgroup.SuspendLayout();
             this.container_body.SuspendLayout();
@@ -178,6 +179,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             // tab3D
             // 
+            this.tab3D.Controls.Add(this.button1);
             this.tab3D.Controls.Add(this.view3D);
             this.tab3D.Location = new System.Drawing.Point(4, 22);
             this.tab3D.Name = "tab3D";
@@ -198,8 +200,8 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             // tabanimation
             // 
-            this.tabanimation.Controls.Add(this.Container_Control_Animtaion);
             this.tabanimation.Controls.Add(this.viewanim);
+            this.tabanimation.Controls.Add(this.Container_Control_Animtaion);
             this.tabanimation.Location = new System.Drawing.Point(4, 22);
             this.tabanimation.Name = "tabanimation";
             this.tabanimation.Size = new System.Drawing.Size(743, 419);
@@ -235,7 +237,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.viewanim.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewanim.Location = new System.Drawing.Point(0, 0);
             this.viewanim.Name = "viewanim";
-            this.viewanim.Size = new System.Drawing.Size(743, 419);
+            this.viewanim.Size = new System.Drawing.Size(743, 378);
             this.viewanim.TabIndex = 0;
             this.viewanim.TabStop = false;
             // 
@@ -313,28 +315,28 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // hiệnLướiToolStripMenuItem
             // 
             this.hiệnLướiToolStripMenuItem.Name = "hiệnLướiToolStripMenuItem";
-            this.hiệnLướiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hiệnLướiToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.hiệnLướiToolStripMenuItem.Text = "Ẩn Lưới Trên View";
             this.hiệnLướiToolStripMenuItem.Click += new System.EventHandler(this.hiệnLướiToolStripMenuItem_Click);
             // 
             // ẩnThanhCôngCụToolStripMenuItem
             // 
             this.ẩnThanhCôngCụToolStripMenuItem.Name = "ẩnThanhCôngCụToolStripMenuItem";
-            this.ẩnThanhCôngCụToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ẩnThanhCôngCụToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ẩnThanhCôngCụToolStripMenuItem.Text = "Ẩn Thanh Công Cụ";
             this.ẩnThanhCôngCụToolStripMenuItem.Click += new System.EventHandler(this.ẩnThanhCôngCụToolStripMenuItem_Click);
             // 
             // ẩnThanhChiTiếtToolStripMenuItem
             // 
             this.ẩnThanhChiTiếtToolStripMenuItem.Name = "ẩnThanhChiTiếtToolStripMenuItem";
-            this.ẩnThanhChiTiếtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ẩnThanhChiTiếtToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ẩnThanhChiTiếtToolStripMenuItem.Text = "Ẩn Thanh Chi Tiết";
             this.ẩnThanhChiTiếtToolStripMenuItem.Click += new System.EventHandler(this.ẩnThanhChiTiếtToolStripMenuItem_Click);
             // 
             // làmMớiViewToolStripMenuItem
             // 
             this.làmMớiViewToolStripMenuItem.Name = "làmMớiViewToolStripMenuItem";
-            this.làmMớiViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.làmMớiViewToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.làmMớiViewToolStripMenuItem.Text = "Làm Mới View";
             this.làmMớiViewToolStripMenuItem.Click += new System.EventHandler(this.ResetView);
             // 
@@ -428,6 +430,19 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.buttonLayerItem1.Size = new System.Drawing.Size(123, 91);
             this.buttonLayerItem1.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources.RefeshIcon;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(710, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(27, 25);
+            this.button1.TabIndex = 3;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ResetView);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,6 +522,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStripMenuItem ẩnThanhChiTiếtToolStripMenuItem;
         private Dialog.ButtonLayerItem buttonLayerItem1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -8,8 +8,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 {
     public class Line2D:ObjectShape
     {
+        string _name = "Đường thẳng";
         public void Draw(int Sx, int Sy, int Ex, int Ey, Color? colorstroke = null, string type="Nét liền")
         {
+            this.name = _name;
             start = new Draw.Point(Sx, Sy);
             end = new Draw.Point(Ex,Ey);
             Colorstroke = colorstroke;
@@ -17,6 +19,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public void Draw(Draw.Point Start,Draw.Point End, Color? colorstroke = null, string type = "Nét liền")
         {
+            this.name = _name;
             start = Start;
             end = End;
             Colorstroke = colorstroke;
@@ -24,6 +27,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public override List<Point> Showpoint()
         {
+            SetInfoShape();
             int Ax = this.start.X, Ay = this.start.Y,
                 Bx = this.end.X, By = this.end.Y;
             Color? colorfill = null;
@@ -94,6 +98,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             start = Tranform2D.Rotate(start, root, angle);
             end = Tranform2D.Rotate(end, root, angle);
 
+        }
+        public override void Scale(Point root, int scaleX = 1, int scaleY = 1)
+        {
+            this.start = Tranform2D.Scale(start, root, scaleX, scaleY);
+            this.end = Tranform2D.Scale(end, root, scaleX, scaleY);
+        }
+        public override void SetInfoShape()
+        {
+            Infoshape = new List<DataDetail>();
+            Infoshape.Add(new DataDetail() { name = this.name, Sx = this.start.X, Sy = this.end.Y, Ex = this.end.X, Ey = this.end.Y });
         }
     }
 }

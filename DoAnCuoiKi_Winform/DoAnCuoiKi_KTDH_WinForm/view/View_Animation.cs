@@ -14,19 +14,22 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public Panel panellayer { get; set; }
         public int centerX, centerY;
         public static Size viewsize = new Size();
-        public List<Draw.Point> _listpoint = new List<Draw.Point>();
-        public List<Draw.Point> _RainBow = new List<Draw.Point>();
-        public List<List<Draw.Point>> _TreeCircle = new List<List<Draw.Point>>();
-        private Draw2D _Draw2d;
+        public List<Draw.Point> _listpoint;
+        public ObjectShape RainBow = new ObjectShape();
+        private List<ObjectShape> listtreetriangle;
+        private List<ObjectShape> listtreecircle;
+        private List<ObjectShape> listcloud;
         private Tranform2D Tranform_2D;
+        private List<List<ObjectShape>> ShapePoint;
         public void LoadUIView()
         {
-            _Draw2d = new Draw2D();
             viewsize.width = view.Width;
             viewsize.height = view.Height;
             centerX = viewsize.width / 2;
             centerY = viewsize.height / 2;
             panellayer.Visible = true;
+            ShapePoint = new List<List<ObjectShape>>();
+            _listpoint = new List<Draw.Point>();
             view.Paint += SetupDrawView;
             view.Refresh();
         }
@@ -89,17 +92,24 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             // Vẽ các điểm đã lưu trong danh sách
             using (Brush brush = new SolidBrush(Color.Black))
             {
+                MainForm._BoxDetail.DataObject.Clear();
+                foreach (List<ObjectShape> ListShape in ShapePoint)
+                {
+                    foreach(ObjectShape Shape in ListShape)
+                        _listpoint.AddRange(Shape.Showpoint());
+                }
                 foreach (Draw.Point point in _listpoint)
                 {
-                    int pixelx = centerX + point.X * MainForm.UnitSize;
-                    int pixely = centerY - point.Y * MainForm.UnitSize;
+                    int pixelx = centerX + point.X * MainForm.UnitSize - MainForm.UnitSize / 2;
+                    int pixely = centerY - point.Y * MainForm.UnitSize - MainForm.UnitSize / 2;
                     if (point.colorvalue != null)
                     {
-                        e.Graphics.FillRectangle(new SolidBrush(point.colorvalue.Value), pixelx - MainForm.UnitSize / 2, pixely - MainForm.UnitSize / 2, MainForm.UnitSize, MainForm.UnitSize);
+                        e.Graphics.FillRectangle(new SolidBrush(point.colorvalue.Value), pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                     }
                     else
-                        e.Graphics.FillRectangle(brush, pixelx - MainForm.UnitSize / 2, pixely - MainForm.UnitSize / 2, MainForm.UnitSize, MainForm.UnitSize);
+                        e.Graphics.FillRectangle(brush, pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                 }
+                MainForm.LoadDetailMenu();
             }
         }
         public void click_putpixel(object sender, MouseEventArgs e)
@@ -132,59 +142,101 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         }
         int steprainbow = 0;
         int rainbowspeed = 10;
-        int Windpower = 3;
+        int Windpower = 5;
+        bool animationrun = false;
         public void init()
         {
-            Tranform_2D = new Tranform2D();
-            if (steprainbow == 0)
-            {
-                _RainBow.Clear();
-              //  _RainBow.AddRange(_Draw2d.Rainbow());
-            }
-            _TreeCircle.Clear();
-           // _TreeCircle.Add(_Draw2d.TreeCircle(0, 0,10, 50, 5));
-           // _TreeCircle.Add(_Draw2d.TreeCircle(-50,-20,-10,50, 10));
-           // _TreeCircle.Add(_Draw2d.TreeTriangle(5, 0, 20, 20, 3));
+
+            listtreecircle = new List<ObjectShape>();
+            CreateTreeCirle();
+            listtreetriangle = new List<ObjectShape>();
+            CreateTreeTriangle();
+            listcloud = new List<ObjectShape>();
+            CreateCloud();
         }
-        public List<Draw.Point> RainBowAnimation(List<Draw.Point> listpointrainbow)
+        private void CreateCloud()
         {
-            List<Draw.Point> TempList = new List<Draw.Point>();
-            for (int i = 0; i < steprainbow; i++)
-            {
-                TempList.Add(_RainBow[i]);
-            }
-            if (steprainbow < _RainBow.Count - rainbowspeed)
-                steprainbow += rainbowspeed;
-            else
-            {
-                steprainbow = 0;
-            }
-            return TempList;
+            Cloud _cloud = new Cloud();
+            _cloud.Draw(200, 30, Color.White, Color.White);
+            listcloud.Add(_cloud);
+            _cloud = new Cloud();
+            _cloud.Draw(100, 20, Color.White, Color.White);
+            listcloud.Add(_cloud);
         }
-        public List<Draw.Point> TreeRotate(List<Draw.Point> ListTreeRotate)
+        private void CreateTreeCirle()
         {
-            List<Draw.Point> TempList = new List<Draw.Point>();
-            if(Time%5==0)
-            TempList.AddRange(Tranform2D.Rotate(ListTreeRotate, ListTreeRotate[0], Windpower));
-            else
-            {
-                TempList.AddRange(ListTreeRotate);
-            }
-            return TempList;
+            TreeCircle _treecircle = new TreeCircle();
+            _treecircle.Draw(5, 0, 20, 20, 3);
+            listtreecircle.Add(_treecircle);
+            _treecircle = new TreeCircle();
+            _treecircle.Draw(-20, 0, -10, 10, 2);
+            listtreecircle.Add(_treecircle);
+        }
+        private void CreateTreeTriangle()
+        {
+            TreeTriangle _treetriangle = new TreeTriangle();
+            _treetriangle.Draw(-3, 0, 3, 20, 3);
+            listtreetriangle.Add(_treetriangle);
+            _treetriangle = new TreeTriangle();
+            _treetriangle.Draw(-15, 0, -5, 20, 1);
+            listtreetriangle.Add(_treetriangle);
         }
         int Time = 0;
         public void Update(object sender, EventArgs e)
         {
-
-            _listpoint.Clear();
-            _listpoint.AddRange(RainBowAnimation(_RainBow));
-            foreach (List<Draw.Point> treeobject in _TreeCircle)
-            {
-                _listpoint.AddRange(TreeRotate(treeobject));
-            }
-            Windpower = -Windpower;
+            ShapePoint.Add(listcloud);
+            ShapePoint.Add(listtreetriangle);
+            ShapePoint.Add(listtreecircle);
             Time++;
             view.Refresh();
+            TreeTriAngle();
+            treecirleanimation();
+            cloudanimation();
+            _listpoint.Clear();
+            ShapePoint.Clear();
+            if (Time==10)
+            {
+                Windpower = -Windpower;
+                Time = 0;
+            }
+        }
+        int scale = 1;
+        int offsetscale = 1;
+        public void TreeTriAngle()
+        {
+            if (Time % 7 == 0)
+            {
+                scale++;
+                if (scale >=3)
+                    scale = 0;
+                foreach (ObjectShape Shape in listtreetriangle)
+                {
+                       // Draw.Point a = new Draw.Point((Shape.start.X + Shape.end.X) / 2, Shape.start.Y);
+                    Shape.Scale(Shape.start, 1, scale);
+                }
+            }
+        }
+        public void treecirleanimation()
+        {
+                if (Time % 5 == 0)
+                {
+                    foreach (ObjectShape Shape in listtreecircle)
+                    {
+                        Draw.Point a = Shape.start;
+                        Shape.Rotate(a, Windpower);
+                    }
+            }
+        }
+        public void cloudanimation()
+        {
+            if (Time % 3 == 0)
+            {
+                foreach(ObjectShape Shape in listcloud)
+                {
+                    Draw.Point a = Shape.center;
+                    Shape.Move(a,-1,0);
+                }
+            }
         }
     }
 }

@@ -80,14 +80,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     Line2D LineDraw = new Line2D();
                     LineDraw.Draw(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style);
                     ShapePoint.Add(LineDraw);
-                    DataDetail Data = new DataDetail();
-                    Data.name = "Đường Thẳng";
-                    Data.Sx = _dialog.data.Sx;
-                    Data.Ex = _dialog.data.Ex;
-                    Data.Sy = _dialog.data.Sy;
-                    Data.Ey = _dialog.data.Ey;
-                    MainForm._BoxDetail.DataObject.Clear();
-                    MainForm._BoxDetail.DataObject.Add(Data);
                     MainForm.LoadDetailMenu();
                     view.Refresh();
                 }
@@ -107,7 +99,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     Draw.Rectangle Rect = new Draw.Rectangle();
                     Rect.Draw(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, Color.Black,_dialog.data.style);
                     ShapePoint.Add(Rect);
-                    MainForm.LoadDetailMenu();
                     view.Refresh();
                 }
             }
@@ -118,25 +109,19 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             {
                 if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    _listpoint.Clear();
-                    MainForm._BoxDetail.DataObject.Clear();
                     TreeTriangle TreeTri = new TreeTriangle();
                     TreeTri.Draw(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.count);
                     ShapePoint.Add(TreeTri);
-                    MainForm.LoadDetailMenu();
                     view.Refresh();
                 }
             }
         }
         protected void DrawTreeCircle(object sender,EventArgs e)
         {
-            _listpoint.Clear();
-            MainForm._BoxDetail.DataObject.Clear();
             TreeCircle TreeCir = new TreeCircle();
             TreeCir.Draw(0, 0, 20, 40, 3);
             ShapePoint.Add(TreeCir);
             view.Refresh();
-            MainForm.LoadDetailMenu();
         }
         protected void DrawRainBow(object sender,EventArgs e)
         {
@@ -215,9 +200,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             // Vẽ các điểm đã lưu trong danh sách
             using (Brush brush = new SolidBrush(Color.Black))
             {
+                MainForm._BoxDetail.DataObject.Clear();
                 foreach (ObjectShape Shape in ShapePoint)
                 {
                     _listpoint.AddRange(Shape.Showpoint());
+                    MainForm._BoxDetail.DataObject.AddRange(Shape.Infoshape);
                 }
                 foreach (Draw.Point point in _listpoint)
                 {
@@ -230,6 +217,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     else
                         e.Graphics.FillRectangle(brush, pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                 }
+                MainForm.LoadDetailMenu();
             }
         }
         public void click_putpixel(object sender, MouseEventArgs e)

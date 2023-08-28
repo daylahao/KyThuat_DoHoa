@@ -11,6 +11,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         int circlecount = 3;
        public void Draw(int Sx,int Sy,int Ex,int Ey,int circle =3)
         {
+            this.name = "Cây táng tròn";
             circlecount = circle;
             ChildShape = new List<ObjectShape>();
             circlecount = circle;
@@ -61,17 +62,24 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             {
                 _listpoint.AddRange(Shape.Showpoint());
             }
+            SetInfoShape();
             return _listpoint;
         }
         public override void Rotate(Point root, int angle)
         {
-            List<ObjectShape> _temp = new List<ObjectShape>();
+            this.start = Tranform2D.Rotate(start, root, angle); 
+            this.end = Tranform2D.Rotate(end, root, angle); 
+            if(ChildShape!=null||ChildShape.Count>0)
             foreach(ObjectShape Shape in ChildShape)
             {
                 Shape.Rotate(root, angle);
-                _temp.Add(Shape);
             }
-            ChildShape = _temp;
+        }
+        public override void SetInfoShape()
+        {
+            Infoshape = new List<DataDetail>();
+            Infoshape.Add(new DataDetail() { name = this.name, centerx = (this.start.X + this.end.X) / 2, centery = (this.start.Y + this.end.Y) / 2, width = Math.Abs(this.start.X - this.end.X), height = Math.Abs(this.start.Y - this.end.Y) });
+            base.SetInfoShape();
         }
     }
 }

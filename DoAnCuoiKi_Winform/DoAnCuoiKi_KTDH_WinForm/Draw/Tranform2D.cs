@@ -66,33 +66,14 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             _point.X = _point.X + Xstep;
             return _point;
         }
-        public static Draw.Point Scale(Draw.Point _point,Draw.Point _root, int scalex = 1, int scaley = 1)
+        public static Draw.Point Scale(Draw.Point _point,Draw.Point _root, double scalex = 1, double scaley = 1)
         {
-            scalex = (scalex == 0)? 1 : scalex;
-            scaley = (scaley == 0) ? 1 : scaley;
-            _point.Y = (_point.Y- _root.Y) * scaley;
-            _point.X = (_point.X-_root.X)* scalex;
-            return _point;
-        }
-        public static  List<Draw.Point> Scale(List<Draw.Point> shape, Draw.Point root, int scalex = 1, int scaley = 1)
-        {
-            List<Draw.Point> scaledShape = new List<Draw.Point>();
+/*            scalex = (scalex == 0) ? 1 : scalex;
+            scaley = (scaley == 0) ? 1 : scaley;*/
 
-            foreach (Draw.Point point in shape)
-            {
-                Draw.Point scaledPoint = Scale(point, root, scalex, scaley);
-                scaledShape.Add(point);
-                if (scaledPoint.X == 0 && scaledPoint.Y == 0)
-                {
-                    scaledShape.Add(scaledPoint);
-                }
-                else
-                {
-                    scaledShape.Add(scaledPoint);
-                }
-            }
-
-            return scaledShape;
+            int Y = (int)Math.Round((_point.Y) * scaley);
+            int X = (int)Math.Round((_point.X)* scalex);
+            return _point = new Draw.Point(X,Y,_point.colorvalue);
         }
     }
 }

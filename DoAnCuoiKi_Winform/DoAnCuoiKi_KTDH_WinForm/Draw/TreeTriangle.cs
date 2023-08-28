@@ -9,14 +9,17 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
     public class TreeTriangle:ObjectShape
     {
         public int trianglecount=1;
+        public Draw.Point enddefault;
         public void Draw(int sx, int sy, int ex, int ey, int triangle = 3)
         {
+            this.name = "Cây táng tam giác";
             trianglecount = triangle;
             if (Math.Abs(ey + sy) % 10 > 1 && Math.Abs(ey + sy) % 10 < trianglecount)
                 trianglecount = Math.Abs(ey + sy) % 10;
             ChildShape = new List<ObjectShape>();
             this.start = new Draw.Point(sx, sy);
             this.end = new Draw.Point(ex, ey);
+            enddefault = this.end;
             //Tạo hình chữ nhật làm thân cây
             Rectangle Rect = new Rectangle();
             Draw.Point Rectstart = new Draw.Point(this.start.X + (this.end.X - this.start.X) / 3,this.start.Y);
@@ -71,11 +74,14 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             {
                 _listpoint.AddRange(Shape.Showpoint());
             }
+            SetInfoShape();
             return _listpoint;
         }
         public override void Rotate(Point root, int angle)
         {
             List<ObjectShape> Temp = new List<ObjectShape>();
+            this.start = Tranform2D.Rotate(start, root, angle);
+            this.end = Tranform2D.Rotate(end, root, angle);
             foreach (ObjectShape Shape in ChildShape)
             {
                 Shape.Rotate(root,angle);
@@ -85,7 +91,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         }
         public override void Scale(Point root, int scaleX = 1, int scaleY = 1)
         {
-            base.Scale(root, scaleX, scaleY);
+            foreach(ObjectShape Shape in ChildShape)
+            {
+                Shape.Scale(root, scaleX, scaleY);
+            }
+        }
+        public override void SetInfoShape()
+        {
+            Infoshape = new List<DataDetail>();
+            Infoshape.Add(new DataDetail() {name = this.name,centerx = (this.start.X+this.end.X)/2,centery = (this.start.Y+this.end.Y)/2,width=Math.Abs(this.start.X-this.end.X),height=Math.Abs(this.start.Y-this.end.Y)});
+            base.SetInfoShape();
         }
     }
 }

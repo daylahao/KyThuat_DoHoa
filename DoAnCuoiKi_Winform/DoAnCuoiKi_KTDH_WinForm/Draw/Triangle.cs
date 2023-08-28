@@ -8,8 +8,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 {
     public class Triangle:ObjectShape
     {
-       public void Draw(int sx,int sy,int ex,int ey, System.Drawing.Color? Colorfill=null,System.Drawing.Color? Colorstroke=null,string type = "Nét liền")
+        public Draw.Point StarDef, EndDef, P2Def, P3Def;
+        public void Draw(int sx,int sy,int ex,int ey, System.Drawing.Color? Colorfill=null,System.Drawing.Color? Colorstroke=null,string type = "Nét liền")
         {
+            this.name = "Hình tam giác";
             this.start = new Draw.Point(sx, sy);
             this.end = new Draw.Point(ex, ey);
             this.point2 = new Draw.Point(this.end.X, this.start.Y);
@@ -17,12 +19,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             this.Colorfill = Colorfill;
             this.Colorstroke = Colorstroke;
             this.type = type;
+            this.StarDef = start;
+            this.EndDef = end;
+            this.P2Def = point2;
+            this.P3Def = point3;
 
         }
         public override List<Point> Showpoint()
         {
             List<Draw.Point> PointsDraw = new List<Draw.Point>();
-
+            SetInfoShape();
             Line2D Line = new Line2D();
             Line.Draw(this.start, this.point2, Colorstroke,type);
             PointsDraw.AddRange(Line.Showpoint()); 
@@ -52,6 +58,18 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 point2 = Tranform2D.Rotate(point2, root, angle);
                 point3 = Tranform2D.Rotate(point3, root, angle);
             }
+        }
+        public override void Scale(Point root, int scaleX = 1, int scaleY = 1)
+        {
+            this.start = Tranform2D.Scale(this.StarDef, root, scaleX, scaleY);
+            this.end = Tranform2D.Scale(this.EndDef, root, scaleX, scaleY);
+            this.point2 = Tranform2D.Scale(this.P2Def, root, scaleX, scaleY);
+            this.point3 = Tranform2D.Scale(this.P3Def, root, scaleX, scaleY);
+        }
+        public override void SetInfoShape()
+        {
+            Infoshape = new List<DataDetail>();
+            Infoshape.Add(new DataDetail() { name = this.name, centerx = (this.start.X + this.end.X) / 2, centery = (this.start.Y + this.end.Y) / 2, Sx = start.X, Sy = start.Y,Ex=end.X,Ey = end.Y });
         }
     }
 }
