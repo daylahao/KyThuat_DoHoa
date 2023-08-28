@@ -83,5 +83,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             }
             ChildShape = Temp;
         }
+        public override void Scale(Point root, int scaleX = 1, int scaleY = 1)
+        {
+            base.Scale(root, scaleX, scaleY);
+        }
     }
 }

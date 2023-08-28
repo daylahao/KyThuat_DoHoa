@@ -89,6 +89,7 @@
       <DependentUpon>TreeTriangleDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Draw\Circle.cs" />
+    <Compile Include="Draw\Cloud.cs" />
     <Compile Include="Draw\Detail_Base.cs" />
     <Compile Include="Draw\Draw2D.cs" />
     <Compile Include="Draw\Draw3D.cs" />

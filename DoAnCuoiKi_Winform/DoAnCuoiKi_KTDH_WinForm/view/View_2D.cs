@@ -65,7 +65,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             //MessageBox.Show("hello world");
             _listpoint.Clear();
             MainForm._BoxDetail.DataObject.Clear();
-            _listpoint.AddRange(_Draw2d.DrawCloud(0, 0, Color.White));
+            Cloud CloudDraw = new Cloud();
+            CloudDraw.Draw(0, 0, Color.Pink, Color.Black);
+            ShapePoint.Add(CloudDraw);
             view.Refresh();
         }
         protected void DrawLine(object sender, EventArgs e)

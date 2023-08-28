@@ -229,8 +229,10 @@ namespace DoAnCuoiKi_KTDH_WinForm
 
         #region Animtaion
         bool PlayTimer = false;
+
         private void Click_btnPlayAnimation(object sender, EventArgs e)
         {
+            timer1.Interval = (1000/30);
             PlayTimer = !PlayTimer;
             if (PlayTimer)
             {
