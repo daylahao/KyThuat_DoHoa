@@ -11,62 +11,114 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 
     public class Draw2D
     {
-        public List<Draw.Point> FillColor(List<Point> ListPoint, int X, int Y, Color? ColorFill = null)
+        List<Draw.Point> _listfill;
+        static bool[,] ListCheck;
+        static int picturewidth,pictureheight;
+        /*    public static List<Draw.Point> FillColor(List<Point> ListPoint, int X, int Y, Color? ColorFill = null)
         {
-            ConvertPoint _convert = new ConvertPoint();
             int picturewidth = View_2D.viewsize.width, pictureheight = View_2D.viewsize.height;
             bool[,] ListCheck = new bool[picturewidth * 2, pictureheight * 2];
-            int[] pointcenter = _convert.Doi_Sang_He_Toa_Do_May_Tinh(X, Y);
-            int[] pointputpixel;
-            X = pointcenter[0]; Y = pointcenter[1];
+            Draw.Point pointcenter = ConvertPoint.Doi_Sang_He_Toa_Do_May_Tinh(X, Y);
+            Draw.Point pointputpixel;
+            X = pointcenter.X; Y = pointcenter.Y;
+
             foreach (Draw.Point pointpixel in ListPoint)
             {
-                int[] a = _convert.Doi_Sang_He_Toa_Do_May_Tinh(pointpixel.X, pointpixel.Y);
-                ListCheck[a[0], a[1]] = true;
+                Draw.Point a = ConvertPoint.Doi_Sang_He_Toa_Do_May_Tinh(pointpixel.X, pointpixel.Y);
+                ListCheck[a.X, a.Y] = true;
             }
-            while (!ListCheck[X, Y])
+
+            while (X <=picturewidth && !(ListCheck[X, Y]))
             {
-                Console.WriteLine(X + " " + Y);
                 ListCheck[X, Y] = true;
-                pointputpixel = _convert.Doi_Sang_He_Toa_Do_Nguoi_Dung(X, Y);
-                ListPoint.Add(new Draw.Point(pointputpixel[0], pointputpixel[1], ColorFill));
-                if (Y < pictureheight * 2 || Y > 0)
+                pointputpixel = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(X, Y);
+                ListPoint.Add(new Draw.Point(pointputpixel.X, pointputpixel.Y, ColorFill));
+
+                if (Y > 0|| !ListCheck[X, Y + 1])
                 {
-                    if (!ListCheck[X, Y + 1])
+                    if (Y < pictureheight&&!ListCheck[X, Y + 1])
                         Y++;
-                    else if ((!ListCheck[X, Y - 1]) || !ListCheck[X, pointcenter[1] - 1])
-                        if (Y >= pointcenter[1])
-                            Y = pointcenter[1] - 1;
+                    else if ((!ListCheck[X, Y - 1]) || !ListCheck[X, pointcenter.Y - 1])
+                    {
+                        if (Y >= pointcenter.Y)
+                            Y = pointcenter.Y - 1;
                         else
                             Y--;
+                    }
                     else
                     {
                         X++;
-                        Y = pointcenter[1];
+                        Y = pointcenter.Y;
                     }
                 }
             }
-            X = pointcenter[0] - 1;
-            Y = pointcenter[1];
-            while (!ListCheck[X, Y])
+
+            X = pointcenter.X - 1;
+            Y = pointcenter.Y;
+
+            while (X >= 0 && !ListCheck[X, Y])
             {
                 ListCheck[X, Y] = true;
-                pointputpixel = _convert.Doi_Sang_He_Toa_Do_Nguoi_Dung(X, Y);
-                ListPoint.Add(new Draw.Point(pointputpixel[0], pointputpixel[1], ColorFill));
-                if (Y < pictureheight * 2 && !ListCheck[X, Y + 1])
+                pointputpixel = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(X, Y);
+                ListPoint.Add(new Draw.Point(pointputpixel.X, pointputpixel.Y, ColorFill));
+
+                if (Y < pictureheight && !ListCheck[X, Y + 1])
                     Y++;
-                else if ((Y > 0 && !ListCheck[X, Y - 1]) || !ListCheck[X, pointcenter[1] - 1])
-                    if (Y >= pointcenter[1])
-                        Y = pointcenter[1] - 1;
+                else if ((Y > 0 && !ListCheck[X, Y - 1]) || !ListCheck[X, pointcenter.Y - 1])
+                {
+                    if (Y >= pointcenter.Y)
+                        Y = pointcenter.Y - 1;
                     else
                         Y--;
+                }
                 else
                 {
                     X--;
-                    Y = pointcenter[1];
+                        Y = pointcenter.Y;
                 }
             }
+
             return ListPoint;
+        }*/
+        public List<Draw.Point> FillColor(List<Point> ListPoint,int X,int Y,Color?ColorFill = null)
+        {
+            picturewidth = View_2D.viewsize.width; pictureheight = View_2D.viewsize.height;
+            ListCheck = new bool[picturewidth * 2, pictureheight * 2];
+            _listfill = ListPoint;
+            foreach (Draw.Point pointpixel in ListPoint)
+            {
+                Draw.Point a = ConvertPoint.Doi_Sang_He_Toa_Do_May_Tinh(pointpixel.X, pointpixel.Y);
+                ListCheck[a.X, a.Y] = true;
+            }
+            Draw.Point PointFill = ConvertPoint.Doi_Sang_He_Toa_Do_May_Tinh(X,Y);
+            FloodFill(PointFill.X, PointFill.Y, ColorFill);
+            return _listfill;
+        }
+        private void FloodFill(int x, int y, Color? ColorFill = null)
+        {
+            // Kiểm tra xem điểm (x,y) có nằm trong hình ảnh không
+            if (x <=0 || x >= picturewidth || y <=0 || y >= pictureheight)
+                return;
+            if (ListCheck[x, y])
+                return;
+            else
+            {
+
+                // Kiểm tra xem điểm (x,y) có phải là màu cũ không
+                // Tô màu mới cho điểm (x,y)
+                ListCheck[x, y] = true;
+                int xpoint=x, ypoint=y;
+                _listfill.Add(ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(xpoint, ypoint, ColorFill));
+                if (!ListCheck[x + 1, y])
+                    FloodFill(x + 1, y, ColorFill);
+                if (!ListCheck[x - 1, y])
+                    FloodFill(x - 1, y, ColorFill);
+                if (!ListCheck[x, y + 1])
+                    FloodFill(x, y + 1, ColorFill);
+                if (!ListCheck[x, y - 1])
+                    FloodFill(x, y - 1, ColorFill);
+            }
+            return;
         }
         public List<Draw.Point> Line(int Ax, int Ay, int Bx, int By, Color? colorfill = null, String type = "Nét liền")
         {

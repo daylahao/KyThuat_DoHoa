@@ -139,12 +139,12 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             if (steprainbow == 0)
             {
                 _RainBow.Clear();
-                _RainBow.AddRange(_Draw2d.Rainbow());
+              //  _RainBow.AddRange(_Draw2d.Rainbow());
             }
             _TreeCircle.Clear();
-            _TreeCircle.Add(_Draw2d.TreeCircle(0, 0,10, 50, 5));
-            _TreeCircle.Add(_Draw2d.TreeCircle(-50,-20,-10,50, 10));
-            _TreeCircle.Add(_Draw2d.TreeTriangle(5, 0, 20, 20, 3));
+           // _TreeCircle.Add(_Draw2d.TreeCircle(0, 0,10, 50, 5));
+           // _TreeCircle.Add(_Draw2d.TreeCircle(-50,-20,-10,50, 10));
+           // _TreeCircle.Add(_Draw2d.TreeTriangle(5, 0, 20, 20, 3));
         }
         public List<Draw.Point> RainBowAnimation(List<Draw.Point> listpointrainbow)
         {
@@ -165,7 +165,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         {
             List<Draw.Point> TempList = new List<Draw.Point>();
             if(Time%5==0)
-            TempList.AddRange(Tranform_2D.Rotate(ListTreeRotate, ListTreeRotate[0], Windpower));
+            TempList.AddRange(Tranform2D.Rotate(ListTreeRotate, ListTreeRotate[0], Windpower));
             else
             {
                 TempList.AddRange(ListTreeRotate);

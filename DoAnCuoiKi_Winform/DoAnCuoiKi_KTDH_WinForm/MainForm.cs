@@ -217,10 +217,12 @@ namespace DoAnCuoiKi_KTDH_WinForm
         {
             View2D.ResetView();
         }
+        int angle = 45;
         private void button3_Click(object sender, EventArgs e)
         {
-            List<Draw.Point> _list = Tranform2D.Rotate(View2D._listpoint, new Draw.Point(0,0),45);
-            View2D._listpoint = _list;
+            foreach(ObjectShape Shapen in View2D.ShapePoint)
+                Shapen.Rotate(new Draw.Point(5,5), angle);
+            View2D._listpoint.Clear();
             View2D.view.Refresh();
         }
 
@@ -257,23 +259,27 @@ namespace DoAnCuoiKi_KTDH_WinForm
         public int width { get; set; }
         public int height { get; set; }
     }
-    public class ConvertPoint
+    public static class ConvertPoint
     {
-        int picturewidth = View_2D.viewsize.width, pictureheight = View_2D.viewsize.height;
-        public int[] Doi_Sang_He_Toa_Do_May_Tinh(int X, int Y)
+        public static int picturewidth = View_2D.viewsize.width, pictureheight = View_2D.viewsize.height;
+        public static Draw.Point Doi_Sang_He_Toa_Do_May_Tinh(int X, int Y,Color? Colorpoint =null)
         {
-            int[] pointChange;
-            X = picturewidth / 2 + X;
-            Y = pictureheight / 2 - Y;
-            pointChange = new int[] { X, Y };
+            Draw.Point pointChange = new Draw.Point(0, 0);
+            pointChange.X = picturewidth / 2 + X;
+            pointChange.Y = pictureheight / 2 - Y;
             return pointChange;
         }
-        public int[] Doi_Sang_He_Toa_Do_Nguoi_Dung(int X, int Y)
+        public static Draw.Point Doi_Sang_He_Toa_Do_May_Tinh(Draw.Point _point)
         {
-            int[] pointChange;
-            X = X > picturewidth / 2 ? (X - picturewidth / 2) : -(picturewidth / 2 - X);
-            Y = Y > pictureheight / 2 ? -(Y - pictureheight / 2) : pictureheight / 2 - Y;
-            pointChange = new int[] { X, Y };
+            Draw.Point pointChange = Doi_Sang_He_Toa_Do_May_Tinh(_point.X, _point.Y, _point.colorvalue);
+            return pointChange;
+        }
+        public static Draw.Point Doi_Sang_He_Toa_Do_Nguoi_Dung(int X, int Y,Color?ColorFill=null)
+        {
+            Draw.Point pointChange;
+            X = (X > picturewidth / 2 )? (X - picturewidth / 2) : -(picturewidth / 2 - X);
+            Y = (Y > pictureheight / 2 )? -(Y - pictureheight / 2) : pictureheight / 2 - Y;
+            pointChange = new Draw.Point(X, Y, ColorFill);
             return pointChange;
         }
 

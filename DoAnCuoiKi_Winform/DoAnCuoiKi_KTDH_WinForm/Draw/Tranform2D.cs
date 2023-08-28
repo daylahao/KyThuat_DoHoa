@@ -8,36 +8,65 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
 {
     public class Tranform2D
     {
-        public Draw.Point Rotate(Draw.Point _pointrotate,Draw.Point _root, int angle)
+        public static double CustomRound(double value, int decimals, double roundThreshold)
         {
-            double alpha =angle * (Math.PI / 180);
+            double factor = Math.Pow(10, decimals);
+            double roundedValue = Math.Round(value * factor);
+
+            if (Math.Abs(roundedValue / factor - value) >= roundThreshold)
+            {
+                roundedValue = Math.Sign(value) * Math.Ceiling(Math.Abs(value) * factor);
+            }
+
+            return roundedValue / factor;
+        }
+        //public Draw.Point Rotate(Draw.Point _pointrotate,Draw.Point _root, double angle)
+        //{
+        //    double alpha = (angle * Math.PI / 180);
+        //    double cos = Math.Cos(alpha),
+        //           sin = Math.Sin(alpha);
+        //    Draw.Point offset = _root;
+        //   int x = _pointrotate.X - offset.X,
+        //        y = _pointrotate.Y - offset.Y;
+        //    Console.WriteLine(((x * cos - y * sin) + offset.X).ToString() + "Y = " + ((x * sin + y * cos) + offset.Y).ToString());
+        //    _pointrotate.X= (int)(Math.Round((x* cos - y * sin)) +offset.X);
+        //    _pointrotate.Y = (int)(CustomRound((x * sin + y * cos),0,0.5)+offset.Y);
+        //    Console.WriteLine("Da chuyen ="+_pointrotate.X + " " + _pointrotate.Y);
+
+        //    return _pointrotate;
+        //}       
+        public static Draw.Point  Rotate(Draw.Point _pointrotate,Draw.Point _root, double angle)
+        {
+            double alpha = (angle * Math.PI/ 180);
             double cos = Math.Cos(alpha),
                    sin = Math.Sin(alpha);
-            Draw.Point offset = _root;
-            int x = _pointrotate.X - offset.X,
-                y = _pointrotate.Y - offset.Y;
-            _pointrotate.X= (int)Math.Round((x * cos - y * sin) + offset.X);
-            _pointrotate.Y = (int)Math.Round((x * sin + y * cos) + offset.Y);
-            return _pointrotate;
-
+            int x = _pointrotate.X- _root.X,
+                y = _pointrotate.Y- _root.Y;
+            double xNewDouble = (x * cos - y * sin),
+                yNewDouble = (x * sin + y * cos);
+            int xNew = 0;
+            int yNew = 0;
+            xNew = (int)Math.Round(xNewDouble+ _root.X);
+            yNew = (int)Math.Round(yNewDouble+ _root.Y);
+            _pointrotate = new Draw.Point(xNew, yNew);
+            return _pointrotate = new Draw.Point(_pointrotate.X, _pointrotate.Y, _pointrotate.colorvalue);
         }
-        public List<Draw.Point> Rotate(List<Draw.Point> _listpoint, Draw.Point _root, int angle)
+        public static List<Draw.Point> Rotate(List<Draw.Point> _listpoint, Draw.Point _root, double angle)
         {
             List<Draw.Point> _list = new List<Point>();
-            foreach (Draw.Point _pointrotate in _listpoint)
-            {
-                Draw.Point _temp = Rotate(_pointrotate, _root, angle);
-                    _list.Add(_temp);
+            
+            foreach(Draw.Point _temp in _listpoint) { 
+                _list.Add(Rotate(_temp, _root, angle));
             }
             return _list;
         }
-        public Draw.Point Move(Draw.Point _point,int Xstep=0,int Ystep=0)
+        public static Draw.Point Move(Draw.Point _point,int Xstep=0,int Ystep=0)
         {
             _point.Y = _point.Y + Ystep;
             _point.X = _point.X + Xstep;
             return _point;
         }
-        public Draw.Point Scale(Draw.Point _point,Draw.Point _root, int scalex = 1, int scaley = 1)
+        public static Draw.Point Scale(Draw.Point _point,Draw.Point _root, int scalex = 1, int scaley = 1)
         {
             scalex = (scalex == 0)? 1 : scalex;
             scaley = (scaley == 0) ? 1 : scaley;
@@ -45,7 +74,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             _point.X = (_point.X-_root.X)* scalex;
             return _point;
         }
-        public List<Draw.Point> Scale(List<Draw.Point> shape, Draw.Point root, int scalex = 1, int scaley = 1)
+        public static  List<Draw.Point> Scale(List<Draw.Point> shape, Draw.Point root, int scalex = 1, int scaley = 1)
         {
             List<Draw.Point> scaledShape = new List<Draw.Point>();
 

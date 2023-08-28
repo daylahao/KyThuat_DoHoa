@@ -22,7 +22,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             colorvalue = color;
         }
     }
-    public class ObjectShape
+/*    public class ObjectShape
     {
         public string name { get; set; }
         public Draw.Point startpoint { get; set; }
@@ -31,5 +31,5 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public Color ColorFill { get; set; }
         public List<ObjectShape> childshape {get;set;}
         public List<Draw.Point> _listpoint { get; set; }
-    }
+    }*/
 }

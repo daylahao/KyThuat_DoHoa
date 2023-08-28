@@ -23,10 +23,12 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public static Size viewsize = new Size();
         public List<Draw.Point> _listpoint = new List<Draw.Point>();
         Draw2D _Draw2d;
+        public List<ObjectShape> ShapePoint = new List<ObjectShape>();
         List<ToolBox> Ds_ToolBox;
         public void ResetView()
         {
             _listpoint.Clear();
+            ShapePoint.Clear();
             MainForm._BoxDetail.DataObject.Clear();
             view.Refresh();
             MainForm.LoadDetailMenu();
@@ -72,8 +74,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             using (Dialog.LineDialogForm _dialog = new Dialog.LineDialogForm())
             {
                 if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                { 
-                    _listpoint.AddRange(_Draw2d.Line(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style));
+                {
+                    Line2D LineDraw = new Line2D();
+                    LineDraw.Draw(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style);
+                    ShapePoint.Add(LineDraw);
                     DataDetail Data = new DataDetail();
                     Data.name = "Đường Thẳng";
                     Data.Sx = _dialog.data.Sx;
@@ -98,9 +102,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             {
                 if (_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    _listpoint.Clear();
-                    MainForm._BoxDetail.DataObject.Clear();
-                    _listpoint.AddRange(_Draw2d.Rectangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, _dialog.data.style));
+                    Draw.Rectangle Rect = new Draw.Rectangle();
+                    Rect.Draw(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.colorline, Color.Black,_dialog.data.style);
+                    ShapePoint.Add(Rect);
                     MainForm.LoadDetailMenu();
                     view.Refresh();
                 }
@@ -114,7 +118,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 {
                     _listpoint.Clear();
                     MainForm._BoxDetail.DataObject.Clear();
-                    _listpoint.AddRange(_Draw2d.TreeTriangle(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.count));
+                    TreeTriangle TreeTri = new TreeTriangle();
+                    TreeTri.Draw(_dialog.data.Sx, _dialog.data.Sy, _dialog.data.Ex, _dialog.data.Ey, _dialog.data.count);
+                    ShapePoint.Add(TreeTri);
                     MainForm.LoadDetailMenu();
                     view.Refresh();
                 }
@@ -124,7 +130,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         {
             _listpoint.Clear();
             MainForm._BoxDetail.DataObject.Clear();
-            _listpoint.AddRange(_Draw2d.TreeCircle(0, 0, 20, 40,4));
+            TreeCircle TreeCir = new TreeCircle();
+            TreeCir.Draw(0, 0, 20, 40, 3);
+            ShapePoint.Add(TreeCir);
             view.Refresh();
             MainForm.LoadDetailMenu();
         }
@@ -205,16 +213,20 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             // Vẽ các điểm đã lưu trong danh sách
             using (Brush brush = new SolidBrush(Color.Black))
             {
+                foreach (ObjectShape Shape in ShapePoint)
+                {
+                    _listpoint.AddRange(Shape.Showpoint());
+                }
                 foreach (Draw.Point point in _listpoint)
                 {
-                    int pixelx = centerX + point.X * MainForm.UnitSize;
-                    int pixely = centerY - point.Y * MainForm.UnitSize;
+                    int pixelx = centerX + point.X * MainForm.UnitSize - MainForm.UnitSize/2;
+                    int pixely = centerY - point.Y * MainForm.UnitSize - MainForm.UnitSize/2;
                     if (point.colorvalue != null)
                     {
-                        e.Graphics.FillRectangle(new SolidBrush(point.colorvalue.Value), pixelx - MainForm.UnitSize / 2, pixely - MainForm.UnitSize / 2, MainForm.UnitSize, MainForm.UnitSize);
+                        e.Graphics.FillRectangle(new SolidBrush(point.colorvalue.Value), pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                     }
                     else
-                        e.Graphics.FillRectangle(brush, pixelx - MainForm.UnitSize / 2, pixely - MainForm.UnitSize / 2, MainForm.UnitSize, MainForm.UnitSize);
+                        e.Graphics.FillRectangle(brush, pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                 }
             }
         }
@@ -226,10 +238,13 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     //Tính Toạ độ để hiện lên textbox
                     int pixelx = (e.X - centerX) / MainForm.UnitSize;
                     int pixely = (centerY - e.Y) / MainForm.UnitSize;
-                    //Hiện toạ độ lên textbox
-                    /*                textBoxX.Text = pixelx.ToString();
-                                    textBoxY.Text = pixely.ToString();*/
-                    _listpoint.Add(new Draw.Point(pixelx, pixely));
+                //Hiện toạ độ lên textbox
+                /*                textBoxX.Text = pixelx.ToString();
+                                textBoxY.Text = pixely.ToString();*/
+                //_listpoint.Add(new Draw.Point(pixelx, pixely));
+                    PixelSingle pixelput = new PixelSingle();
+                    pixelput.Draw(pixelx, pixely);
+                    ShapePoint.Add(pixelput);
                     DataDetail data = new DataDetail();
                     data.x = pixelx;
                     data.y = pixely;

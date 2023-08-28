@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DoAnCuoiKi_KTDH_WinForm.Draw;
 using System.Windows.Forms;
+using System.Drawing;
 namespace DoAnCuoiKi_KTDH_WinForm.Draw
 {
     public class Detail_Base
@@ -103,5 +104,23 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public int? Y3D { get; set; }
         public int? Z3D { get; set; }
         public int? Rong { get; set; }
+    }
+    public partial class ObjectShape
+    {
+        public  Draw.Point center, start, end,point2, point3;
+        public  int radius;
+        public  Color? Colorfill,Colorstroke;
+        public  List<ObjectShape> ChildShape;
+        public  List<Draw.Point> _listpoint;
+        public string type;
+        public virtual List<Point> Showpoint()
+        {
+            return _listpoint;
+        }
+        public virtual void Rotate(Draw.Point root, int angle)
+        {
+
+        }
+        public virtual void Scale(Draw.Point root,int scaleX=1,int scaleY=1) { }
     }
 }

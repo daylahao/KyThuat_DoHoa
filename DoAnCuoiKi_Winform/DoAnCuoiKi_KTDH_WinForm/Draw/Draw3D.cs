@@ -14,7 +14,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public List<Draw.Point> Box(int x, int y, int z, int dai, int rong, int cao)
         {
             _listpoint = new List<Point>();
-            ConvertPoint _pointbase = new ConvertPoint();
             int a = x - (z / 2);
             int b = y - (z / 2);
             int cX = (View_3D.viewsize.width / 2) + a;
@@ -23,31 +22,30 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             Draw2D drawLine = new Draw2D();
             Color lineColor = Color.Black;
             string lineType = "Nét liền";
-            int[] pointcneter = _pointbase.Doi_Sang_He_Toa_Do_Nguoi_Dung(cX, cY);
+            Draw.Point pointcneter = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(cX, cY);
             MainForm._BoxDetail.DataObject.Add(new DataDetail() {name="Hình Hộp", X3D = x, Y3D = y,Z3D = z,height = cao,width = dai,Rong = rong });
-            _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1] + cao, pointcneter[0] + dai, pointcneter[1] + cao, lineColor, lineType));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1] + cao, pointcneter[0] + (-rong / 2), pointcneter[1] + cao - (rong / 2), lineColor, lineType));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + dai - (rong / 2), pointcneter[1] + cao - (rong / 2), pointcneter[0] + dai, pointcneter[1] + cao, lineColor, lineType));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + dai - (rong / 2), pointcneter[1] + cao - (rong / 2), pointcneter[0] + (-rong / 2), pointcneter[1] + cao - (rong / 2), lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X, pointcneter.Y + cao, pointcneter.X + dai, pointcneter.Y + cao, lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X, pointcneter.Y + cao, pointcneter.X + (-rong / 2), pointcneter.Y + cao - (rong / 2), lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + dai - (rong / 2), pointcneter.Y + cao - (rong / 2), pointcneter.X + dai, pointcneter.Y + cao, lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + dai - (rong / 2), pointcneter.Y + cao - (rong / 2), pointcneter.X + (-rong / 2), pointcneter.Y + cao - (rong / 2), lineColor, lineType));
 
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + (-rong / 2), pointcneter[1] + cao - (rong / 2), pointcneter[0] + (-rong / 2), pointcneter[1] + (-rong / 2), lineColor, lineType));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + dai - (rong / 2), pointcneter[1] + cao - (rong / 2), pointcneter[0] + dai - (rong / 2), pointcneter[1] + (-rong / 2), lineColor, lineType));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + dai, pointcneter[1] + cao, pointcneter[0] + dai, pointcneter[1], lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + (-rong / 2), pointcneter.Y + cao - (rong / 2), pointcneter.X + (-rong / 2), pointcneter.Y + (-rong / 2), lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + dai - (rong / 2), pointcneter.Y + cao - (rong / 2), pointcneter.X + dai - (rong / 2), pointcneter.Y + (-rong / 2), lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + dai, pointcneter.Y + cao, pointcneter.X + dai, pointcneter.Y, lineColor, lineType));
 
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + (-rong / 2), pointcneter[1] + (-rong / 2), pointcneter[0] + dai - (rong / 2), pointcneter[1] + (-rong / 2), lineColor, lineType));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0] + dai - (rong / 2), pointcneter[1] + (-rong / 2), pointcneter[0] + dai, pointcneter[1], lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + (-rong / 2), pointcneter.Y + (-rong / 2), pointcneter.X + dai - (rong / 2), pointcneter.Y + (-rong / 2), lineColor, lineType));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X + dai - (rong / 2), pointcneter.Y + (-rong / 2), pointcneter.X + dai, pointcneter.Y, lineColor, lineType));
 
             string linetype1 = "Nét đứt";
-            _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1], pointcneter[0] + (-rong / 2), pointcneter[1] + (-rong / 2), lineColor, linetype1));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1], pointcneter[0], pointcneter[1] + cao, lineColor, linetype1));
-            _listpoint.AddRange(drawLine.Line(pointcneter[0], pointcneter[1], pointcneter[0] + dai, pointcneter[1], lineColor, linetype1));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X, pointcneter.Y, pointcneter.X + (-rong / 2), pointcneter.Y + (-rong / 2), lineColor, linetype1));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X, pointcneter.Y, pointcneter.X, pointcneter.Y + cao, lineColor, linetype1));
+            _listpoint.AddRange(drawLine.Line(pointcneter.X, pointcneter.Y, pointcneter.X + dai, pointcneter.Y, lineColor, linetype1));
             return _listpoint;
         }
         public List<Draw.Point> DrawCylinder(int x, int y, int z, int bankinh, int chieucao)
         {
             MainForm._BoxDetail.DataObject.Add(new DataDetail() { name = "Hình trụ",X3D=x,Y3D=y,Z3D=z, R = bankinh, height = chieucao });
             List<Draw.Point> _listpoint = new List<Point>();
-            ConvertPoint _pointbase = new ConvertPoint();
             Draw2D _Draw2D = new Draw2D();
             int a = x - (z / 2);
             int b = y - (z / 2);
@@ -66,9 +64,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             int cX1 = (View_3D.viewsize.width / 2) + n;
             int cY1 = (View_3D.viewsize.height / 2) - k;
             Color lineColor = Color.Black;
-            int[] pointcneter = _pointbase.Doi_Sang_He_Toa_Do_Nguoi_Dung(cX1, cY1);
-            _listpoint.AddRange(_Draw2D.Line(pointcneter[0] + bankinh, pointcneter[1], pointcneter[0] + bankinh, pointcneter[1] + chieucao, lineColor));
-            _listpoint.AddRange(_Draw2D.Line(pointcneter[0] - bankinh, pointcneter[1], pointcneter[0] - bankinh, pointcneter[1] + chieucao, lineColor));
+            Draw.Point pointcneter = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(cX1, cY1);
+            _listpoint.AddRange(_Draw2D.Line(pointcneter.X + bankinh, pointcneter.Y, pointcneter.X + bankinh, pointcneter.Y + chieucao, lineColor));
+            _listpoint.AddRange(_Draw2D.Line(pointcneter.X - bankinh, pointcneter.Y, pointcneter.X - bankinh, pointcneter.Y + chieucao, lineColor));
             return _listpoint;
         }
 

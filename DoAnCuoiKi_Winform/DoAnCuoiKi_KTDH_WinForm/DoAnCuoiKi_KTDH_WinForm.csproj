@@ -88,11 +88,19 @@
     <Compile Include="Dialog\TreeTriangleDialogForm.Designer.cs">
       <DependentUpon>TreeTriangleDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Draw\Circle.cs" />
     <Compile Include="Draw\Detail_Base.cs" />
     <Compile Include="Draw\Draw2D.cs" />
     <Compile Include="Draw\Draw3D.cs" />
     <Compile Include="Draw\DrawBase.cs" />
+    <Compile Include="Draw\Line2D.cs" />
+    <Compile Include="Draw\PixelSingle.cs" />
+    <Compile Include="Draw\Rectangle.cs" />
     <Compile Include="Draw\Tranform2D.cs" />
+    <Compile Include="Draw\TransformTest2D.cs" />
+    <Compile Include="Draw\TreeCircle.cs" />
+    <Compile Include="Draw\TreeTriangle.cs" />
+    <Compile Include="Draw\Triangle.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
