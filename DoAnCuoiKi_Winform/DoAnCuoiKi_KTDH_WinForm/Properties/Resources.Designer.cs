@@ -83,6 +83,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CircleIcon {
+            get {
+                object obj = ResourceManager.GetObject("CircleIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cloud {
             get {
                 object obj = ResourceManager.GetObject("Cloud", resourceCulture);
@@ -96,6 +106,26 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         internal static System.Drawing.Bitmap CylineIcon {
             get {
                 object obj = ResourceManager.GetObject("CylineIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconFlip {
+            get {
+                object obj = ResourceManager.GetObject("IconFlip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconRotate {
+            get {
+                object obj = ResourceManager.GetObject("IconRotate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +216,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.Properties {
         internal static System.Drawing.Bitmap TreeTriangleIcon {
             get {
                 object obj = ResourceManager.GetObject("TreeTriangleIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TriangleIcon {
+            get {
+                object obj = ResourceManager.GetObject("TriangleIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

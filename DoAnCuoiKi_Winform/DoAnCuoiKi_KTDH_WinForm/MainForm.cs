@@ -34,6 +34,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             ViewAnimation = new View_Animation();
             ViewAnimation.view = this.viewanim;
             ViewAnimation.panellayer = container_itemlist_bottom;
+            ViewAnimation.container_layeritembbody = Container_layeritembody;
             View2D.view = this.ViewPic2D;
             _BoxDetail = new Detail_Base();
             _BoxDetail.DataObject = new List<DataDetail>();
@@ -58,6 +59,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private void Changetab()
         {
             group_btn.Controls.Clear();
+            Tool_Tranform2D_Container.Hide();
             if (tabindex != ViewTab.SelectedIndex)
             {
                 _BoxDetail.DataObject.Clear();
@@ -72,6 +74,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
                         View2D.LoadUIView();
                         View2D.LoadMenuToolBox(group_btn);
                         container_menu.Show();
+                        Tool_Tranform2D_Container.Show();
                         break;
                     }
                 case 1: //3D
@@ -229,10 +232,9 @@ namespace DoAnCuoiKi_KTDH_WinForm
 
         #region Animtaion
         bool PlayTimer = false;
-
         private void Click_btnPlayAnimation(object sender, EventArgs e)
         {
-            
+            timer1.Interval = 1000 / 30;
             PlayTimer = !PlayTimer;
             if (PlayTimer)
             {
@@ -242,10 +244,12 @@ namespace DoAnCuoiKi_KTDH_WinForm
             {
                 btn_playtimer.BackgroundImage = DoAnCuoiKi_KTDH_WinForm.Properties.Resources.PlayIcon;
             }
+            ViewAnimation.Appstart = true;
             ViewAnimation.init();
             timer1.Enabled = PlayTimer;
         }
 
+        #endregion
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ApproveForm _exitForm = new ApproveForm();
@@ -254,7 +258,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
                 e.Cancel = true;
             }
         }
-        #endregion
+       
     }
     public class Size
     {

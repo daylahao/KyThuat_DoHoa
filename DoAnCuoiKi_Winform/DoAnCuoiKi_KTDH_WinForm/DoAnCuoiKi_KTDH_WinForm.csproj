@@ -196,5 +196,17 @@
   <ItemGroup>
     <None Include="Resources\Cloud.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="img\IconFlip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\IconRotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CircleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayIcon1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

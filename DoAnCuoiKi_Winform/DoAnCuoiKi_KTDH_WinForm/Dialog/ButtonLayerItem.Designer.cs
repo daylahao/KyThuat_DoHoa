@@ -47,6 +47,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.button1.Text = "Cầu Vòng";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ButtonLayerItem
             // 
@@ -55,6 +56,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Dialog
             this.Controls.Add(this.button1);
             this.Name = "ButtonLayerItem";
             this.Size = new System.Drawing.Size(123, 108);
+            this.Load += new System.EventHandler(this.ButtonLayerItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

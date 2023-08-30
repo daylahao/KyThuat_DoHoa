@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 using DoAnCuoiKi_KTDH_WinForm.Draw;
 using System.Windows.Forms;
 using System.Drawing;
+using DoAnCuoiKi_KTDH_WinForm.Dialog;
 namespace DoAnCuoiKi_KTDH_WinForm.view
 {
     public class View_Animation
     {
         public PictureBox view { get; set; }
         public Panel panellayer { get; set; }
+        public Panel container_layeritembbody;
         public int centerX, centerY;
         public static Size viewsize = new Size();
         public List<Draw.Point> _listpoint;
         public ObjectShape RainBow = new ObjectShape();
         private List<ObjectShape> listtreetriangle;
+
         private List<ObjectShape> listtreecircle;
         private List<ObjectShape> listcloud;
-        private Tranform2D Tranform_2D;
         private List<List<ObjectShape>> ShapePoint;
+        public List<ButtonLayerItem> listlayeritem;
+        private ButtonLayerItem Itemlayer;
+        public static List<DataDetail> DataInfoShow;
+        public static int numberindex = 0;
         public void LoadUIView()
         {
             viewsize.width = view.Width;
@@ -28,8 +34,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             centerX = viewsize.width / 2;
             centerY = viewsize.height / 2;
             panellayer.Visible = true;
-            ShapePoint = new List<List<ObjectShape>>();
-            _listpoint = new List<Draw.Point>();
+            if (Appstart)
+            {
+                ShapePoint = new List<List<ObjectShape>>();
+                _listpoint = new List<Draw.Point>();
+            }
             view.Paint += SetupDrawView;
             view.Refresh();
         }
@@ -95,8 +104,10 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 MainForm._BoxDetail.DataObject.Clear();
                 foreach (List<ObjectShape> ListShape in ShapePoint)
                 {
-                    foreach(ObjectShape Shape in ListShape)
+                    foreach (ObjectShape Shape in ListShape)
+                    {
                         _listpoint.AddRange(Shape.Showpoint());
+                    }
                 }
                 foreach (Draw.Point point in _listpoint)
                 {
@@ -109,7 +120,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     else
                         e.Graphics.FillRectangle(brush, pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                 }
-                MainForm.LoadDetailMenu();
+                if(Appstart!=true)
+                    if(listlayeritem[numberindex].ListPointData != null)
+                MainForm._BoxDetail.DataObject = listlayeritem[numberindex].ListPointData;
             }
         }
         public void click_putpixel(object sender, MouseEventArgs e)
@@ -140,24 +153,33 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             _listpoint.Clear();
             view.Refresh();
         }
+        public void SetLayerItem()
+        {
+            foreach(ButtonLayerItem Item in listlayeritem)
+                container_layeritembbody.Controls.Add(Item);
+        }
         int steprainbow = 0;
         int rainbowspeed = 10;
         int Windpower = 5;
         bool animationrun = false;
+        public void reset()
+        {
+ 
+        }
         public void init()
         {
-
+            listlayeritem = new List<ButtonLayerItem>();
             listtreecircle = new List<ObjectShape>();
-            CreateTreeCirle();
             listtreetriangle = new List<ObjectShape>();
-            CreateTreeTriangle();
             listcloud = new List<ObjectShape>();
+            CreateTreeCirle();
+            CreateTreeTriangle();
             CreateCloud();
         }
         private void CreateCloud()
         {
             Cloud _cloud = new Cloud();
-            _cloud.Draw(200, 30, Color.White, Color.White);
+            _cloud.Draw(10, 30, Color.White, Color.White);
             listcloud.Add(_cloud);
             _cloud = new Cloud();
             _cloud.Draw(100, 20, Color.White, Color.White);
@@ -182,22 +204,86 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             listtreetriangle.Add(_treetriangle);
         }
         int Time = 0;
-        public void Update(object sender, EventArgs e)
+        public void SetShapePoint()
         {
             ShapePoint.Add(listcloud);
             ShapePoint.Add(listtreetriangle);
             ShapePoint.Add(listtreecircle);
+        }
+        public void AddItemLayerList()
+        {
+            int i = 0;
+            container_layeritembbody.Controls.Clear();
+            listlayeritem.Clear();
+            foreach (ObjectShape shape in listcloud)
+            {
+                Itemlayer = new ButtonLayerItem();
+                Itemlayer.Add(shape);
+                Itemlayer.i = i;
+                listlayeritem.Add(Itemlayer);
+                i++;
+            }
+            foreach (ObjectShape shape in listtreetriangle)
+            {
+                Itemlayer = new ButtonLayerItem();
+                Itemlayer.Add(shape);
+                listlayeritem.Add(Itemlayer);
+                Itemlayer.i = i;
+                i++;
+            }
+            foreach (ObjectShape shape in listtreecircle)
+            {
+                Itemlayer = new ButtonLayerItem();
+                Itemlayer.Add(shape);
+                listlayeritem.Add(Itemlayer);
+                Itemlayer.i = i;
+                i++;
+            }
+        }
+        public void UpdateListlayer()
+        {
+            int i = 0;
+            foreach (ObjectShape shape in listcloud)
+            {
+
+                listlayeritem[i].ListPointData = shape.Infoshape;
+                i++;
+            }
+            foreach (ObjectShape shape in listtreetriangle)
+            {
+                listlayeritem[i].ListPointData = shape.Infoshape;
+                i++;
+            }
+            foreach (ObjectShape shape in listtreecircle)
+            {
+                listlayeritem[i].ListPointData = shape.Infoshape;
+                i++;
+            }
+        }
+        public bool Appstart = true;
+        public void Update(object sender, EventArgs e)
+        {
+            _listpoint.Clear();
+            ShapePoint.Clear();
+            SetShapePoint();
+          
             Time++;
             view.Refresh();
             TreeTriAngle();
             treecirleanimation();
             cloudanimation();
-            _listpoint.Clear();
-            ShapePoint.Clear();
+            if (Appstart)
+            {
+                AddItemLayerList();
+                Appstart = false;
+                SetLayerItem();
+            }
+            UpdateListlayer();
             if (Time==10)
             {
                 Windpower = -Windpower;
                 Time = 0;
+                MainForm.LoadDetailMenu();
             }
         }
         int scale = 1;
@@ -213,6 +299,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 {
                        // Draw.Point a = new Draw.Point((Shape.start.X + Shape.end.X) / 2, Shape.start.Y);
                     Shape.Scale(Shape.start, 1, scale);
+                    Shape.SetInfoShape();
                 }
             }
         }
@@ -224,7 +311,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     {
                         Draw.Point a = Shape.start;
                         Shape.Rotate(a, Windpower);
-                    }
+                    Shape.SetInfoShape();
+                }
             }
         }
         public void cloudanimation()
@@ -233,8 +321,16 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             {
                 foreach(ObjectShape Shape in listcloud)
                 {
-                    Draw.Point a = Shape.center;
-                    Shape.Move(a,-1,0);
+                    Draw.Point Left = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(0, 0);
+                    Draw.Point Right = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(view.Width, 0);
+                    Console.WriteLine((Left.X/5).ToString() + " " + Right.X.ToString());
+                    if (Shape.center.X < Left.X/5 || Shape.center.X > Right.X)
+                    {
+                        Shape.center.X = Right.X/5;
+                    }
+                    else
+                    Shape.Move(Shape.center, -1, 0);
+                    Shape.SetInfoShape();
                 }
             }
         }

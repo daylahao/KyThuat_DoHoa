@@ -115,6 +115,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
         public  List<ObjectShape> ChildShape;
         public  List<Draw.Point> _listpoint;
         public string type;
+        public int changex;
         public virtual List<Point> Showpoint()
         {
             _listpoint = new List<Point>();
