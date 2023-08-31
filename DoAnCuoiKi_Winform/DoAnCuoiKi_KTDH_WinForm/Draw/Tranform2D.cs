@@ -75,5 +75,9 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             int X = (int)Math.Round((_point.X)* scalex);
             return _point = new Draw.Point(X,Y,_point.colorvalue);
         }
+        public static Draw.Point Flip(Draw.Point _point, Draw.Point root)
+        {
+            return _point;
+        }
     }
 }

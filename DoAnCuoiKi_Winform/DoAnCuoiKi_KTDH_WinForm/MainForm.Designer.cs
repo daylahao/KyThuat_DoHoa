@@ -69,6 +69,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.Container_layeritembody = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonLayerItem1 = new DoAnCuoiKi_KTDH_WinForm.Dialog.ButtonLayerItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             this.container_menu.SuspendLayout();
             this.toolboxgroup.SuspendLayout();
             this.container_body.SuspendLayout();
@@ -399,6 +400,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             this.Tool_Tranform2D_Container.AutoScroll = true;
             this.Tool_Tranform2D_Container.Controls.Add(this.button3);
+            this.Tool_Tranform2D_Container.Controls.Add(this.button4);
             this.Tool_Tranform2D_Container.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Tool_Tranform2D_Container.Location = new System.Drawing.Point(3, 390);
             this.Tool_Tranform2D_Container.Name = "Tool_Tranform2D_Container";
@@ -459,6 +461,17 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.buttonLayerItem1.Name = "buttonLayerItem1";
             this.buttonLayerItem1.Size = new System.Drawing.Size(123, 108);
             this.buttonLayerItem1.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources.IconFlip;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Location = new System.Drawing.Point(37, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(37, 33);
+            this.button4.TabIndex = 1;
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -542,6 +555,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
         private Dialog.ButtonLayerItem buttonLayerItem1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel Container_layeritembody;
+        private System.Windows.Forms.Button button4;
     }
 }
 

@@ -64,6 +64,12 @@
     <Compile Include="Dialog\DialogForm3Dcs.Designer.cs">
       <DependentUpon>DialogForm3Dcs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\DialogRotate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\DialogRotate.Designer.cs">
+      <DependentUpon>DialogRotate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\InfoDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\DialogForm3Dcs.resx">
       <DependentUpon>DialogForm3Dcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\DialogRotate.resx">
+      <DependentUpon>DialogRotate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\InfoDialogForm.resx">
       <DependentUpon>InfoDialogForm.cs</DependentUpon>

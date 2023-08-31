@@ -220,13 +220,19 @@ namespace DoAnCuoiKi_KTDH_WinForm
         {
             View2D.ResetView();
         }
-        int angle = 45;
         private void button3_Click(object sender, EventArgs e)
         {
-            foreach(ObjectShape Shapen in View2D.ShapePoint)
-                Shapen.Rotate(new Draw.Point(5,5), angle);
-            View2D._listpoint.Clear();
-            View2D.view.Refresh();
+            using(Xoay Dialog = new Dialog.Xoay())
+            {
+                Dialog.ShowDialog();
+                if(Dialog.DialogResult == DialogResult.OK)
+                {
+                    foreach (ObjectShape Shapen in View2D.ShapePoint)
+                        Shapen.Rotate(Dialog.Data.Center, Dialog.Data.Angle);
+                    View2D._listpoint.Clear();
+                    View2D.view.Refresh();
+                }
+            }
         }
 
 

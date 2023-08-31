@@ -17,7 +17,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public int centerX, centerY;
         public static Size viewsize = new Size();
         public List<Draw.Point> _listpoint;
-        public ObjectShape RainBow = new ObjectShape();
+        public List<Draw.Point> Rainbow;
         private List<ObjectShape> listtreetriangle;
 
         private List<ObjectShape> listtreecircle;
@@ -168,6 +168,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         }
         public void init()
         {
+            Rainbow = new List<Draw.Point>();
             listlayeritem = new List<ButtonLayerItem>();
             listtreecircle = new List<ObjectShape>();
             listtreetriangle = new List<ObjectShape>();
@@ -175,6 +176,12 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             CreateTreeCirle();
             CreateTreeTriangle();
             CreateCloud();
+            CreateRainBow();
+        }
+        private void CreateRainBow()
+        {
+            Draw2D Draw = new Draw2D();
+           Rainbow = Draw.Rainbow();
         }
         private void CreateCloud()
         {
@@ -265,6 +272,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         {
             _listpoint.Clear();
             ShapePoint.Clear();
+            _listpoint.AddRange(RainBowAnimation());
             SetShapePoint();
           
             Time++;
@@ -279,6 +287,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 SetLayerItem();
             }
             UpdateListlayer();
+            steprainbow += rainbowspeed;
             if (Time==10)
             {
                 Windpower = -Windpower;
@@ -314,6 +323,19 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     Shape.SetInfoShape();
                 }
             }
+        }
+        private List<Draw.Point> RainBowAnimation()
+        {
+            List<Draw.Point> RainBowTemp = new List<Draw.Point>();
+            if (steprainbow > Rainbow.Count - 1)
+            {
+                steprainbow = 10;
+            }
+            for(int i=0; i < steprainbow; i++)
+            {
+                RainBowTemp.Add(Rainbow[i]);
+            }
+            return RainBowTemp;
         }
         public void cloudanimation()
         {
