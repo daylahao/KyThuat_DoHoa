@@ -138,6 +138,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             viewsize.height = view.Height;
             centerX = viewsize.width / 2;
             centerY = viewsize.height / 2;
+            Listtemp = new List<DataDetail>();
             view.Paint += SetupDrawView;
             view.Refresh();
         }
@@ -217,9 +218,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     else
                         e.Graphics.FillRectangle(brush, pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                 }
-                MainForm.LoadDetailMenu();
+                    MainForm.LoadDetailMenu();
             }
         }
+        List<DataDetail> Listtemp;
+        int counttest = 0;
         public void click_putpixel(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)// khang dinh la chuot dc click la chuot trai
@@ -234,15 +237,13 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 //_listpoint.Add(new Draw.Point(pixelx, pixely));
                     PixelSingle pixelput = new PixelSingle();
                     pixelput.Draw(pixelx, pixely);
+                /*                    MainForm._BoxDetail.DataObject.Clear();
+                                    MainForm._BoxDetail.DataObject.Add(data);*/
+                if (!MainForm.mousedown)
+                {
                     ShapePoint.Add(pixelput);
-                    DataDetail data = new DataDetail();
-                    data.x = pixelx;
-                    data.y = pixely;
                     view.Refresh();
-                    MainForm._BoxDetail.DataObject.Clear();
-                    MainForm._BoxDetail.DataObject.Add(data);
-                if(!MainForm.mousedown)
-                MainForm.LoadDetailMenu();
+                }
             }
 
         }

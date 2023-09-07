@@ -61,8 +61,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             int m = z;
             int n = h - (m / 2); ;
             int k = w - (m / 2);
-            int cX1 = (View_3D.viewsize.width / 2) + n;
-            int cY1 = (View_3D.viewsize.height / 2) - k;
+            int cX1 = (View_2D.viewsize.width / 2) + n;
+            int cY1 = (View_2D.viewsize.height / 2) - k;
             Color lineColor = Color.Black;
             Draw.Point pointcneter = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(cX1, cY1);
             _listpoint.AddRange(_Draw2D.Line(pointcneter.X + bankinh, pointcneter.Y, pointcneter.X + bankinh, pointcneter.Y + chieucao, lineColor));

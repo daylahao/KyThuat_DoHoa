@@ -26,7 +26,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public List<ButtonLayerItem> listlayeritem;
         private ButtonLayerItem Itemlayer;
         public static List<DataDetail> DataInfoShow;
-        public static int numberindex = 0;
+        public static int numberindex;
         public void LoadUIView()
         {
             viewsize.width = view.Width;
@@ -34,10 +34,13 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             centerX = viewsize.width / 2;
             centerY = viewsize.height / 2;
             panellayer.Visible = true;
+
             if (Appstart)
             {
+                init();
                 ShapePoint = new List<List<ObjectShape>>();
                 _listpoint = new List<Draw.Point>();
+                numberindex = 0;
             }
             view.Paint += SetupDrawView;
             view.Refresh();
@@ -101,7 +104,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             // Vẽ các điểm đã lưu trong danh sách
             using (Brush brush = new SolidBrush(Color.Black))
             {
-                MainForm._BoxDetail.DataObject.Clear();
                 foreach (List<ObjectShape> ListShape in ShapePoint)
                 {
                     foreach (ObjectShape Shape in ListShape)
@@ -120,9 +122,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                     else
                         e.Graphics.FillRectangle(brush, pixelx, pixely, MainForm.UnitSize, MainForm.UnitSize);
                 }
-                if(Appstart!=true)
-                    if(listlayeritem[numberindex].ListPointData != null)
-                MainForm._BoxDetail.DataObject = listlayeritem[numberindex].ListPointData;
+                /*if(Appstart!=true)*/
+                if (listlayeritem.Count > 0)
+                {
+                    MainForm._BoxDetail.DataObject = listlayeritem[numberindex].ListPointData;
+                }
             }
         }
         public void click_putpixel(object sender, MouseEventArgs e)
@@ -160,11 +164,11 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         }
         int steprainbow = 0;
         int rainbowspeed = 10;
-        int Windpower = 5;
+        int Windpower=5;
         bool animationrun = false;
         public void reset()
         {
- 
+            Windpower = 5;
         }
         public void init()
         {
@@ -268,6 +272,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             }
         }
         public bool Appstart = true;
+        int timeloaddetail = 0;
         public void Update(object sender, EventArgs e)
         {
             _listpoint.Clear();
@@ -292,18 +297,24 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
             {
                 Windpower = -Windpower;
                 Time = 0;
+            }
+            if (timeloaddetail== 30||timeloaddetail==1)
+            {
+                if (timeloaddetail ==30)
+                timeloaddetail = 0;
                 MainForm.LoadDetailMenu();
             }
+            timeloaddetail++;
         }
         int scale = 1;
         int offsetscale = 1;
         public void TreeTriAngle()
         {
-            if (Time % 7 == 0)
+            if (timeloaddetail == 15)
             {
                 scale++;
-                if (scale >=3)
-                    scale = 0;
+                if (scale >3)
+                    scale = 1;
                 foreach (ObjectShape Shape in listtreetriangle)
                 {
                        // Draw.Point a = new Draw.Point((Shape.start.X + Shape.end.X) / 2, Shape.start.Y);
@@ -345,7 +356,6 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
                 {
                     Draw.Point Left = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(0, 0);
                     Draw.Point Right = ConvertPoint.Doi_Sang_He_Toa_Do_Nguoi_Dung(view.Width, 0);
-                    Console.WriteLine((Left.X/5).ToString() + " " + Right.X.ToString());
                     if (Shape.center.X < Left.X/5 || Shape.center.X > Right.X)
                     {
                         Shape.center.X = Right.X/5;

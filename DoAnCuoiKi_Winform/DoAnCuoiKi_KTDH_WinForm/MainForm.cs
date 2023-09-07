@@ -86,6 +86,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
                     }
                 case 2://Animation
                     {
+
                         ViewAnimation.LoadUIView();
                         container_menu.Hide();
                         break;
@@ -100,7 +101,6 @@ namespace DoAnCuoiKi_KTDH_WinForm
         public static bool mousedown = false;
         private void view2D_MouseDown(object sender, MouseEventArgs e)
         {
-
             View2D.click_putpixel(sender, e);
         }
         private void ViewPic2D_MouseMove(object sender, MouseEventArgs e)
@@ -252,6 +252,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             }
             ViewAnimation.Appstart = true;
             ViewAnimation.init();
+            ViewAnimation.reset();
             timer1.Enabled = PlayTimer;
         }
 

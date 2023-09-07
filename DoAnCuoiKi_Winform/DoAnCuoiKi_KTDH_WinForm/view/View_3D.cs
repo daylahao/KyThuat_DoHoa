@@ -26,8 +26,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.view
         public void LoadUIView()
         {
             _Draw3d = new Draw3D();
-            viewsize.width = view.Width;
-            viewsize.height = view.Height;
+            viewsize = new Size() { width = view.Width, height = view.Height };
             centerX = viewsize.width / 2;
             centerY = viewsize.height / 2;
             view.Paint += SetupDrawView;

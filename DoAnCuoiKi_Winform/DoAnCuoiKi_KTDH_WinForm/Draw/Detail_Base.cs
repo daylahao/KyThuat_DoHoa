@@ -78,7 +78,7 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
                 if (Data.x.HasValue || Data.y.HasValue)
                 {
                     pointstartlabel = new Label();
-                    pointstartlabel.Text = "Điểm { x = " + Data.x.ToString() + "Y= " + Data.y.ToString() + " }";
+                    pointstartlabel.Text = "{ x = " + Data.x.ToString() + "Y= " + Data.y.ToString() + " }";
                     pointstartlabel.AutoSize = true;
                     _panel.Controls.Add(pointstartlabel);
                 }
