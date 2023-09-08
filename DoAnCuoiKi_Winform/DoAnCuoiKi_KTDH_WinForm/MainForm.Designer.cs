@@ -64,12 +64,12 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.panel_detail = new System.Windows.Forms.Panel();
             this.Tool_Tranform2D_Container = new System.Windows.Forms.FlowLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.container_itemlist_bottom = new System.Windows.Forms.Panel();
             this.itemgroup = new System.Windows.Forms.GroupBox();
             this.Container_layeritembody = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonLayerItem1 = new DoAnCuoiKi_KTDH_WinForm.Dialog.ButtonLayerItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button4 = new System.Windows.Forms.Button();
             this.container_menu.SuspendLayout();
             this.toolboxgroup.SuspendLayout();
             this.container_body.SuspendLayout();
@@ -282,7 +282,7 @@ namespace DoAnCuoiKi_KTDH_WinForm
             // 
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
             this.thoátToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.thoátToolStripMenuItem.Text = "Thoát";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
@@ -419,6 +419,19 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources.IconFlip;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(37, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(37, 33);
+            this.button4.TabIndex = 1;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            // 
             // container_itemlist_bottom
             // 
             this.container_itemlist_bottom.Controls.Add(this.itemgroup);
@@ -461,17 +474,6 @@ namespace DoAnCuoiKi_KTDH_WinForm
             this.buttonLayerItem1.Name = "buttonLayerItem1";
             this.buttonLayerItem1.Size = new System.Drawing.Size(123, 108);
             this.buttonLayerItem1.TabIndex = 0;
-            // 
-            // button4
-            // 
-            this.button4.BackgroundImage = global::DoAnCuoiKi_KTDH_WinForm.Properties.Resources.IconFlip;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Location = new System.Drawing.Point(37, 0);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(37, 33);
-            this.button4.TabIndex = 1;
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

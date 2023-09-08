@@ -182,11 +182,12 @@ namespace DoAnCuoiKi_KTDH_WinForm
 
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ApproveForm _exitForm = new ApproveForm();
+            this.Close();
+            /*ApproveForm _exitForm = new ApproveForm();
             if (_exitForm.ShowDialog() == DialogResult.Yes)
             {
                 Application.Exit();
-            }
+            }*/
         }
         private void ResetView(object sender, EventArgs e)
         {

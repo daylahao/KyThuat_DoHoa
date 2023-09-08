@@ -16,8 +16,8 @@ namespace DoAnCuoiKi_KTDH_WinForm.Draw
             _listpoint = new List<Point>();
             int a = x - (z / 2);
             int b = y - (z / 2);
-            int cX = (View_3D.viewsize.width / 2) + a;
-            int cY = (View_3D.viewsize.height / 2) - b;
+            int cX = (View_2D.viewsize.width / 2) + a;
+            int cY = (View_2D.viewsize.height / 2) - b;
 
             Draw2D drawLine = new Draw2D();
             Color lineColor = Color.Black;
